@@ -1,6 +1,5 @@
 asgiref==3.5.1
 attrs==21.4.0
-backports.zoneinfo==0.2.1
 Django==4.0.4
 django-debug-toolbar==3.4.0
 djangorestframework==3.13.1
