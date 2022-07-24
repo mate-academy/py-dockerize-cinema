@@ -8,11 +8,12 @@ class Command(BaseCommand):
     """Wait while DB will be ready"""
 
     def handle(self, *args, **options):
-        print('Waiting for DB', end="")
-        db_connection = None
+        self.stdout.write('Checking DB ready', ending="")
+        db_connection = connect["default"]
         while not db_connection:
             try:
                 db_connection = connect["default"]
             except OperationalError:
-                print(".", end="")
+                self.stdout.write(".", ending="")
                 time.sleep(1)
+        self.stdout.write("\nDB is ready!")
