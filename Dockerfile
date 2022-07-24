@@ -4,8 +4,8 @@ LABEL maintainer="example@example.com"
 ENV PYTHONUNBUFERED 1
 
 WORKDIR app/
-# apt-get update && apt-get -y install libpq-dev gcc
-# RUN python -m pip install -U pip
+# If used slim image: apt-get update && apt-get -y install libpq-dev gcc
+# If pip update needed: RUN python -m pip install -U pip
 RUN apk --no-cache add postgresql-client
 
 COPY requirements.txt requirements.txt
