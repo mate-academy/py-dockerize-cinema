@@ -3,6 +3,7 @@ from django.db import connections
 from django.db.utils import OperationalError
 import time
 
+
 class Command(BaseCommand):
     """Pause execution until db is available"""
     def handle(self, *args, **options):

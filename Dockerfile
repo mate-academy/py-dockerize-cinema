@@ -1,4 +1,4 @@
-FROM python:3.10.4-alpine
+FROM python:3.10.4-slim-buster
 LABEL maintainer="august4smile@gmail.com"
 
 ENV PYTHONDONTWRITEBYTECODE 1
