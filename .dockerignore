@@ -1,6 +1,5 @@
 .idea/
 .vscode/
-*.iml
 .env
 .DS_Store
 venv/
@@ -8,3 +7,4 @@ venv/
 **__pycache__/
 **db.sqlite3
 media
+app.env

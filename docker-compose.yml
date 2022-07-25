@@ -2,6 +2,8 @@ version: "3"
 
 services:
   app:
+    env_file:
+      - app.env
     build:
       context: .
     ports:
@@ -12,11 +14,6 @@ services:
       sh -c "python manage.py migrate &&
              python manage.py wait_for_db &&
              python manage.py runserver 0.0.0.0:8000"
-    environment:
-      - DB_HOST=db
-      - DB_NAME=app
-      - DB_USER=postgres
-      - DB_PASSWORD=1380323898list
     depends_on:
       - db
 
