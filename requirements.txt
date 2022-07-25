@@ -12,6 +12,7 @@ iniconfig==1.1.1
 jsonschema==4.6.0
 mccabe==0.6.1
 packaging==21.3
+psycopg2-binary==2.9.3
 Pillow==9.1.1
 pluggy==1.0.0
 py==1.11.0
@@ -27,3 +28,4 @@ sqlparse==0.4.2
 toml==0.10.2
 uritemplate==4.1.1
 zipp==3.8.0
+polls~=0.1
