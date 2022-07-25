@@ -81,11 +81,18 @@ class Migration(migrations.Migration):
                 (
                     "image",
                     models.ImageField(
-                        null=True, upload_to=cinema.models.movie_image_file_path
+                        null=True,
+                        upload_to=cinema.models.movie_image_file_path
                     ),
                 ),
-                ("actors", models.ManyToManyField(blank=True, to="cinema.actor")),
-                ("genres", models.ManyToManyField(blank=True, to="cinema.genre")),
+                (
+                    "actors",
+                    models.ManyToManyField(blank=True, to="cinema.actor")
+                ),
+                ("genres", models.ManyToManyField(
+                    blank=True,
+                    to="cinema.genre"
+                )),
             ],
             options={
                 "ordering": ["title"],
@@ -114,7 +121,8 @@ class Migration(migrations.Migration):
                 (
                     "movie",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="cinema.movie"
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="cinema.movie"
                     ),
                 ),
             ],
