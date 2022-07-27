@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db.models import F, Count
+
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins, status
@@ -12,7 +13,6 @@ from rest_framework.viewsets import GenericViewSet
 
 from cinema.models import Genre, Actor, CinemaHall, Movie, MovieSession, Order
 from cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
-
 from cinema.serializers import (
     GenreSerializer,
     ActorSerializer,
@@ -195,7 +195,8 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 "date",
                 type=OpenApiTypes.DATE,
-                description="Filter by datetime of MovieSession (ex. ?date=2022-10-23)",
+                description="Filter by datetime of "
+                            "MovieSession (ex. ?date=2022-10-23)",
             ),
         ]
     )
