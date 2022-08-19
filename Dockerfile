@@ -22,4 +22,3 @@ RUN chown -R django-user:django-user /vol/
 RUN chmod -R 755 /vol/web
 
 USER django-user
-
