@@ -2,6 +2,7 @@ asgiref==3.5.1
 attrs==21.4.0
 Django==4.0.4
 django-debug-toolbar==3.4.0
+django-environ==0.9.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
 drf-spectacular==0.22.1
@@ -14,6 +15,7 @@ mccabe==0.6.1
 packaging==21.3
 Pillow==9.1.1
 pluggy==1.0.0
+psycopg2-binary==2.9.3
 py==1.11.0
 pycodestyle==2.8.0
 pyflakes==2.4.0
