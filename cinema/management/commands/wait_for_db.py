@@ -18,13 +18,3 @@ class Command(BaseCommand):
                 time.sleep(1)
 
         self.stdout.write(self.style.SUCCESS("Database available!"))
-
-        # for i in range(15):
-        #     db_conn = connections["default"]
-        #     if db_conn:
-        #         self.stdout.write(self.style.SUCCESS("Database available!"))
-        #     if not db_conn and attempt < 3:
-        #         self.stdout.write(f"Connecting to database. Attempt: {attempt}/10")
-        #         time.sleep(1)
-        #     else:
-        #         raise OperationalError(self.stdout.write("Database unavailable!!!"))
