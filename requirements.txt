@@ -21,7 +21,6 @@ pathspec==0.10.1
 Pillow==9.1.1
 platformdirs==2.5.2
 pluggy==1.0.0
-psycopg2==2.9.4
 psycopg2-binary==2.9.4
 py==1.11.0
 pycodestyle==2.8.0
