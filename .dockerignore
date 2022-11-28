@@ -1,0 +1,8 @@
+logs/
+.git
+*.md
+.cache
+venv
+.env
+stats
+Dockerfile
