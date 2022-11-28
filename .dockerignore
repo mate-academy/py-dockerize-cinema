@@ -1,0 +1,10 @@
+venv/
+env/
+.venv
+.env
+.cache
+.project
+.idea
+.git
+.sqlite3
+Dockerfile
