@@ -4,9 +4,14 @@ services:
   app:
     build:
       context: .
+
     image: cerne13/cinema
+
     ports:
       - "8000:8000"
+      - 
+    volumes:
+      - ./:/app
 
     command: >
       sh -c "python3 manage.py migrate &&
