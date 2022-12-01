@@ -1,7 +1,7 @@
 FROM python:3.10.4-slim-buster
 LABEL mainteiner="gsstahiv@gmail.com"
 
-ENV PYTHONUNBUFERED 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR app/
 
