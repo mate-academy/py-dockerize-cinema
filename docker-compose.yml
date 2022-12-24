@@ -13,7 +13,7 @@ services:
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     env_file:
-      - .env.docker
+      - .env
     depends_on:
       - db
 
@@ -22,4 +22,4 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - .env.docker
+      - .env
