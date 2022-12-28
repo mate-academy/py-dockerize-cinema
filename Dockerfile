@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR app/
 
-RUN apt-get update && apt-get -y install libpq-dev gcc
+
 
 
 COPY  requirements.txt  requirements.txt
