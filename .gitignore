@@ -9,3 +9,4 @@ venv/
 db.sqlite3
 media
 .idea
+.env
