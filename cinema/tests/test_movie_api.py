@@ -75,7 +75,7 @@ class AuthenticatedMovieApiTests(TestCase):
 
         res = self.client.get(MOVIE_URL)
 
-        movies = Movie.objects.all().order_by("id")
+        movies = Movie.objects.order_by("id")
         serializer = MovieListSerializer(movies, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
