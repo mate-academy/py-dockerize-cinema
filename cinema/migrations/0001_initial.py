@@ -10,9 +10,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
+    dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL)]
 
     operations = [
         migrations.CreateModel(
@@ -81,22 +79,13 @@ class Migration(migrations.Migration):
                 (
                     "image",
                     models.ImageField(
-                        null=True,
-                        upload_to=cinema.models.movie_image_file_path,
+                        null=True, upload_to=cinema.models.movie_image_file_path
                     ),
                 ),
-                (
-                    "actors",
-                    models.ManyToManyField(blank=True, to="cinema.actor"),
-                ),
-                (
-                    "genres",
-                    models.ManyToManyField(blank=True, to="cinema.genre"),
-                ),
+                ("actors", models.ManyToManyField(blank=True, to="cinema.actor")),
+                ("genres", models.ManyToManyField(blank=True, to="cinema.genre")),
             ],
-            options={
-                "ordering": ["title"],
-            },
+            options={"ordering": ["title"]},
         ),
         migrations.CreateModel(
             name="MovieSession",
@@ -121,14 +110,11 @@ class Migration(migrations.Migration):
                 (
                     "movie",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="cinema.movie",
+                        on_delete=django.db.models.deletion.CASCADE, to="cinema.movie"
                     ),
                 ),
             ],
-            options={
-                "ordering": ["-show_time"],
-            },
+            options={"ordering": ["-show_time"]},
         ),
         migrations.CreateModel(
             name="Order",
@@ -151,9 +137,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "ordering": ["-created_at"],
-            },
+            options={"ordering": ["-created_at"]},
         ),
         migrations.CreateModel(
             name="Ticket",
