@@ -1,6 +1,6 @@
-from django.core.exceptions import ValidationError
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from cinema.models import (
     Genre,
@@ -117,6 +117,7 @@ class TicketSerializer(serializers.ModelSerializer):
             attrs["row"],
             attrs["seat"],
             attrs["movie_session"],
+            ValidationError,
         )
         return data
 
