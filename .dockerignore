@@ -1,0 +1,4 @@
+venv
+.flake8
+README.md
+result.png
