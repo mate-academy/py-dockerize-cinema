@@ -24,6 +24,23 @@ python manage.py runserver
 - Create user via/api/user/register/
 - Get access token via/api/user/token/
 
+## Features
+<hr>
+
+- JWT authenticated;
+- Admin panel/admin/;
+- Managing orders and tickets;
+- Creating movies with actors and genres;
+- Creating cinema halls;
+- Adding movie sessions;
+- Filtering movies and movie sessions.
+
+## API documentation
+
+The API documentation is available at:
+- api/doc/swagger/
+- api/doc/redoc/
+
 ## You can run project using Docker container
 <hr>
 
@@ -33,8 +50,3 @@ Docker must be already installed
 docker-compose build
 docker-compose up
 ```
-## API documentation
-
-The API documentation is available at:
-- api/doc/swagger/
-- api/doc/redoc/
