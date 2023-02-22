@@ -16,7 +16,7 @@ MOVIE_URL = reverse("cinema:movie-list")
 MOVIE_SESSION_URL = reverse("cinema:moviesession-list")
 
 
-def sample_movie(**params):
+def sample_movie(**params: dict) -> Movie:
     defaults = {
         "title": "Sample movie",
         "description": "Sample description",
@@ -27,7 +27,7 @@ def sample_movie(**params):
     return Movie.objects.create(**defaults)
 
 
-def sample_movie_session(**params):
+def sample_movie_session(**params: dict) -> MovieSession:
     cinema_hall = CinemaHall.objects.create(
         name="Blue", rows=20, seats_in_row=20
     )
@@ -42,12 +42,12 @@ def sample_movie_session(**params):
     return MovieSession.objects.create(**defaults)
 
 
-def image_upload_url(movie_id):
+def image_upload_url(movie_id: id) -> str:
     """Return URL for recipe image upload"""
     return reverse("cinema:movie-upload-image", args=[movie_id])
 
 
-def detail_url(movie_id):
+def detail_url(movie_id: id) -> str:
     return reverse("cinema:movie-detail", args=[movie_id])
 
 
@@ -61,7 +61,7 @@ class UnauthenticatedMovieApiTests(TestCase):
 
 
 class AuthenticatedMovieApiTests(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
             "test@test.com",
@@ -69,7 +69,7 @@ class AuthenticatedMovieApiTests(TestCase):
         )
         self.client.force_authenticate(self.user)
 
-    def test_list_movies(self):
+    def test_list_movies(self) -> None:
         sample_movie()
         sample_movie()
 
@@ -81,7 +81,7 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-    def test_filter_movies_by_genres(self):
+    def test_filter_movies_by_genres(self) -> None:
         genre1 = Genre.objects.create(name="Genre 1")
         genre2 = Genre.objects.create(name="Genre 2")
 
@@ -105,7 +105,7 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertIn(serializer2.data, res.data)
         self.assertNotIn(serializer3.data, res.data)
 
-    def test_filter_movies_by_actors(self):
+    def test_filter_movies_by_actors(self) -> None:
         actor1 = Actor.objects.create(first_name="Actor 1", last_name="Last 1")
         actor2 = Actor.objects.create(first_name="Actor 2", last_name="Last 2")
 
@@ -129,7 +129,7 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertIn(serializer2.data, res.data)
         self.assertNotIn(serializer3.data, res.data)
 
-    def test_filter_movies_by_title(self):
+    def test_filter_movies_by_title(self) -> None:
         movie1 = sample_movie(title="Movie")
         movie2 = sample_movie(title="Another Movie")
         movie3 = sample_movie(title="No match")
@@ -144,7 +144,7 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertIn(serializer2.data, res.data)
         self.assertNotIn(serializer3.data, res.data)
 
-    def test_retrieve_movie_detail(self):
+    def test_retrieve_movie_detail(self) -> None:
         movie = sample_movie()
         movie.genres.add(Genre.objects.create(name="Genre"))
         movie.actors.add(
@@ -158,7 +158,7 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-    def test_create_movie_forbidden(self):
+    def test_create_movie_forbidden(self) -> None:
         payload = {
             "title": "Movie",
             "description": "Description",
@@ -170,14 +170,14 @@ class AuthenticatedMovieApiTests(TestCase):
 
 
 class AdminMovieApiTests(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
             "admin@admin.com", "testpass", is_staff=True
         )
         self.client.force_authenticate(self.user)
 
-    def test_create_movie(self):
+    def test_create_movie(self) -> None:
         payload = {
             "title": "Movie",
             "description": "Description",
@@ -190,7 +190,7 @@ class AdminMovieApiTests(TestCase):
         for key in payload.keys():
             self.assertEqual(payload[key], getattr(movie, key))
 
-    def test_create_movie_with_genres(self):
+    def test_create_movie_with_genres(self) -> None:
         genre1 = Genre.objects.create(name="Action")
         genre2 = Genre.objects.create(name="Adventure")
         payload = {
@@ -208,7 +208,7 @@ class AdminMovieApiTests(TestCase):
         self.assertIn(genre1, genres)
         self.assertIn(genre2, genres)
 
-    def test_create_movie_with_actors(self):
+    def test_create_movie_with_actors(self) -> None:
         actor1 = Actor.objects.create(first_name="Tom", last_name="Holland")
         actor2 = Actor.objects.create(first_name="Tobey", last_name="Maguire")
         payload = {
@@ -228,7 +228,7 @@ class AdminMovieApiTests(TestCase):
 
 
 class MovieImageUploadTests(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.client = APIClient()
         self.user = get_user_model().objects.create_superuser(
             "admin@myproject.com", "password"
@@ -237,10 +237,10 @@ class MovieImageUploadTests(TestCase):
         self.movie = sample_movie()
         self.movie_session = sample_movie_session(movie=self.movie)
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         self.movie.image.delete()
 
-    def test_upload_image_to_movie(self):
+    def test_upload_image_to_movie(self) -> None:
         """Test uploading an image to movie"""
         url = image_upload_url(self.movie.id)
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
@@ -254,14 +254,14 @@ class MovieImageUploadTests(TestCase):
         self.assertIn("image", res.data)
         self.assertTrue(os.path.exists(self.movie.image.path))
 
-    def test_upload_image_bad_request(self):
+    def test_upload_image_bad_request(self) -> None:
         """Test uploading an invalid image"""
         url = image_upload_url(self.movie.id)
         res = self.client.post(url, {"image": "not image"}, format="multipart")
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_post_image_to_movie_list_should_not_work(self):
+    def test_post_image_to_movie_list_should_not_work(self) -> None:
         url = MOVIE_URL
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
             img = Image.new("RGB", (10, 10))
@@ -282,7 +282,7 @@ class MovieImageUploadTests(TestCase):
         movie = Movie.objects.get(title="Title")
         self.assertFalse(movie.image)
 
-    def test_image_url_is_shown_on_movie_detail(self):
+    def test_image_url_is_shown_on_movie_detail(self) -> None:
         url = image_upload_url(self.movie.id)
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
             img = Image.new("RGB", (10, 10))
@@ -293,7 +293,7 @@ class MovieImageUploadTests(TestCase):
 
         self.assertIn("image", res.data)
 
-    def test_image_url_is_shown_on_movie_list(self):
+    def test_image_url_is_shown_on_movie_list(self) -> None:
         url = image_upload_url(self.movie.id)
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
             img = Image.new("RGB", (10, 10))
@@ -304,7 +304,7 @@ class MovieImageUploadTests(TestCase):
 
         self.assertIn("image", res.data[0].keys())
 
-    def test_image_url_is_shown_on_movie_session_detail(self):
+    def test_image_url_is_shown_on_movie_session_detail(self) -> None:
         url = image_upload_url(self.movie.id)
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
             img = Image.new("RGB", (10, 10))
@@ -315,7 +315,7 @@ class MovieImageUploadTests(TestCase):
 
         self.assertIn("movie_image", res.data[0].keys())
 
-    def test_put_movie_not_allowed(self):
+    def test_put_movie_not_allowed(self) -> None:
         payload = {
             "title": "New movie",
             "description": "New description",
@@ -329,7 +329,7 @@ class MovieImageUploadTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_delete_movie_not_allowed(self):
+    def test_delete_movie_not_allowed(self) -> None:
         movie = sample_movie()
         url = detail_url(movie.id)
 

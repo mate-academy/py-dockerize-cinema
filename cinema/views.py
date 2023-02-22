@@ -1,13 +1,16 @@
 from datetime import datetime
+from typing import Type, Any
 
-from django.db.models import F, Count
+from django.db.models import F, Count, QuerySet
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.serializers import Serializer
 from rest_framework.viewsets import GenericViewSet
 
 from cinema.models import Genre, Actor, CinemaHall, Movie, MovieSession, Order
@@ -70,11 +73,11 @@ class MovieViewSet(
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     @staticmethod
-    def _params_to_ints(qs):
+    def _params_to_ints(qs: str) -> list[int]:
         """Converts a list of string IDs to a list of integers"""
         return [int(str_id) for str_id in qs.split(",")]
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Movie]:
         """Retrieve the movies with filters"""
         title = self.request.query_params.get("title")
         genres = self.request.query_params.get("genres")
@@ -95,7 +98,7 @@ class MovieViewSet(
 
         return queryset.distinct()
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return MovieListSerializer
 
@@ -113,7 +116,7 @@ class MovieViewSet(
         url_path="upload-image",
         permission_classes=[IsAdminUser],
     )
-    def upload_image(self, request, pk=None):
+    def upload_image(self, request: Request, pk: int = None) -> None:
         """Endpoint for uploading image to specific movie"""
         movie = self.get_object()
         serializer = self.get_serializer(movie, data=request.data)
@@ -143,7 +146,10 @@ class MovieViewSet(
             ),
         ]
     )
-    def list(self, request, *args, **kwargs):
+    def list(self,
+             request: Any,
+             *args: Any,
+             **kwargs: dict) -> Response:
         return super().list(request, *args, **kwargs)
 
 
@@ -161,7 +167,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
     serializer_class = MovieSessionSerializer
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         date = self.request.query_params.get("date")
         movie_id_str = self.request.query_params.get("movie")
 
@@ -176,7 +182,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
 
         return queryset
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return MovieSessionListSerializer
 
@@ -202,7 +208,12 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
             ),
         ]
     )
-    def list(self, request, *args, **kwargs):
+    def list(
+            self,
+            request: Any,
+            *args: Any,
+            **kwargs: dict
+    ) -> Response:
         return super().list(request, *args, **kwargs)
 
 
@@ -223,14 +234,14 @@ class OrderViewSet(
     pagination_class = OrderPagination
     permission_classes = (IsAuthenticated,)
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return Order.objects.filter(user=self.request.user)
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> Type[Serializer]:
         if self.action == "list":
             return OrderListSerializer
 
         return OrderSerializer
 
-    def perform_create(self, serializer):
+    def perform_create(self, serializer: Serializer) -> None:
         serializer.save(user=self.request.user)
