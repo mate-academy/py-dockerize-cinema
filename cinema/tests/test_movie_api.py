@@ -16,7 +16,7 @@ MOVIE_URL = reverse("cinema:movie-list")
 MOVIE_SESSION_URL = reverse("cinema:moviesession-list")
 
 
-def sample_movie(**params):
+def sample_movie(**params: dict) -> Movie:
     defaults = {
         "title": "Sample movie",
         "description": "Sample description",
