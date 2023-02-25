@@ -1,20 +1,39 @@
-from django.core.management.base import BaseCommand
-from django.db import connections
-from django.db.utils import OperationalError
+import sys
 import time
+from typing import Any
+
+from django.core.management.base import BaseCommand
+from django.db import connection
+from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-    """ Django command to pause execution until database is available"""
-    def handle(self, *args, **kwargs):
-        self.stdout.write('waiting for db ...')
-        db_conn = None
-        while not db_conn:
+    """ Blocks until the database is available """
+
+    def add_arguments(self, parser) -> None:
+        parser.add_argument("--poll_seconds", type=float, default=3)
+        parser.add_argument("--max_retries", type=int, default=60)
+
+    def handle(self, *args: Any, **options: [int, float]) -> None:
+        self.stdout.write("waiting for db ...")
+        max_retries = options["max_retries"]
+        poll_seconds = options["poll_seconds"]
+
+        for retry in range(max_retries):
             try:
-                # get the database with keyword 'default' from settings.py
-                db_conn = connections['default']
-                # prints success messge in green
-                self.stdout.write(self.style.SUCCESS('db available'))
-            except OperationalError:
-                self.stdout.write("Database unavailable, waiting 1 second ...")
-                time.sleep(1)
+                connection.ensure_connection()
+            except OperationalError as ex:
+                self.stdout.write(
+                    "Database unavailable on attempt {attempt}/{max_retries}:"
+                    " {error}".format(
+                        attempt=retry + 1,
+                        max_retries=max_retries,
+                        error=ex
+                    )
+                )
+                time.sleep(poll_seconds)
+            else:
+                break
+        else:
+            self.stdout.write(self.style.ERROR("Database unavailable"))
+            sys.exit(1)
