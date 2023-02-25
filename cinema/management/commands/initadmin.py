@@ -8,7 +8,7 @@ from user.models import User
 class Command(BaseCommand):
 
     def handle(self, *args: Any, **options: dict[str]) -> None:
-        if User.objects.count() == 0:
+        if User.objects.get_or_create():
             email = settings.ADMINS["EMAIL"]
             password = settings.ADMINS["PASSWORD"]
             print("Creating account for %s (%s)")
