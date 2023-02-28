@@ -1,8 +1,0 @@
-#!/bin/bash
-HOST=db
-PORT=5432
-while ! nc -z $HOST $PORT; do
-  sleep 1
-  echo -n "."
-done
-echo "Port $PORT on $HOST is open!"
