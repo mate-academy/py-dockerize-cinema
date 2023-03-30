@@ -15,5 +15,3 @@ class Command(BaseCommand):
             except OperationalError:
                 self.stdout.write("Database is not ready yet")
                 time.sleep(1)
-
-        self.stdout.write(self.style.SUCCESS("Database available!"))
