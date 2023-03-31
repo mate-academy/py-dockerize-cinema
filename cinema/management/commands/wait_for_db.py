@@ -6,17 +6,16 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = 'Displays stats related to Article and Comment models'
+    """Stop app before db isn`t done"""
 
-    @staticmethod
-    def wait_for_db():
-        port = int(os.environ["DB_PORT"])
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    def handle(self, *args, **kwargs):
+        port = int(os.environ["POSTGRES_PORT"])
+        db_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         while True:
             try:
-                s.connect(("db", port))
-                s.close()
+                db_socket.connect(("db", port))
+                db_socket.close()
                 break
-            except socket.error as _:
+            except socket.error:
                 time.sleep(0.1)
