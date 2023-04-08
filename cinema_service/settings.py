@@ -88,17 +88,17 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 DATABASES = {
     # "default": {
     #     "ENGINE": "django.db.backends.postgresql",
-    #     "HOST": os.environ["SQL_HOST"],
-    #     "NAME": os.environ["SQL_DATABASE"],
-    #     "USER": os.environ["SQL_USER"],
-    #     "PASSWORD": os.environ["SQL_PASSWORD"],
+    #     "HOST": "localhost",
+    #     "NAME": "cinema",
+    #     "USER": "postgres",
+    #     "PASSWORD": "postgres",
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ["SQL_HOST"],
-        "NAME": os.environ["SQL_DATABASE"],
-        "USER": os.environ["SQL_USER"],
-        "PASSWORD": os.environ["SQL_PASSWORD"],
+        "HOST": os.environ["POSTGRES_HOST"],
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
     }
 }
 
@@ -145,7 +145,7 @@ USE_TZ = False
 STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "/vol/web/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

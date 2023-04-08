@@ -1,11 +1,25 @@
-FROM python:3.10.8-slim
+FROM python:3.10.8-slim-buster
 LABEL maintainer="vladysaf@gmail.com"
 
 WORKDIR app/
 
 COPY requirements.txt requirements.txt
+
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc
+
 RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN mkdir -p /vol/web/media
+
+RUN adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
+
+RUN chown -R django-user:django-user /vol/
+RUN chmod -R 755 /vol/web/
+
+USER django-user
