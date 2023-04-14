@@ -3,6 +3,8 @@ FROM python:3.11.3-slim-buster
 LABEL maintainer="machulinsv@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PIP_ROOT_USER_ACTION=ignore
 
 WORKDIR app/
 
