@@ -14,11 +14,6 @@ services:
             python manage.py runserver 0.0.0.0:8000"
     env_file:
       - .env
-    environment:
-      - DB_HOST=db
-      - DB_NAME=app
-      - DB_USER=postgres
-      - DB_PASSWORD=postgresuperpasword
     depends_on:
       - db
   db:
