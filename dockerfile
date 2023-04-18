@@ -3,7 +3,7 @@ LABEL maintainer="bilmaxim@gmail.com"
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /docker-cinema-app/
+WORKDIR /app/
 
 COPY requirements.txt requirements.txt
 
