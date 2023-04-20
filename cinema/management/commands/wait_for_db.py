@@ -5,12 +5,12 @@ from django.db.utils import OperationalError
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        self.stdout.write("Waiting for database...")
+        print("Waiting for database...")
         connection = None
 
         while not connection:
             try:
                 connection = connections["default"]
-                self.stdout.write(self.style.SUCCESS("Database available"))
+                print("Database is ready...")
             except OperationalError:
                 pass
