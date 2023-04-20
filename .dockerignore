@@ -1,0 +1,13 @@
+venv/
+.idea/
+.github/
+README.md
+checklist.md
+result.png
+.flake8
+.vscode/
+*.iml
+.env
+.DS_Store
+.pytest_cache/
+**__pycache__/
