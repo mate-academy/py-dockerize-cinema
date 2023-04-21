@@ -1,5 +1,3 @@
 venv
 .idea
-#>>> os.environ["POSTGRES_HOST"]="snuffleupagus.db.elephantsql.com"
-#>>> os.environ["POSTGRES_USER"]="xfafmfuc"
-#>>> os.environ["POSTGRES_PASSWORD"]="0Pfr4qltHEFWtyi43fxABsSHSBiBgues"
+db.sqlite3
