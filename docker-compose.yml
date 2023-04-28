@@ -22,6 +22,4 @@ services:
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_DB=app
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=secretpassword
+      - .env
