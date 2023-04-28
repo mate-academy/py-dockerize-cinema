@@ -14,10 +14,7 @@ services:
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     environment:
-      - DB_HOST=db
-      - DB_NAME=app
-      - DB_USER=postgres
-      - DB_PASSWORD=secretpassword
+      - .env
     depends_on:
       - db
   db:
@@ -25,6 +22,4 @@ services:
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_DB=app
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=secretpassword
+      - .env
