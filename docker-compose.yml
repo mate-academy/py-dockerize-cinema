@@ -20,8 +20,3 @@ services:
     image: postgres:14-alpine
     env_file:
       - .env
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
