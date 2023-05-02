@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: >
+      sh start.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+      image: postgres:14-alpine
+      ports:
+        - "5433:5432"
+      env_file:
+        - .env
