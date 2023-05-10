@@ -10,4 +10,12 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN adduser \
+         --disabled-password \
+         --no-create-home \
+         django-user
+
+USER django-user
+
+#RUN chown -R django-user:django-user /vol/
+#RUN chown -R 755 /vol/web/
