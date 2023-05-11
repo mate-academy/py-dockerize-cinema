@@ -88,20 +88,20 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
-#         "HOST": os.environ["DB_HOST"],
-#         "NAME": os.environ["DB_NAME"],
-#         "USER": os.environ["DB_USER"],
-#         "PASSWORD": os.environ["DB_PASSWORD"],
+#         "HOST": "localhost",
+#         "NAME": "cinemadb",
+#         "USER": "postgres",
+#         "PASSWORD": "postgres1234",
 #     }
 # }
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": "balarama.db.elephantsql.com",
-        "NAME": "msyarjsn",
-        "USER": "msyarjsn",
-        "PASSWORD": "uSF7tNLJDko6MFTFg14a0l6FUtJ0IEHg",
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "NAME": os.getenv("POSTGRES_NAME"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
     }
 }
 
