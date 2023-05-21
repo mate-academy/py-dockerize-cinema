@@ -14,7 +14,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
 
     env_file:
-      - cinema_service/.env
+      - .env
     depends_on:
       - db
 
@@ -23,4 +23,4 @@ services:
     ports:
       - "5433:5432"
     env_file:
-      - cinema_service/.env
+      - .env
