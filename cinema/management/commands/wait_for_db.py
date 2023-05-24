@@ -14,8 +14,15 @@ class Command(BaseCommand):
             try:
                 # get the database with keyword "default" from settings.py
                 db_conn = connections["default"]
-                # prints success message in green
-                self.stdout.write(self.style.SUCCESS("db available"))
+
+                with db_conn.cursor() as cursor:
+                    cursor.execute("SELECT 1")
+                    row = cursor.fetchone()
+
+                    if row[0] == 1:
+                        # prints success message in green
+                        self.stdout.write(self.style.SUCCESS("db available"))
+
             except OperationalError:
                 self.stdout.write(
                     "Database is unavailable, waiting 2 seconds ..."
