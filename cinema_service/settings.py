@@ -33,11 +33,11 @@ SECRET_KEY = (
 DEBUG = bool(os.getenv("DEBUG"))
 
 ALLOWED_HOSTS = [
-    os.getenv("DJANGO_ALLOWED_HOSTS"),
+    os.getenv("DJANGO_ALLOWED_HOST"),
 ]
 
 INTERNAL_IPS = [
-    os.getenv("DJANGO_ALLOWED_HOSTS"),
+    os.getenv("DJANGO_ALLOWED_HOST"),
 ]
 
 # Application definition
