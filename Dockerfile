@@ -12,7 +12,8 @@ EXPOSE 8000
 RUN pip install --upgrade pip
 
 RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales
+libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales \
+apk add postgresql-dev musl-dev
 
 RUN useradd -rms /bin/zsh django_user && chmod 777 /opt /run
 
