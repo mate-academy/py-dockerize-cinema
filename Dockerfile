@@ -14,17 +14,17 @@ RUN pip install --upgrade pip
 RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales
 
-RUN useradd -rms /bin/zsh user_tm && chmod 777 /opt /run
+RUN useradd -rms /bin/zsh django-user && chmod 777 /opt /run
 
-WORKDIR /user_tm
+WORKDIR /django-user
 
-RUN mkdir /user_tm/static && mkdir /user_tm/media && chown -R user_tm:user_tm /user_tm && chmod 755 /user_tm
+RUN mkdir /django-user/static && mkdir /django-user/media && chown -R django-user:user_tm /django-user && chmod 755 /django-user
 
-COPY --chown=user_tm:user_tm . .
+COPY --chown=django-user:django-user . .
 
 RUN pip install -r requirements.txt
 
-USER user_tm
+USER django-user
 
 CMD ["gunicorn, '-b", "0.0.0.0:8000", "cinema_service.wsgi:application"]
 
