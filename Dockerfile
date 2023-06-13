@@ -26,5 +26,5 @@ RUN pip install -r requirements.txt
 
 USER user_tm
 
-CMD ["gunicorn, '-b", "0.0.0.0:8000", "task_manager.wsgi:application"]
+CMD ["gunicorn, '-b", "0.0.0.0:8000", "cinema_service.wsgi:application"]
 
