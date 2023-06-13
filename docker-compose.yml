@@ -8,12 +8,12 @@ services:
     env_file:
       - .env
 
-  docker-cinema:
-    image: docker-cinema:latest
-    container_name: docker-cinema
+  docker_cinema:
+    image: docker_cinema:latest
+    container_name: docker_cinema
     volumes:
-      - static_volume:/django-user/static
-      - media_volume:/django-user/media
+      - static_volume:/django_user/static
+      - media_volume:/django_user/media
     env_file:
       - .env
     environment:
@@ -28,24 +28,24 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: ./docker/nginx/
-    container_name: task_manager_nginx
-    image: task_manager_nginx
+    container_name: docker_cinema_nginx
+    image: docker_cinema_nginx
     volumes:
-      - static_volume:/django-user/static
-      - media_volume:/django-user/media
+      - static_volume:/django_user/static
+      - media_volume:/django_user/media
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
-      - docker-cinema
+      - docker_cinema
     ports:
       - "${NGINX_EXTERNAL_PORT}:80"
       - "${NGINX_EXTERNAL_SSL_PORT}:443"
 
   acme_companion:
     image: nginxproxy/acme-companion:2.2
-    container_name: task_manager_acme_companion
+    container_name: docker_cinema_acme_companion
     volumes_from:
       - nginx
     volumes:

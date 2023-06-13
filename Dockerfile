@@ -16,15 +16,15 @@ libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake
 
 RUN useradd -rms /bin/zsh django-user && chmod 777 /opt /run
 
-WORKDIR /django-user
+WORKDIR /django_user
 
-RUN mkdir /django-user/static && mkdir /django-user/media && chown -R django-user:user_tm /django-user && chmod 755 /django-user
+RUN mkdir /django_user/static && mkdir /django_user/media && chown -R django_user:django_user /django_user && chmod 755 /django_user
 
-COPY --chown=django-user:django-user . .
+COPY --chown=django_user:django_user . .
 
 RUN pip install -r requirements.txt
 
-USER django-user
+USER django_user
 
 CMD ["gunicorn, '-b", "0.0.0.0:8000", "cinema_service.wsgi:application"]
 
