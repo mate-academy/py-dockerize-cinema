@@ -14,7 +14,7 @@ RUN pip install --upgrade pip
 RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
 libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales
 
-RUN useradd -rms /bin/zsh django-user && chmod 777 /opt /run
+RUN useradd -rms /bin/zsh django_user && chmod 777 /opt /run
 
 WORKDIR /django_user
 
