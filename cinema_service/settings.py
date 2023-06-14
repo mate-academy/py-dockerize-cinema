@@ -15,8 +15,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
-print("POSTGRES_NAME:", os.getenv("POSTGRES_NAME"))
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
