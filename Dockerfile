@@ -15,9 +15,9 @@ RUN mkdir -p /vol/web/media
 RUN adduser \
     --disabled-password \
     --no-create-home \
-    django-user
+    django_user
 
-RUN chown -R django-user:django-user /vol/
+RUN chown -R django_user:django_user /vol/
 RUN chmod -R 755 /vol/web/
 
-USER django-user
+USER django_user
