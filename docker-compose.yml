@@ -1,59 +1,22 @@
-version: "2"
-
+version: "3"
 services:
-  cinema_db:
-    image: postgres:14-alpine
-    env_file:
-      - .env
+    app:
+        build:
+            context: .
+        ports:
+            - "8000:8000"
+        volumes:
+          - ./:/app
+        command: >
+            sh -c "python manage.py wait_for_dbv&& python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        env_file:
+            -   .env
+        depends_on:
+            - db
 
-  docker_cinema:
-    image: docker_cinema:latest
-    container_name: docker_cinema
-    volumes:
-      - static_volume:/django_user/static
-      - media_volume:/django_user/media
-    env_file:
-      - .env
-    environment:
-      - VIRTUAL_HOST=${DJANGO_ALLOWED_HOST}
-      - LETSENCRYPT_HOST=${DJANGO_ALLOWED_HOST}
-    command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 cinema_service.wsgi:application"
-    depends_on:
-      - cinema_db
-
-  nginx:
-    build:
-      dockerfile: ./Dockerfile
-      context: ./docker/nginx/
-    container_name: docker_cinema_nginx
-    image: docker_cinema_nginx
-    volumes:
-      - static_volume:/django_user/static
-      - media_volume:/django_user/media
-      - certs:/etc/nginx/certs
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    depends_on:
-      - docker_cinema
-    ports:
-      - "${NGINX_EXTERNAL_PORT}:80"
-      - "${NGINX_EXTERNAL_SSL_PORT}:443"
-
-  acme_companion:
-    image: nginxproxy/acme-companion:2.2
-    container_name: docker_cinema_acme_companion
-    volumes_from:
-      - nginx
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - acme:/etc/acme.sh
-
-volumes:
-  static_volume:
-  media_volume:
-  certs:
-  vhost:
-  html:
-  acme:
+    db:
+        image: postgres:14-alpine
+        ports:
+            - "5432:5432"
+        env_file:
+            -   .env
