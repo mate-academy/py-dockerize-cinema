@@ -22,7 +22,8 @@ class Command(BaseCommand):
                 if retry_count >= max_retries:
                     self.stdout.write("Unable to connect to the database.")
                     return
-                self.stdout.write(f"Database unavailable, waiting {wait_time} seconds...")
+                self.stdout.write(f"Database unavailable,"
+                                  f" waiting {wait_time} seconds...")
                 time.sleep(wait_time)
                 retry_count += 1
 
