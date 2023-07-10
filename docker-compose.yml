@@ -8,8 +8,8 @@ services:
         volumes:
           - ./:/app
         command: >
-            sh -c "python3 manage.py migrate &&
-                    python3 manage.py wait_for_db &&
+            sh -c "python3 manage.py wait_for_db &&
+                    python3 manage.py migrate &&
                     python3 manage.py runserver 0.0.0.0:8000"
         env_file:
             - .env
