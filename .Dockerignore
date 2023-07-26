@@ -1,5 +1,5 @@
 Dockerfile
-.dockerignore
+.Dockerignore
 venv
 .python-version
 __pycache__
