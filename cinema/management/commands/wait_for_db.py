@@ -13,7 +13,7 @@ class Command(BaseCommand):
         db = None
         while not db:
             try:
-                db = connections["default"]
+                db = connections["default"].cursor()
             except OperationalError:
                 self.stdout.write("Database is not connected...")
                 time.sleep(1)
