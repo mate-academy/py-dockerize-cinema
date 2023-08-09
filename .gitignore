@@ -9,6 +9,3 @@ venv/
 **__pycache__/
 **db.sqlite3
 media
-uploads
-cinema/serializers.py
-cinema/models.py
