@@ -2,6 +2,7 @@ import time
 from django.db import connections
 from django.db.utils import OperationalError
 from django.core.management import BaseCommand
+from psycopg2._psycopg import cursor
 
 
 class Command(BaseCommand):
@@ -18,3 +19,5 @@ class Command(BaseCommand):
                 time.sleep(1)
 
         self.stdout.write(self.style.SUCCESS("Database available!"))
+
+        db_conn = connections["default"].cursor()
