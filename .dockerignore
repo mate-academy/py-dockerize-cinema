@@ -1,0 +1,7 @@
+.github
+.gitignore
+.idea
+venv/
+.flake8
+README.md
+.env.sample
