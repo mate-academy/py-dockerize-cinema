@@ -7,4 +7,3 @@ venv/
 .dockerignore
 README.md
 Dockerfile
-docker-compose.yml
