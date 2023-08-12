@@ -6,8 +6,8 @@ services:
       context: .
     ports:
       - "8000:8000"
-    volumes:
-      - ./:/app
+#    volumes:
+#      - ./:/app
 
     command: >
       sh -c "python manage.py migrate &&
