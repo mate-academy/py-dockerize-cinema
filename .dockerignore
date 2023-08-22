@@ -1,0 +1,7 @@
+venv
+README.md
+.pytest_cache/
+**__pycache__/
+**db.sqlite3
+media
+.idea
