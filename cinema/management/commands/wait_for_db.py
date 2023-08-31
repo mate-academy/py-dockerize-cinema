@@ -22,7 +22,6 @@ class Command(BaseCommand):
             try:
                 self.check(databases=["default"])
                 db_conn = True
-                break
             except (Psycopg2OpError, OperationalError) as e:
                 attempts += 1
                 if attempts >= max_attempts:
