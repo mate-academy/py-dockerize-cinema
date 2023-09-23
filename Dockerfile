@@ -1,4 +1,4 @@
-FROM python:3.11-alpine3.18
+FROM python:3.11
 LABEL maintainer="phoenixerazer@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
@@ -14,8 +14,8 @@ COPY . .
 RUN mkdir -p /vol/web/media
 
 RUN adduser \
-    --disabled-password\
-    --no-create-home\
+    --disabled-password \
+    --no-create-home \
     django-user
 
 RUN chown -R django-user:django-user /vol/
