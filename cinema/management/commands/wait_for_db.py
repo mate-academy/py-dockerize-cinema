@@ -5,8 +5,6 @@ from django.core.management import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Wait for the database to become available"
-
     def add_arguments(self, parser) -> None:
         """Add command-line arguments for database waiting."""
 
@@ -44,7 +42,8 @@ class Command(BaseCommand):
                 db_conn = connections["default"].cursor()
             except OperationalError:
                 self.stdout.write(
-                    "Database unavailable, waiting {} seconds ...".format(wait_seconds)
+                    "Database unavailable, waiting {} seconds ..."
+                    .format(wait_seconds)
                 )
                 time.sleep(wait_seconds)
                 retries += 1
@@ -52,4 +51,6 @@ class Command(BaseCommand):
         if db_conn:
             self.stdout.write(self.style.SUCCESS("Database is available!"))
         else:
-            self.stdout.write(self.style.ERROR("Unable to connect to the database. Max retries reached."))
+            self.stdout.write(self.style.ERROR(
+                "Unable to connect to the database. Max retries reached."
+            ))
