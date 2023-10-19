@@ -1,0 +1,21 @@
+# Git
+.git/
+.github/
+.gitignore
+
+venv/
+
+.flake8
+.mypy_cache/
+checklist.md
+README.md
+
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+**/*.py[cod]
