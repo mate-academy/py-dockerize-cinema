@@ -12,11 +12,8 @@ services:
             sh -c "python3 manage.py wait_for_db &&
                    python manage.py migrate &&
                    python manage.py runserver 0.0.0.0:8000"
-        environment:
-            - DB_HOST=db
-            - DB_NAME=app
-            - DB_USER=postgres
-            - DB_PASS=secretpostgres
+        env_file:
+            -   .env
         depends_on:
             - db
 
@@ -24,7 +21,5 @@ services:
         image: postgres:14-alpine
         ports:
             - "5432:5432"
-        environment:
-            - POSTGRES_DB=app
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=secretpostgres
+        env_file:
+            - .env
