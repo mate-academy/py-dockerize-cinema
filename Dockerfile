@@ -1,4 +1,5 @@
 FROM python:3.11.5-alpine3.18
+LABEL maintainer="vladislav.klevanskiy@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
@@ -9,14 +10,14 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /media
+RUN mkdir -p /vol/web/media
 
 RUN adduser \
     --disabled-password \
     --no-create-home \
     django-user
 
-RUN chown -R django-user:django-user /media/
-RUN chmod -R 755 /media/
+RUN chown -R django-user:django-user /vol/
+RUN chmod -R 755 /vol/web/
 
 USER django-user
