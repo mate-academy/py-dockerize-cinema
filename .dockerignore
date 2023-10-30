@@ -1,0 +1,16 @@
+.git/
+.github/
+.gitignore
+venv/
+.flake8
+.mypy_cache/
+checklist.md
+README.md
+result.png
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+**/__pycache__/
+**/*.py[cod]
+.env.sample
