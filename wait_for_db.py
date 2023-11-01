@@ -31,11 +31,16 @@ class Command(BaseCommand):
             try:
                 db_conn = connections["default"].cursor()
             except OperationalError:
-                self.stdout.write(f"Database unavailable, waiting {wait_seconds} seconds ...")
+                self.stdout.write(
+                    f"Database unavailable, "
+                    f"waiting {wait_seconds} seconds ..."
+                )
                 time.sleep(wait_seconds)
                 retries += 1
 
         if db_conn:
             self.stdout.write(self.style.SUCCESS("Database is available!"))
         else:
-            self.stdout.write(self.style.ERROR("Unable to connect to the database. Max retries reached."))
+            self.stdout.write(self.style.ERROR(
+                "Unable to connect to the database. Max retries reached."
+            ))
