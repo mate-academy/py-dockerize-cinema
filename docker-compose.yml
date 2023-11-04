@@ -3,28 +3,28 @@ services:
     app:
         build:
             context: .
-        volumes:
-            - ./:/app
         ports:
             - "8000:8000"
+        volumes:
+            - .:/app
         command: >
-            sh -c "python manage.py migrate &&
-                      python manage.py runserver 0.0.0.0:8000"
+            sh -c " python manage.py wait_for_db &&
+                    python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000"
         environment:
-            - DB_NAME=postgres
-            - DB_USER=postgres
-            - DB_PASSWORD=asdf!qwe
-            - DB_HOST=db
+            - PYTHONUNBUFFERED=1
+            - POSTGRES_DB=db
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=asdf!qwe
+            - HOST_DB=db
         depends_on:
             - db
-        restart: on-failure
-
 
     db:
         image: postgres:14-alpine
         ports:
             - "5433:5432"
         environment:
-            - POSTGRES_DB=postgres
+            - POSTGRES_DB=db
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=asdf!qwe
