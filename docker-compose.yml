@@ -13,10 +13,8 @@ services:
                     python manage.py runserver 0.0.0.0:8000"
         environment:
             - PYTHONUNBUFFERED=1
-            - POSTGRES_DB=db
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=asdf!qwe
-            - HOST_DB=db
+        env_file:
+            - .env
         depends_on:
             - db
 
@@ -24,7 +22,5 @@ services:
         image: postgres:14-alpine
         ports:
             - "5433:5432"
-        environment:
-            - POSTGRES_DB=db
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=asdf!qwe
+        env_file:
+            - .env

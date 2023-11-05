@@ -1,7 +1,7 @@
 FROM python:3.11-slim-buster
 LABEL maintainer="edlrian814@gmail.com"
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR app/
 
