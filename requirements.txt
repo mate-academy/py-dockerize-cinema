@@ -14,6 +14,9 @@ PyJWT==2.8.0
 python-dotenv==1.0.0
 pytz==2023.3.post1
 PyYAML==6.0.1
+flake8==5.0.4
+flake8-quotes==3.3.1
+flake8-variables-names==0.0.5
 referencing==0.30.2
 rpds-py==0.12.0
 sqlparse==0.4.4
