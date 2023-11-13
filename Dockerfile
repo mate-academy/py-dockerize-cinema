@@ -1,4 +1,5 @@
-FROM python:3.11-slim-buster
+FROM python:3.11.4-alpine
+
 LABEL maintainer="o.chookity@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
@@ -7,7 +8,8 @@ WORKDIR app/
 
 COPY requirements.txt requirements.txt
 
-RUN apt-get update && apt-get -y install libpq-dev gcc
+RUN apk update && \
+    apk add libpq gcc
 
 RUN pip install -r requirements.txt
 
