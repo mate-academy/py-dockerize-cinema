@@ -6,7 +6,7 @@ from django.db import connections
 
 
 class Command(BaseCommand):
-    help = "Pauses execution until db is available"
+    """Pauses execution until db is available"""
 
     def handle(self, *args, **options):
         db_conn = None
