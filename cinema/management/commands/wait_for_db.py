@@ -12,7 +12,7 @@ class Command(BaseCommand):
         db_connect = None
         while not db_connect:
             try:
-                db_connect = connections["default"]
+                db_connect = connections["default"].cursor()
             except OperationalError:
                 self.stdout.write(
                     self.style.WARNING(
