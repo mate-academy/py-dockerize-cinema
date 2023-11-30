@@ -16,7 +16,7 @@ So the only requirement to run your project is `Docker`.
 - Use `docker-compose.yml` file for managing multiple services (containers) at the same time;
 - Switch to `PostgreSQL` database instead of `SQLite` using official docker image;
 - Implement `wait_for_db` 
-  [management command](https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/), 
+  [management command](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), 
   which waits for the database to be available. 
   So your services won't throw any errors during the `docker-compose up` command;
 - Make your docker images as thin as possible;
