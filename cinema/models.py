@@ -98,7 +98,11 @@ class Ticket(models.Model):
 
     @staticmethod
     def validate_ticket(row, seat, cinema_hall, error_to_raise):
-        for ticket_attr_value, ticket_attr_name, cinema_hall_attr_name in [
+        for (
+            ticket_attr_value,
+            ticket_attr_name,
+            cinema_hall_attr_name,
+        ) in [
             (row, "row", "rows"),
             (seat, "seat", "seats_in_row"),
         ]:
