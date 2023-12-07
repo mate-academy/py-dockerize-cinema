@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    image: savik1992/cinema-app:latest
+    container_name: cinema-container
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    depends_on:
+      - db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U habrpguser -d habrdb" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  db:
+    image: postgres:latest
+    container_name: theatre-postgres-container
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
