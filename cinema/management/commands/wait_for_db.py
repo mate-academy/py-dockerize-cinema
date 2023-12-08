@@ -8,10 +8,10 @@ from django.db import connections
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Waiting for connect to DB...")
-        connect = None
-        while not connect:
+        db_conn = None
+        while not db_conn:
             try:
-                connect = connections["default"]
+                db_conn = connections["default"]
             except OperationalError:
                 self.stdout.write(
                     "Database is unavailable, waiting fot db for 2 seconds..."
