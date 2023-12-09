@@ -1,5 +1,5 @@
 FROM python:3.10-slim-buster
-LABEL maitaner="mateichukmykola@gmail.com"
+LABEL maintainer="mateichukmykola@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
