@@ -6,15 +6,23 @@ import time
 
 
 class Command(BaseCommand):
+    MAX_RETRIES = 10
+    RETRY_INTERVAL = 1
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
         db_conn = None
-        while not db_conn:
+        retries = 0
+        while retries < self.MAX_RETRIES:
             try:
                 db_conn = connections["default"]
+                break
             except OperationalError:
                 self.stdout.write("Database unavailable, waiting...")
-                time.sleep(1)
+                time.sleep(self.RETRY_INTERVAL)
+                retries += 1
 
-        self.stdout.write(self.style.SUCCESS("Database is available!"))
+        if db_conn:
+            self.stdout.write(self.style.SUCCESS("Database is available!"))
+        else:
+            self.stdout.write(self.style.ERROR("Failed to connect to the database after max retries"))
