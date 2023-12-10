@@ -1,6 +1,6 @@
 asgiref==3.7.2
 attrs==23.1.0
-Django==4.0.4
+django==4.0.4
 django-debug-toolbar==3.4.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
@@ -13,7 +13,7 @@ jsonschema==4.20.0
 jsonschema-specifications==2023.11.2
 mccabe==0.7.0
 pep8-naming==0.13.2
-Pillow==10.1.0
+pillow==10.1.0
 psycopg2-binary==2.9.9
 pycodestyle==2.9.1
 pyflakes==2.5.0

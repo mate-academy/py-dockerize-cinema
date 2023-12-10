@@ -7,14 +7,17 @@ from django.db import connections
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        self.stdout.write("Waiting for connect to DB...")
-        db_conn = None
-        while not db_conn:
+        self.stdout.write("Connecting to the database...")
+
+        connection = None
+
+        while not connection:
             try:
-                db_conn = connections["default"]
+                connection = connections["default"]
             except OperationalError:
-                self.stdout.write(
-                    "Database is unavailable, waiting fot db for 2 seconds..."
-                )
-                time.sleep(2)
-        self.stdout.write(self.style.SUCCESS("Database is available!"))
+                self.stdout.write("...")
+                time.sleep(1)
+
+        self.stdout.write(
+            self.style.SUCCESS("Database was connected!")
+        )
