@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  web-mate:
+    restart: always
+    build: .
+    container_name: backend_mate_cinema
+    command: ["/entrypoint.sh"]
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - mate_cinema_network
+    depends_on:
+      - db
+
+  db:
+    image: 'postgres:latest'
+    container_name: postgres_mate_cinema
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - mate_cinema_data:/var/lib/postgresql/data/
+    networks:
+      - mate_cinema_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_mate_cinema
+    ports:
+      - "3333:80"
+    env_file:
+      - .env
+    links:
+      - db:db
+    depends_on:
+      - db
+    volumes:
+      - mate_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - mate_cinema_network
+
+networks:
+  mate_cinema_network:
+    driver: bridge
+
+volumes:
+  mate_cinema_data:
+    driver: local
+  mate_pgadmin_data:
+    driver: local
+
