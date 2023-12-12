@@ -9,7 +9,7 @@ load_dotenv()
 
 
 class Command(BaseCommand):
-    help = "Wait for DB to start before running server"
+    BaseCommand.help = "Wait for DB to start before running server"
 
     def handle(self, *args, **options):
         port = int(os.environ["POSTGRES_DB_PORT"])
