@@ -23,4 +23,8 @@ COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
+RUN chown -R django-user /vol/
+
+RUN chmod -R 755 /vol/web/
+
 USER django-user
