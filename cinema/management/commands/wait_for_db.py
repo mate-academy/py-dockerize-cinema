@@ -15,4 +15,8 @@ class Command(BaseCommand):
             except OperationalError:
                 self.stdout.write("Waiting...")
                 sleep(1)
-        self.stdout.write(self.style.SUCCESS("Database has been successfully connected"))
+        self.stdout.write(
+            self.style.SUCCESS(
+                "Database has been successfully connected"
+            )
+        )
