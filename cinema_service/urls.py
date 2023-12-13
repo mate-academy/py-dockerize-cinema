@@ -16,7 +16,7 @@ urlpatterns = [
     path(
         "api/doc/swagger/",
         SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger-ui",
+        name="swagger-uцi",
     ),
     path(
         "api/doc/redoc/",
