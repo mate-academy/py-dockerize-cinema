@@ -16,7 +16,6 @@ class Command(BaseCommand):
         while retries < self.MAX_RETRIES:
             try:
                 db_conn = connections["default"]
-                break
             except OperationalError:
                 self.stdout.write("Database unavailable, waiting...")
                 time.sleep(self.RETRY_INTERVAL)
@@ -26,4 +25,4 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS("Database is available!"))
         else:
             self.stdout.write(self.style.ERROR("Failed to connect to the "
-                                               "database after max retries"))
+                                               f"database after {self.MAX_RETRIES}"))
