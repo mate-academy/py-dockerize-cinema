@@ -25,4 +25,5 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS("Database is available!"))
         else:
             self.stdout.write(self.style.ERROR("Failed to connect to the "
-                                               f"database after {self.MAX_RETRIES}"))
+                                               "database after "
+                                               f"{self.MAX_RETRIES}"))
