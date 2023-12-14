@@ -1,7 +1,7 @@
 FROM python:3.11.0-slim-buster
 LABEL maintainer="roffi37"
 
-ENV PYTHONBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR app/
 
@@ -17,9 +17,10 @@ RUN adduser \
     --no-create-home \
     django-user
 
-RUN chown -r django-user:django-user /vol/
-RUN chmod -r 755 /vol/web/
+RUN chown -R django-user:django-user /vol/
+RUN chmod -R 755 /vol/web/
 
 RUN apk add --no-cache bash
+
 
 USER django-user
