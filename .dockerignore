@@ -1,2 +1,5 @@
-venv312
+venv
 .python-version
+README.md
+.gitignore
+.github
