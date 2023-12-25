@@ -3,3 +3,5 @@ venv
 .gitignore
 .flake8
 .python-version
+.env
+checklist.md
