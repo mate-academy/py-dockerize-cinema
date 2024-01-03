@@ -1,0 +1,9 @@
+.gitignore
+README.md
+.flake8
+.dockerignore
+venv
+.github
+.env.sample
+vol
+docker-compose.yml
