@@ -9,16 +9,13 @@ load_dotenv()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        self.stdout.write("Try connection Database")
-        connection_db = None
-        meter = 0
-        while not connection_db:
+        self.stdout.write("Waiting for database...")
+        while True:
             try:
-                connection_db = connections["default"]
+                connections["default"].cursor()
+                break
             except OperationalError:
-                self.stdout.write("Database not connected, need wait.")
-            time.sleep(1)
-            meter += 1
-            if meter == 30:
-                assert OperationalError
+                self.stdout.write("Database unavailable, waiting 1 second...")
+                time.sleep(1)
+
         self.stdout.write(self.style.SUCCESS("Database available!"))
