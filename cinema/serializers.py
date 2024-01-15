@@ -46,7 +46,9 @@ class MovieSerializer(serializers.ModelSerializer):
 
 class MovieListSerializer(MovieSerializer):
     genres = serializers.SlugRelatedField(
-        many=True, read_only=True, slug_field="name"
+        many=True,
+        read_only=True,
+        slug_field="name"
     )
     actors = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field="full_name"
@@ -114,9 +116,9 @@ class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(TicketSerializer, self).validate(attrs=attrs)
         Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
+            attrs["row"],
+            attrs["seat"],
+            attrs["movie_session"].cinema_hall,
             ValidationError
         )
         return data
