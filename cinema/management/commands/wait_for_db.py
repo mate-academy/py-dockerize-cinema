@@ -14,7 +14,7 @@ class Command(BaseCommand):
         )
         db_connection = None
 
-        while not db_connection:
+        while not db_connection
             try:
                 db_connection = connections["default"]
             except OperationalError:
@@ -23,6 +23,6 @@ class Command(BaseCommand):
                 )
                 time.sleep(5)
 
-            self.stdout.write(
-                self.style.SUCCESS('Database is available! Continuing...')
-            )
+        self.stdout.write(
+            self.style.SUCCESS('Database is available! Continuing...')
+        )
