@@ -10,19 +10,21 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write(
-            self.style.SUCCESS('Waiting for database...')
+            self.style.SUCCESS("Waiting for database...")
         )
         db_connection = None
 
-        while not db_connection
+        while not db_connection:
             try:
                 db_connection = connections["default"]
             except OperationalError:
                 self.stdout.write(
-                    self.style.WARNING('Database is not available. Next try in 5 seconds.')
+                    self.style.WARNING(
+                        "Database is not available. Next try in 5 seconds."
+                    )
                 )
                 time.sleep(5)
 
         self.stdout.write(
-            self.style.SUCCESS('Database is available! Continuing...')
+            self.style.SUCCESS("Database is available! Continuing...")
         )
