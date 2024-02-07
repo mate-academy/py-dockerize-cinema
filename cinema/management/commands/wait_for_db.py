@@ -5,7 +5,6 @@ from django.db import connections
 
 
 class Command(BaseCommand):
-    help = "Wait for database command"
 
     def handle(self, *args, **options):
         db_conn = None
