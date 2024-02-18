@@ -1,0 +1,7 @@
+venv
+.github
+.gitignore
+.flake8
+.python-version
+.env
+checklist.md
