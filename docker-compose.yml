@@ -8,11 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./:/app
-    environment:
-      - DB_HOST=db
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASS=supersecretpassword
+    env_file:
+      - .env
     command: >
       sh -c "python3 manage.py wait_for_db &&
              python3 manage.py migrate &&
@@ -22,10 +19,7 @@ services:
 
   db:
     image: postgres:14-alpine
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: supersecretpassword
-
+    env_file:
+      - .env
     ports:
       - "5432:5432"
