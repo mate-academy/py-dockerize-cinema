@@ -1,7 +1,7 @@
 .idea/
 .vscode/
 *.iml
-.env
+cinema_service/.env
 .DS_Store
 venv/
 .pytest_cache/
