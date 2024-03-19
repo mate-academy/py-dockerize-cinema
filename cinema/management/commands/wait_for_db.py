@@ -21,7 +21,8 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS("Connection Success"))
             except OperationalError as e:
                 self.stdout.write(
-                    f"Database unavailable on attempt {retry+1}/{max_retries}: {e}"
+                    f"Database unavailable on attempt "
+                    f"{retry+1}/{max_retries}: {e}"
                 )
                 time.sleep(3)
             else:
@@ -29,4 +30,3 @@ class Command(BaseCommand):
         else:
             self.stdout.write(self.style.ERROR("Database unavailable"))
             sys.exit(1)
-
