@@ -2,5 +2,3 @@
 .idea
 .gitignore
 .github
-Dockerfile
-docker-compose.yml
