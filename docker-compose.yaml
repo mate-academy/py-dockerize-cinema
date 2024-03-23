@@ -1,0 +1,33 @@
+version: "3"
+services:
+  cinema-mate:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/cinema-mate
+      - media_vol:/files/media
+    command: >
+      sh -c "python manage.py makemigrations &&
+              python manage.py migrate &&
+                python manage.py wait_for_db &&
+                  python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.2-bullseye
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_db:$PGDATA
+
+volumes:
+  postgres_db:
+  media_vol:
