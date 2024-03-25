@@ -1,0 +1,12 @@
+.venv
+venv
+.idea*
+.git*
+.gitignore
+.flake8
+.env
+*.md
+*.sqlite3
+Dockerfile
+.dockerignore
+docker-compose.yaml
