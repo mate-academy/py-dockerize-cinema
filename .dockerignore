@@ -1,0 +1,25 @@
+# Python bytecode files
+*.pyc
+
+# Python cache directory
+__pycache__
+
+# Virtual environment directory
+venv
+.venv
+
+# Log files
+*.log
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+
+# README files
+README.md
+
+#yaml files
+docker-compose.yaml
