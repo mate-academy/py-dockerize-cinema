@@ -9,9 +9,12 @@ class Command(BaseCommand):
     """Waits for the DB connection"""
 
     def handle(self, *args, **options):
-        sleep(5)
-        try:
-            connection.ensure_connection()
-            print("Connection is ensured")
-        except OperationalError:
-            raise CommandError("Connection was not ensured")
+        connected = False
+        while not connected:
+            try:
+                connection.ensure_connection()
+                connected = True
+                print("Connection to DB is ensured")
+            except OperationalError:
+                print("Connection is not ensured, trying again in 1 second...")
+                sleep(1)
