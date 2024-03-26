@@ -13,11 +13,11 @@ COPY . .
 RUN mkdir -p /vol/web/media
 
 RUN adduser \
-    --disabled-password \
-    --no-create-home \
-    django-user
+        --disabled-password \
+        --no-create-home \
+        django-user
 
-RUN chown -R django-user:django-user /vol/
+RUN chown -R django-user /vol/web/media
 RUN chown -R 755 /vol/web/media
 
 USER djnago-user
