@@ -6,7 +6,7 @@ services:
       - .env
     volumes:
       - ./:/app
-      - my_media:/vol/web/media
+      - my_media:/files/media
     ports:
       - "8001:8000"
     command:
