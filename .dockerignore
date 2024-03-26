@@ -1,0 +1,4 @@
+.venv
+Dockerfile
+docker-compose.yaml
+.idea
