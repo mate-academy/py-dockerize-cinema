@@ -197,7 +197,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
                 type=OpenApiTypes.DATE,
                 description=(
                     "Filter by datetime of MovieSession "
-                    "" "(ex. ?date=2022-10-23)"
+                    "(ex. ?date=2022-10-23)"
                 ),
             ),
         ]
