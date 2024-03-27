@@ -8,9 +8,9 @@ services:
             - ./:/app
             - my_media:/files/media
         command: >
+            "python manage.py wait_for_db"
             sh -c "python manage.py migrate &&
                       python manage.py runserver 0.0.0.0:8000"
-            "python manage.py wait_for_db"
         env_file:
             - .env
         depends_on:
