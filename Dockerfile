@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 LABEL mainteiner="maksym.symonovych@gmail.com"
 
-ENV PYTHOUNNBUFFERED 1
+ENV PYTHOUNBUFFERED 1
 
 WORKDIR app/
 
