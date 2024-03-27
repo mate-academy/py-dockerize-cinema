@@ -23,4 +23,3 @@ RUN chown -R my_user /files/media
 RUN chmod -R 755 /files/media
 
 USER my_user
-
