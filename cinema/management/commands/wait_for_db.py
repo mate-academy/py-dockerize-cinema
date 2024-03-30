@@ -1,10 +1,10 @@
 from time import sleep
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Make program sleep for n seconds"
+    helps = "Make program sleep for n seconds"
 
     def add_arguments(self, parser):
         parser.add_argument("seconds", type=int)
