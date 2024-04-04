@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 COPY . .
 RUN mkdir -p /files/media
 
-RUN abbuser \
+RUN adduser \
     --disabled-password \
     --no-create-home \
     my-user

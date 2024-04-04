@@ -5,6 +5,7 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
+
     def handle(self, *args, **options):
         self.stdout.write("Wow, realisation of this func similar")
         db_conn = None
@@ -15,4 +16,5 @@ class Command(BaseCommand):
                 self.stdout.write("As 99% of students of our group")
                 time.sleep(1)
 
-        self.stdout.write(self.style.SUCCESS("Really strange, don't you think so?)"))
+        self.stdout.write(self.style.SUCCESS
+                          ("Really strange, don't you think so?)"))
