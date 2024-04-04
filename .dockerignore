@@ -1,0 +1,10 @@
+__pycache__
+.github
+.idea
+.venv
+.dockerignore
+Dockerfile
+docker-compose.yaml
+.flake8
+.gitignore
+*.md
