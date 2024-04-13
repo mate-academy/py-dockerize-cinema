@@ -10,15 +10,15 @@ COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
-RUN mkdir -p /vol/dj-static/media
+RUN mkdir -p /vol/web/media
 
 RUN adduser \
     --disabled-password \
     --no-create-home \
-    usr
+    user-dj
 
-RUN chown -R usr:usr /vol/
-RUN chown -R 755 /vol/dj-static/media
+RUN chown -R user-dj /vol/
+RUN chown -R 755 /vol/web
 
-USER usr
+USER user-dj
 
