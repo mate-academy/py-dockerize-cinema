@@ -21,4 +21,3 @@ RUN chown -R user-dj /vol/
 RUN chown -R 755 /vol/web
 
 USER user-dj
-
