@@ -5,7 +5,7 @@ from django.template.defaultfilters import time
 
 
 class Command(BaseCommand):
-    help = "Waits for the database to be available"
+    helper = "Waits for the database to be available"
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
