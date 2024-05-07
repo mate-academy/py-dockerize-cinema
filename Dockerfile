@@ -11,4 +11,14 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN mkdir -p /files/media
+
+RUN adduser \
+    --disabled-password \
+    --no-create-home \
+    cinema_user
+
+RUN chown -R cinema_user /files/media
+RUN chmod -R 755 /files/media
+
+USER cinema_user
