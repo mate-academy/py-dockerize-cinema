@@ -72,22 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "cinema_service.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'db.sqlite3',
-#     }
-# }
-
-print(os.getenv("POSTGRES_DB"))
-print(os.getenv("POSTGRES_USER"))
-print(os.getenv("POSTGRES_PASSWORD"))
-print(os.getenv("POSTGRES_HOST"))
-print(os.getenv("POSTGRES_PORT"))
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
