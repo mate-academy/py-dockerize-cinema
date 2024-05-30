@@ -6,9 +6,9 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        db_conn = None
-        while not db_conn:
+        db_connection = None
+        while not db_connection:
             try:
-                db_conn = connections["default"]
+                db_connection = connections["default"]
             except OperationalError:
                 time.sleep(3)
