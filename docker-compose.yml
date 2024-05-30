@@ -6,6 +6,8 @@ services:
       - .env
     ports:
       - "8001:8000"
+    volumes:
+      - ./:/app
     command: >
       sh -c "python manage.py migrate &&
             python manage.py runserver 0.0.0.0:8000"
@@ -19,3 +21,8 @@ services:
       - .env
     ports:
       - "5432:5432"
+    volumes:
+      - my_db:$PGDATA
+
+volumes:
+  my_db:
