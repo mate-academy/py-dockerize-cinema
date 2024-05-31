@@ -1,5 +1,5 @@
 services:
-  cinema:
+  app:
     build:
       context: .
     env_file:
