@@ -6,6 +6,7 @@ django-rest-framework==0.1.0
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 drf-spectacular==0.27.2
+flake8==7.0.0
 inflection==0.5.1
 jsonschema==4.22.0
 jsonschema-specifications==2023.12.1

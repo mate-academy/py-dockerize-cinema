@@ -2,4 +2,6 @@
 README.md
 .env
 .gitignore
-.flake8
+Dockerfile
+docker-compose.yaml
+.idea
