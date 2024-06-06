@@ -8,7 +8,6 @@ services:
       - .env
     volumes:
       - .:/app
-#      - static_volume:/vol/web/static
       - media_volume:/files/media
     ports:
       - "8081:8080"
@@ -32,5 +31,4 @@ services:
 
 volumes:
   postgres_data:
-#  static_volume:
   media_volume:
