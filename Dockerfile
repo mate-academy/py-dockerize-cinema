@@ -6,12 +6,8 @@ ENV PYTHOUNNBUFFERED 1
 
 WORKDIR cinema/
 
-COPY user .
-COPY cinema .
-COPY cinema_service .
-COPY requirements.txt .
-
-RUN pip isntall -r requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 
