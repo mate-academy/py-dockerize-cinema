@@ -10,7 +10,7 @@
 .taskcluster.yml
 
 # Docker
-docker-compose.yml
+docker-compose.yaml
 Dockerfile
 .docker
 .dockerignore
