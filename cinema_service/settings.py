@@ -96,7 +96,7 @@ DATABASES = {
     }
 }
 
-MEDIA_ROOT = "files/media"
+MEDIA_ROOT = "/files/media"
 MEDIA_URL = "/media/"
 
 
