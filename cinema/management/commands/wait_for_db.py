@@ -5,8 +5,6 @@ from django.db import connection, OperationalError
 
 
 class Command(BaseCommand):
-    help = "Waiting for db start in case of Docker container start"
-
     def handle(self, *args, **options) -> None:
         self.stdout.write("Connection to db...")
         db_connection = None
