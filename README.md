@@ -1,7 +1,7 @@
 # Dockerizing DRF Cinema
 
 - Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
-- Useful [link](https://soshace.com/dockerizing-django-with-postgres-redis-and-celery/) about theory 
+- Useful [link](https://saasitive.com/tutorial/django-celery-redis-postgres-docker-compose/) about theory 
   (without Celery & redis of course)
 
 ## Task:
