@@ -1,1 +1,44 @@
-.venv
+# Ignore Python bytecode files
+__pycache__
+*.pyc
+*.pyo
+
+# Ignore any logs
+*.log
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore test-related files
+*.coverage
+*.tox
+.tox/
+.coverage
+htmlcov/
+*.egg-info/
+.cache
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore IDE/editor config files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Ignore Docker-specific files
+.dockerignore
+Dockerfile
+
+# Ignore node_modules if you're using Node.js
+node_modules/
+
+# Ignore media and static files
+media/
+static/
+
+# Ignore other unnecessary files
+*.bak
+*.orig

@@ -1,4 +1,4 @@
-FROM 3.11.9-slim
+FROM python:3.11.9-slim
 LABEL authors="specializeddev"
 
 WORKDIR /app
@@ -11,5 +11,3 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-
-ENTRYPOINT ["top", "-b"]
