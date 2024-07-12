@@ -5,9 +5,10 @@ services:
         env_file:
             - .env
         ports:
-            - "8001:8000"
+            - "8000:8000"
         volumes:
             - ./:/app
+            - files_media:/files/media
         command: >
             sh -c "python manage.py migrate &&
                     python manage.py wait_for_db --db=default &&
@@ -27,3 +28,4 @@ services:
 
 volumes:
     postgres_db:
+    files_media:
