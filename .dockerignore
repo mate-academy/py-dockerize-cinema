@@ -1,0 +1,7 @@
+venv
+.flake8
+README.md
+.github
+*.pyc
+.gitignore
+.idea
