@@ -17,3 +17,8 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - postgre_database:$PGDATA
+
+volumes:
+  postgre_database:
