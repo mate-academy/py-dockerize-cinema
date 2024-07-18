@@ -11,6 +11,8 @@ services:
             python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - postgre_db
+    volumes:
+      - media:/app/media
 
   postgre_db:
     image: postgres:12.19-alpine
@@ -22,3 +24,4 @@ services:
 
 volumes:
   postgre_database:
+  media:
