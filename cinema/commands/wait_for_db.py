@@ -7,18 +7,13 @@ from time import sleep
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
-        attempts = 10
-        delay = 3
-
-        for attempt in range(attempts):
+        db_conn = None
+        while not db_conn:
             try:
                 db_conn = connections["default"]
-                db_conn.ensure_connection()
-                self.stdout.write(self.style.SUCCESS("Database available!"))
-                break
+                db_conn.cursor()
             except OperationalError:
-                self.stdout.write(
-                    f"Database unavailable, waiting {delay} second, "
-                    f"and trying again... Attempt number {attempt + 1}"
-                )
-                sleep(delay)
+                self.stdout.write("Database unavailable, waiting...")
+                sleep(1)
+
+        self.stdout.write(self.style.SUCCESS("Database available!"))
