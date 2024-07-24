@@ -1,23 +1,22 @@
-FROM python:3.11.6-alpine3.18
+FROM python:3.11.9-alpine3.20
 LABEL maintainer="haldaniko@gmail.com"
 
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONNBUFFERED 1
 
-WORKDIR /app
+WORKDIR app/
 
 COPY requirements.txt requirements.txt
-
-RUN apk add --no-cache gcc musl-dev libpq-dev && \
-    pip install --no-cache-dir -r requirements.txt && \
-    apk del gcc musl-dev
+RUN pip install -r requirements.txt
 
 COPY . .
+RUN mkdir -p /files/media
 
-RUN mkdir -p /vol/web/media
+RUN adduser \
+    --disabled-password \
+    --no-create-home \
+    my_user
 
-RUN adduser --disabled-password --no-create-home my_user
-
-RUN chown -R my_user /vol/web/media
-RUN chmod -R 755 /vol/web/media
+RUN chown -R my_user:my_user /files/media
+RUN chmod -R 755 /files/media
 
 USER my_user
