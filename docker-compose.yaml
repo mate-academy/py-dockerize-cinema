@@ -14,7 +14,7 @@ services:
       - db
     volumes:
       - ./:/app
-      - my_media_files:/media_files/upload
+      - my_media_files:/files/media
 
   db:
     image: postgres:16.3-alpine3.20
