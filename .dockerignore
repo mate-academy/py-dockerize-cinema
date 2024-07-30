@@ -1,0 +1,7 @@
+venv
+result.png
+checklist.md
+.env
+.idea
+__pycashe__
+*.pyc
