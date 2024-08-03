@@ -1,0 +1,5 @@
+venv
+Dockerfile
+pyproject.toml
+.pylintrc
+docker-compose.yaml
