@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:latest  # Use the latest PostgreSQL image
+    container_name: postgres_db_container
+    environment:
+      POSTGRES_DB: your_database_name  # Set your database name here
+      POSTGRES_USER: your_username     # Set your PostgreSQL user
+      POSTGRES_PASSWORD: your_password # Set your PostgreSQL password
+    ports:
+      - "5432:5432"  # Expose the PostgreSQL port
+
+  app:
+    image: your_app_image  # Replace with your application image
+    container_name: your_app_container
+    environment:
+      POSTGRES_DB: your_database_name  # Ensure your app can access the same DB environment variable
+      POSTGRES_USER: your_username     # Pass the same user
+      POSTGRES_PASSWORD: your_password # Pass the same password
+    depends_on:
+      - db  # Ensure the app starts after the database
+    ports:
+      - "8000:8000"  # Expose your app's port
