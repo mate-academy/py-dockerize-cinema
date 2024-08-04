@@ -1,0 +1,29 @@
+# Ignore Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore Django migrations
+*/migrations/*
+
+# Ignore media files
+media/
+
+# Ignore static files (if built separately)
+staticfiles/
+
+# Ignore other unnecessary files
+.DS_Store
+.git
+.gitignore
+.idea
+.vscode
+docker-compose.yaml
+Dockerfile
