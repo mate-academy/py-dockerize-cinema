@@ -1,0 +1,7 @@
+Dockerfile
+.flake8
+.gitignore
+.idea
+.github
+README.md
+docker-compose.yaml
