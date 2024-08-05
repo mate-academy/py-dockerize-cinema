@@ -25,5 +25,9 @@ urlpatterns = [
         name="redoc",
     ),
     path("__debug__/", include("debug_toolbar.urls")),
-    re_path(r"^api/$", RedirectView.as_view(url="/api/cinema/", permanent=False)),
+    re_path(
+        r"^api/$",
+        RedirectView.as_view(url="/api/cinema/"),
+        permanent=False
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
