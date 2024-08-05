@@ -1,4 +1,6 @@
-__pycache__
-*.pyc
-.git
 .venv
+README.md
+.gitignore
+.idea
+.env
+docker-compose.yaml

@@ -1,22 +1,32 @@
-services:
-  db:
-    image: postgres:latest  # Use the latest PostgreSQL image
-    container_name: postgres_db_container
-    environment:
-      POSTGRES_DB: your_database_name  # Set your database name here
-      POSTGRES_USER: your_username     # Set your PostgreSQL user
-      POSTGRES_PASSWORD: your_password # Set your PostgreSQL password
-    ports:
-      - "5432:5432"  # Expose the PostgreSQL port
+version: '3.8'
 
-  app:
-    image: your_app_image  # Replace with your application image
-    container_name: your_app_container
-    environment:
-      POSTGRES_DB: your_database_name  # Ensure your app can access the same DB environment variable
-      POSTGRES_USER: your_username     # Pass the same user
-      POSTGRES_PASSWORD: your_password # Pass the same password
-    depends_on:
-      - db  # Ensure the app starts after the database
+services:
+  cinema:
+    build:
+      context: .
+    env_file:
+      - .env
     ports:
-      - "8000:8000"  # Expose your app's port
+      - "8001:8000"
+    volumes:
+      - ./:/app
+      - my_media:/files/media
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.0-alpine3.17
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - my_db:$PGDATA
+
+volumes:
+  my_db:
+  my_media:

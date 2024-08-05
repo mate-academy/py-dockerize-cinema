@@ -8,6 +8,6 @@ Pillow==10.4.0
 django-debug-toolbar==3.4.0
 djangorestframework-simplejwt==5.2.0
 drf-spectacular==0.22.1
-steptools==72.1.0
-psygopg==3.2.1
-psygopg-binary==3.2.1
+steptools==20.5
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
