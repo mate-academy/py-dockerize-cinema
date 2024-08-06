@@ -1,0 +1,11 @@
+#Folders:
+.github
+venv
+
+#Fiels:
+.dockerignore
+.env
+.gitignore
+docker-compose.yml
+Dockerfile
+README.md
