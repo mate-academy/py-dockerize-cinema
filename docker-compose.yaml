@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16.0-alpine3.17
+    restart: always
+    container_name: db
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - my_db:/var/lib/postgresql/data
+
+  cinema:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py wait_for_db &&
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - ./media:/app/media
+    depends_on:
+      - db
+
+volumes:
+  my_db:
