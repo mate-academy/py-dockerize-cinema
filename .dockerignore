@@ -1,0 +1,28 @@
+# Python-related files
+*.pyc
+__pycache__/
+*.pyo
+
+# Django-related files
+*.log
+*.sqlite3
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+.env
+
+# Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Git-related files
+.git
+.gitignore
+
+# Media and static files
+media/
+static/
