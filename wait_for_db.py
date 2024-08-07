@@ -3,6 +3,7 @@ import psycopg2
 from psycopg2 import OperationalError
 import sys
 
+
 def wait_for_db():
     while True:
         try:
@@ -17,5 +18,6 @@ def wait_for_db():
         except OperationalError:
             time.sleep(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     wait_for_db()
