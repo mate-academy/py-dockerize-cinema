@@ -13,5 +13,6 @@ class Command(BaseCommand):
                 db_connection = connections["default"]
                 self.stdout.write(self.style.SUCCESS("Connected to database"))
             except OperationalError:
-                self.stdout.write(self.style.ERROR("Database unavailable, wait 1 second..."))
+                self.stdout.write(self.style.ERROR(
+                    "Database unavailable, wait 1 second..."))
                 time.sleep(1)
