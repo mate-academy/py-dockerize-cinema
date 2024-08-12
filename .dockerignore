@@ -1,0 +1,7 @@
+venv
+Dockerfile
+**__pycache__
+.idea
+db.sqlite3
+.env
+.DS_Store
