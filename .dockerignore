@@ -1,0 +1,4 @@
+venv/
+Dockerfile
+.github/
+docker-compose.yaml
