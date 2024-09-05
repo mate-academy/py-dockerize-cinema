@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "cinema",
     "user",
-    "polls"
 ]
 
 MIDDLEWARE = [
