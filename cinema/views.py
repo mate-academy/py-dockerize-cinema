@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.db.models import F, Count
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
