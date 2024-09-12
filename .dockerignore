@@ -1,0 +1,7 @@
+.env
+Dockerfile
+docker-compose.yaml
+.venv
+.github
+.gitignore
+db.sqlite3
