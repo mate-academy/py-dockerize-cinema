@@ -1,0 +1,8 @@
+venv/
+*.pyc
+*.pyo
+logs/
+__pycache__/
+*.swp
+*.swo
+*.sqlite
