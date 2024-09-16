@@ -1,0 +1,12 @@
+.git/
+.github/
+.venv/
+.idea/
+
+.dockerignore
+.env
+.flake8
+.gitignore
+Dockerfile
+docker-compose.yaml
+README.md
