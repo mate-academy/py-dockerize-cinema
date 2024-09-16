@@ -1,0 +1,10 @@
+.idea
+.env
+venv
+db.sqlite3
+docker-compose.yaml
+Dockerfile
+.github
+.gitignore
+README.md
+.git
