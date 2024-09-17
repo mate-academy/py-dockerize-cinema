@@ -1,0 +1,6 @@
+venv
+.github
+.env
+.flake8
+.gitignore
+README.md
