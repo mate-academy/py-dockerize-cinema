@@ -31,3 +31,5 @@ So the only requirement to run your project is `Docker`.
 - Run tests using different approach: `docker-compose run app sh -c "python manage.py test"`;
 - If needed, also check the flake8: `docker-compose run app sh -c "flake8"`.
 - If everything is working fine - you are ready to push your code :).
+
+
