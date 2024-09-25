@@ -1,0 +1,6 @@
+venv
+.env.sample
+.gitignore
+.flake8
+Dockerfile
+.github
