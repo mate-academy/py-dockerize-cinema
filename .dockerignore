@@ -1,0 +1,4 @@
+venv39
+.python-version
+cinema_service/.env
+venv/
