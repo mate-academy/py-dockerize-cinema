@@ -1,0 +1,5 @@
+Dockerfile
+.Dockerignore
+venv
+.python-version
+__pycache__
