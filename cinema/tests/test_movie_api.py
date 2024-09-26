@@ -106,8 +106,12 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertNotIn(serializer3.data, res.data)
 
     def test_filter_movies_by_actors(self):
-        actor1 = Actor.objects.create(first_name="Actor 1", last_name="Last 1")
-        actor2 = Actor.objects.create(first_name="Actor 2", last_name="Last 2")
+        actor1 = Actor.objects.create(
+            first_name="Actor 1", last_name="Last 1"
+        )
+        actor2 = Actor.objects.create(
+            first_name="Actor 2", last_name="Last 2"
+        )
 
         movie1 = sample_movie(title="Movie 1")
         movie2 = sample_movie(title="Movie 2")
@@ -257,7 +261,9 @@ class MovieImageUploadTests(TestCase):
     def test_upload_image_bad_request(self):
         """Test uploading an invalid image"""
         url = image_upload_url(self.movie.id)
-        res = self.client.post(url, {"image": "not image"}, format="multipart")
+        res = self.client.post(
+            url, {"image": "not image"}, format="multipart"
+        )
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
