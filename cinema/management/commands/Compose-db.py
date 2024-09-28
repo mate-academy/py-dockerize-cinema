@@ -5,7 +5,7 @@ from django.db import connections, OperationalError
 
 
 class Command(BaseCommand):
-    help = "Provides correct composing between app and Data base"
+    help = "Provides correct composing between app and Data base"  # noqa
 
     def wait_for_db(self, *args, **kwargs):
         db_connection = None
