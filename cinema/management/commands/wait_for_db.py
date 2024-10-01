@@ -11,14 +11,14 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database to be ready...")
-        db_conn = None
+        database_connection = None
         max_attempts = 30
         attempt = 0
 
-        while db_conn is None and attempt < max_attempts:
+        while database_connection is None and attempt < max_attempts:
             try:
-                db_conn = connections["default"]
-                db_conn.cursor()
+                database_connection = connections["default"]
+                database_connection.cursor()
             except OperationalError:
                 attempt += 1
                 self.stdout.write(
@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 )
                 time.sleep(1)
 
-        if db_conn is None:
+        if database_connection is None:
             self.stdout.write(self.style.ERROR("Database not ready."))
             raise Exception("Database is not available.")
 
