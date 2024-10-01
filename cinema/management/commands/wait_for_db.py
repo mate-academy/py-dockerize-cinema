@@ -7,7 +7,7 @@ from django.db import connections
 
 
 class Command(BaseCommand):
-    help = "Wait for database to be ready."
+    help = "Wait for database to be ready." # noqa
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database to be ready...")
