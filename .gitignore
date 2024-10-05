@@ -8,3 +8,6 @@ venv/
 **__pycache__/
 **db.sqlite3
 media
+.venv/
+.github
+.gitignore
