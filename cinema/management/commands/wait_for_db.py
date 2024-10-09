@@ -9,11 +9,25 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
         db_conn = None
-        while not db_conn:
+        retry_delay = 1
+        max_retries = 5
+        retries = 0
+
+        while not db_conn and retries < max_retries:
             try:
                 db_conn = connections["default"]
             except OperationalError:
-                self.stdout.write("Database unavailable")
-                time.sleep(1)
+                retries += 1
+                self.stdout.write(f"Database unavailable, retrying in"
+                                  f" {retry_delay} seconds..."
+                                  f" (attempt {retries}/{max_retries})")
+                time.sleep(retry_delay)
 
-        self.stdout.write(self.style.SUCCESS("Database available!"))
+        if db_conn:
+            self.stdout.write(self.style.SUCCESS("Database available!"))
+        else:
+            self.stdout.write(
+                self.style.ERROR(
+                    "Database connection failed after several attempts."
+                )
+            )
