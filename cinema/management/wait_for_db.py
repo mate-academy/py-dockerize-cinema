@@ -1,3 +1,5 @@
+import time
+
 from django.core.management import BaseCommand, CommandError
 from django.db import connections
 
