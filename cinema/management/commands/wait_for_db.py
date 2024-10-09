@@ -1,33 +1,25 @@
+import socket
 import time
-from django.db import connections
-from django.db.utils import OperationalError
-from django.core.management.base import BaseCommand
+import os
+
+from django.core.management import BaseCommand
 
 
 class Command(BaseCommand):
+    help = "Waits for database to be ready for connection"  # noqa: VNE003
 
-    def handle(self, *args, **options):
-        self.stdout.write("Waiting for database...")
-        db_conn = None
-        retry_delay = 1
-        max_retries = 5
-        retries = 0
+    def handle(self, *args):
+        port = int(os.environ["POSTGRES_PORT"])  # 5432
 
-        while not db_conn and retries < max_retries:
+        db_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        print("Waiting for DB connection...")
+
+        while True:
             try:
-                db_conn = connections["default"]
-            except OperationalError:
-                retries += 1
-                self.stdout.write(f"Database unavailable, retrying in"
-                                  f" {retry_delay} seconds..."
-                                  f" (attempt {retries}/{max_retries})")
-                time.sleep(retry_delay)
-
-        if db_conn:
-            self.stdout.write(self.style.SUCCESS("Database available!"))
-        else:
-            self.stdout.write(
-                self.style.ERROR(
-                    "Database connection failed after several attempts."
-                )
-            )
+                db_socket.connect(("db", port))
+                print("DB connection established.")
+                db_socket.close()
+                break
+            except socket.error:
+                time.sleep(0.1)
