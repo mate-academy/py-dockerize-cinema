@@ -1,0 +1,54 @@
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore local environment files
+.env
+.env.*
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore logs
+*.log
+*.txt
+*.log.*
+logs/
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore databases
+*.sqlite3
+*.db
+
+# Ignore static files (collected files can be handled separately)
+staticfiles/
+static/
+
+# Ignore media files
+media/
+
+# Ignore IDE/editor config files
+.idea/
+.vscode/
+*.swp
+
+# Ignore testing-related files
+.coverage
+htmlcov/
+*.cover
+*.py,cover
+
+# Ignore node_modules (if you are using npm/yarn)
+node_modules/
+
+# Ignore build-related files (if using)
+build/
+dist/
+*.egg-info
+pip-wheel-metadata/
