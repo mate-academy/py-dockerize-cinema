@@ -10,6 +10,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN apk add --no-cache bash  # Install bash
+
 RUN adduser \
         --disabled-password \
         --no-create-home \
