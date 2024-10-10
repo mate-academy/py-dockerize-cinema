@@ -8,10 +8,10 @@ class Command(BaseCommand):
     help = "Wait for the database to be avaliable..."
 
     def handle(self, *args, **options):
-        db_conn = None
-        while not db_conn:
+        db_connect = None
+        while not db_connect:
             try:
-                db_conn = connections["default"]
+                db_connect = connections["default"]
             except OperationalError:
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
