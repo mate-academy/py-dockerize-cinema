@@ -6,14 +6,17 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-    times = 10
+    def add_arguments(self, parser):
+        parser.add_argument("--times", type=int, default=10)
 
     def handle(self, *args, **options):
-        for attempt in range(self.times):
+        times = options["times"]
+
+        for attempt in range(times):
             try:
                 connection.ensure_connection()
             except OperationalError:
-                self.stdout.write(f"Attempt: {attempt + 1} / {self.times}")
+                self.stdout.write(f"Attempt: {attempt + 1} / {times}")
                 time.sleep(5)
             else:
                 self.stdout.write(self.style.SUCCESS("Database found!"))
