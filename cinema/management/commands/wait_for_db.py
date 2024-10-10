@@ -6,17 +6,16 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-
+    times = 10
     def handle(self, *args, **options):
-        while True:
+        for attempt in range(self.times):
             try:
                 connection.ensure_connection()
             except OperationalError:
-                self.stdout.write(
-                    "Failed to find database"
-                )
+                self.stdout.write(f"Attempt: {attempt + 1} / {self.times}")
                 time.sleep(5)
             else:
-                break
+                self.stdout.write(self.style.SUCCESS("Database found!"))
+                return
 
-        self.stdout.write(self.style.ERROR("Database found!"))
+        self.stdout.write(self.style.ERROR("Failed to find database."))
