@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from psycopg2 import OperationalError
 
+
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         db_settings = settings.DATABASES["default"]
@@ -21,5 +22,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS("Database available!"))
                 break
             except OperationalError as e:
-                self.stdout.write(f"Database unavailable, waiting 1 second... ({e})")
+                self.stdout.write(
+                    f"Database unavailable, waiting 1 second... ({e})"
+                )
                 time.sleep(1)
