@@ -7,6 +7,7 @@ from django.db.utils import OperationalError
 
 class Command(BaseCommand):
     times = 10
+
     def handle(self, *args, **options):
         for attempt in range(self.times):
             try:
