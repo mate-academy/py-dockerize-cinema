@@ -1,0 +1,8 @@
+venv
+.gitignore
+.flake8
+README.md
+.github
+db.sqlite3
+Dockerfile
+.idea
