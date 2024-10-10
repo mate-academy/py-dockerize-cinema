@@ -5,9 +5,8 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Wait for the database to be avaliable..."
-
     def handle(self, *args, **options):
+        self.stdout.write("Wait for the database to be available...")
         db_connect = None
         while not db_connect:
             try:
