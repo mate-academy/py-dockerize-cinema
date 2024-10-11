@@ -10,7 +10,7 @@ class Command(BaseCommand):
         db_connect = None
         max_attempts = 10
         attempts = 0
-        while not db_connect:
+        while not db_connect and attempts < max_attempts:
             try:
                 db_connect = connections["default"].ensure_connection()
             except OperationalError:
