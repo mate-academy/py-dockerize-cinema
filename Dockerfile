@@ -1,4 +1,6 @@
-FROM python:3.12.6-alpine3.20
+FROM python:3.10.15-alpine3.20
+
+RUN adduser --disabled-password --no-create-home django-user
 
 ENV PYTHONUNBUFFERED=1
 
@@ -21,5 +23,3 @@ RUN adduser \
 
 RUN chown -R my_user /files/media
 RUN chmod -R 755 /files/media
-
-CMD ["sh", "-c", "python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
