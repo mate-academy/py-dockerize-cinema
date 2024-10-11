@@ -113,7 +113,7 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(TicketSerializer, self).validate(attrs=attrs)
-        Ticket.validate_ticket(
+        self.instance.__class__.validate_ticket(
             attrs["row"],
             attrs["seat"],
             attrs["movie_session"].cinema_hall,
