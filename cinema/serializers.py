@@ -112,11 +112,24 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
+        """
+        This method checks if the specified row and seat numbers
+        are within the acceptable range according to the capacity
+        of the cinema hall associated with the movie session.
+
+        Returns:
+            dict: The validated data if the row and seat are valid.
+
+        Raises:
+            ValidationError: If the row or seat numbers are out of
+                             the acceptable range for the specified
+                             cinema hall.
+        """
         data = super(TicketSerializer, self).validate(attrs=attrs)
-        Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
+        self.instance.__class__.validate_ticket(
+            attrs["row"],
+            attrs["seat"],
+            attrs["movie_session"].cinema_hall,
             ValidationError
         )
         return data
