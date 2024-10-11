@@ -19,6 +19,8 @@ class Command(BaseCommand):
                 time.sleep(1)
 
         if not db_connect:
-            self.stdout.write(self.style.ERROR("Failed to connect to the database after multiple attempts."))
+            self.stdout.write(self.style.ERROR(
+                "Failed to connect to the database after multiple attempts."
+            ))
         else:
             self.stdout.write(self.style.SUCCESS("Database available!"))
