@@ -24,6 +24,11 @@ services:
       - "5432:5432"
     volumes:
       - my_db:$PGDATA
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "cinema_user" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   my_db:
