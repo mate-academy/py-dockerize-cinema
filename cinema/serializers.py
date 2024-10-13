@@ -1,6 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
+from django.core.exceptions import ValidationError as DjangoValidationError
 
 from cinema.models import (
     Genre,
@@ -112,14 +112,28 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
-        data = super(TicketSerializer, self).validate(attrs=attrs)
-        Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
-            ValidationError
-        )
-        return data
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
+        try:
+            ticket = Ticket(row=row, seat=seat, movie_session=movie_session)
+            ticket.clean()
+        except DjangoValidationError as e:
+            if "invalid" in str(e):
+                raise serializers.ValidationError(
+                    {"detail": "Invalid value for row or seat."}
+                )
+            elif "not available" in str(e):
+                raise serializers.ValidationError(
+                    {"detail": "This seat is already taken."}
+                )
+            else:
+                raise serializers.ValidationError(
+                    {"detail": "Validation error: " + str(e)}
+                )
+
+        return attrs
 
     class Meta:
         model = Ticket
