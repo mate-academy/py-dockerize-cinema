@@ -1,6 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
+from django.core.exceptions import ValidationError as DjangoValidationError
 
 from cinema.models import (
     Genre,
@@ -117,7 +117,11 @@ class TicketSerializer(serializers.ModelSerializer):
             seat=attrs["seat"],
             movie_session=attrs["movie_session"]
         )
-        ticket.clean()
+        try:
+            ticket.clean()
+        except DjangoValidationError as e:
+            raise serializers.ValidationError({"detail": str(e)})
+
         return attrs
 
     class Meta:

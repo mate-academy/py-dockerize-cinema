@@ -92,13 +92,23 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "default_db_name"),
-        "USER": os.getenv("POSTGRES_USER", "default_user"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "default_password"),
-        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
+
+
+if not all(os.getenv(var) for var in [
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD",
+    "POSTGRES_HOST",
+    "POSTGRES_PORT"
+]):
+    raise EnvironmentError("Required environment variables are not set.")
 
 
 # Password validation
@@ -142,7 +152,7 @@ USE_TZ = False
 
 STATIC_URL = "static/"
 
-MEDIA_ROOT = "/files/media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 MEDIA_URL = "/media/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
