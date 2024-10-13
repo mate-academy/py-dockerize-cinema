@@ -2,6 +2,7 @@ import time
 
 from django.core.management import BaseCommand
 from django.db import connections, DEFAULT_DB_ALIAS
+from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
@@ -17,10 +18,11 @@ class Command(BaseCommand):
         max_attempts = 5
         for attempt in range(max_attempts):
             connection = connections[DEFAULT_DB_ALIAS]
-            if connection.ensure_connection():
+            try:
+                connection.ensure_connection()
                 self.stdout.write(self.style.SUCCESS("Database available!"))
                 return
-            else:
+            except OperationalError:
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
 

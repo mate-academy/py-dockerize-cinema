@@ -112,15 +112,26 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
-        ticket = Ticket(
-            row=attrs["row"],
-            seat=attrs["seat"],
-            movie_session=attrs["movie_session"]
-        )
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
         try:
+            ticket = Ticket(row=row, seat=seat, movie_session=movie_session)
             ticket.clean()
         except DjangoValidationError as e:
-            raise serializers.ValidationError({"detail": str(e)})
+            if "invalid" in str(e):
+                raise serializers.ValidationError(
+                    {"detail": "Invalid value for row or seat."}
+                )
+            elif "not available" in str(e):
+                raise serializers.ValidationError(
+                    {"detail": "This seat is already taken."}
+                )
+            else:
+                raise serializers.ValidationError(
+                    {"detail": "Validation error: " + str(e)}
+                )
 
         return attrs
 
