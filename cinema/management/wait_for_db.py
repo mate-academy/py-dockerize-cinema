@@ -1,7 +1,7 @@
 import time
 
 from django.core.management import BaseCommand
-from django.db import connections, OperationalError, DEFAULT_DB_ALIAS
+from django.db import connections, DEFAULT_DB_ALIAS
 
 
 class Command(BaseCommand):
@@ -24,4 +24,6 @@ class Command(BaseCommand):
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
 
-        self.stdout.write(self.style.ERROR("Database unavailable after several attempts."))
+        self.stdout.write(self.style.ERROR(
+            "Database unavailable after several attempts."
+        ))
