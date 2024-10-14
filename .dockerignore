@@ -1,0 +1,18 @@
+# Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local environment
+.venv/
+*.env
+
+# Git and temporary files
+.git
+.github/
+*.swp
+
+# Static and media files
+static/
+media/
