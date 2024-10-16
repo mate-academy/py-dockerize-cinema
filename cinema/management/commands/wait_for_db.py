@@ -17,10 +17,17 @@ class Command(BaseCommand):
                 db_conn = connections["default"]
             except OperationalError:
                 attempts += 1
-                self.stdout.write(f"Database unavailable, waiting 1 second... (Attempt {attempts}/{max_attempts})")
+                self.stdout.write(
+                    f"Database unavailable, waiting 1 second... "
+                    f"(Attempt {attempts}/{max_attempts})"
+                )
                 time.sleep(1)
 
         if db_conn:
-            self.stdout.write(self.style.SUCCESS("Database connection established!"))
+            self.stdout.write(self.style.SUCCESS(
+                "Database connection established!"
+            ))
         else:
-            self.stdout.write(self.style.ERROR("Database not available after max attempts."))
+            self.stdout.write(self.style.ERROR(
+                "Database not available after max attempts."
+            ))
