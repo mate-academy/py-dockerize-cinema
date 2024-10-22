@@ -1,0 +1,11 @@
+.venv
+Dockerfile
+.idea
+docker-compose.yaml
+.github
+.gitignore
+.env
+.flake8
+README.md
+*.pyc
+__pycache__
