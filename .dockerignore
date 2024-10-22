@@ -1,0 +1,7 @@
+venv
+Dockerfile
+.flake8
+.gitignore
+.github
+README.md
+docker-compose.yaml
