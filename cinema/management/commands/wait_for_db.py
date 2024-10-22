@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.db import connections
 from django.db.utils import OperationalError
 
+
 class Command(BaseCommand):
     """Django management command to wait
      for the database to be available."""
@@ -12,7 +13,7 @@ class Command(BaseCommand):
         db_conn = None
         while not db_conn:
             try:
-                db_conn = connections['default']
+                db_conn = connections["default"]
                 db_conn.cursor()
             except OperationalError:
                 self.stdout.write(
