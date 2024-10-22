@@ -113,8 +113,9 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(TicketSerializer, self).validate(attrs=attrs)
-        # Check if the ticket for the specified row and seat in the given movie session
-        # is available in the cinema hall. Raise a ValidationError if not.
+        # Check if the ticket for the specified row and seat in
+        # the given movie sessions available in the cinema hall.
+        #Raise a ValidationError if not.
         Ticket.validate_ticket(
             attrs["row"],
             attrs["seat"],
