@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
-from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,6 +84,7 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -95,6 +95,7 @@ DATABASES = {
         "PORT": os.environ["POSTGRES_PORT"],
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -138,6 +139,7 @@ USE_TZ = False
 STATIC_URL = "static/"
 
 MEDIA_ROOT = "/vol/web/media"
+
 MEDIA_URL = "/media/"
 
 # Default primary key field type
