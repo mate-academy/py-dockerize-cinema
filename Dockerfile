@@ -8,16 +8,16 @@ WORKDIR app/
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY .. .
-
-RUN mkdir: -p /files/media
+COPY . .
+RUN mkdir -p /vol/web/media
 
 RUN adduser \
-    --disabled-password \
-    --nocreate-home \
-    my_user \
+         --disabled-password \
+         --no-create-home \
+    django-user
 
-RUN chown -R my_user /files/media
-RUN chmod -R 755 /files/media
+RUN chown -R django-user:django-user /vol/
+RUN chmod -R 755 /vol/web/
+
 
 USER my_user

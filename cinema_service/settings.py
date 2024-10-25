@@ -138,7 +138,8 @@ USE_TZ = False
 
 STATIC_URL = "static/"
 
-MEDIA_ROOT = "/files/media"
+MEDIA_ROOT = "/vol/web/media"
+
 MEDIA_URL = "/media/"
 
 # Default primary key field type
