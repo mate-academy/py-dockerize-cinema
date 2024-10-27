@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_spectacular",
-    "debug_toolbar",
     "cinema",
     "user",
 ]
@@ -95,6 +94,7 @@ DATABASES = {
         "PORT": os.environ["POSTGRES_PORT"],
     }
 }
+
 
 
 # Password validation

@@ -9,6 +9,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
+
 RUN mkdir -p /vol/web/media
 
 RUN adduser \
@@ -19,5 +20,4 @@ RUN adduser \
 RUN chown -R django-user:django-user /vol/
 RUN chmod -R 755 /vol/web/
 
-
-USER my_user
+USER django-user
