@@ -14,7 +14,7 @@ class Command(BaseCommand):
             try:
                 db_conn = connections["default"]
             except OperationalError:
-                self.stdout.write("База даних недоступна, чекаємо 1 секунду...")
+                self.stdout.write("База даних недоступна...")
                 time.sleep(1)
 
         self.stdout.write(self.style.SUCCESS("База даних доступна!"))
