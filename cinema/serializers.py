@@ -116,7 +116,9 @@ class TicketSerializer(serializers.ModelSerializer):
         missing_keys = [key for key in required_keys if key not in attrs]
 
         if missing_keys:
-            raise ValidationError({key: f"{key} is required." for key in missing_keys})
+            raise ValidationError(
+                {key: f"{key} is required." for key in missing_keys}
+            )
 
         Ticket.validate_ticket(
             attrs["row"],
