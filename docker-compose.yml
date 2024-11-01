@@ -10,10 +10,11 @@ services:
       - .env
 
   db:
+    image: postgres:latest
     env_file:
       - .env
 
   wait-for-db:
     depends_on:
       - db
-    command: ["wait-for-it", "--timeout=30", "--", "sh", "-c", "python manage.py migrate"]
+    command: ["wait-for-db", "--timeout=30", "--", "sh", "-c", "python manage.py migrate"]
