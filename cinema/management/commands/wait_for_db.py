@@ -7,7 +7,7 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-    # "Blocks until the database is available"
+    """Blocks until the database is available"""
 
     def add_arguments(self, parser):
         parser.add_argument("--poll_seconds", type=float, default=3)
