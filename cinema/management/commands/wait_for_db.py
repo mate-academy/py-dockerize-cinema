@@ -19,6 +19,8 @@ class Command(BaseCommand):
             except OperationalError:
                 attempts += 1
                 if attempts > 5:
-                    raise CommandError("Database connection failed after 5 attempts.")
+                    raise CommandError(
+                        "Database connection failed after 5 attempts."
+                    )
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
