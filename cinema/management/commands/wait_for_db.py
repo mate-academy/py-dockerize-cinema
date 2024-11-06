@@ -3,6 +3,7 @@ from django.db import connections
 from django.db.utils import OperationalError
 from django.core.management.base import BaseCommand, CommandError
 
+
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
@@ -18,8 +19,6 @@ class Command(BaseCommand):
             except OperationalError:
                 attempts += 1
                 if attempts > 5:
-                    raise CommandError(
-                        "Database connection failed after 5 attempts."
-                    )
+                    raise CommandError("Database connection failed after 5 attempts.")
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
