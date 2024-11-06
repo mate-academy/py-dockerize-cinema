@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
+    help = "Waits for database to be ready before proceeding."
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")

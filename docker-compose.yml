@@ -21,7 +21,10 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      -db_data:/var/lib/postgresql/data
 
 volumes:
   my_media:
   my_static:
+  db_data:
