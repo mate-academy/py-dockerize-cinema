@@ -8,7 +8,7 @@ services:
       - "8001:8000"
     volumes:
       - ./:/app
-      - my_meda:/files/media
+      - my_media:/files/media
     command: >
       sh -c "python manage.py wait_for_db &&
       python manage.py migrate &&
@@ -28,4 +28,4 @@ services:
 
 volumes:
   my_db:
-  my_meda:
+  my_media:
