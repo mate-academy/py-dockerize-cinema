@@ -27,10 +27,5 @@ services:
       - my_db:/var/lib/postgresql/data
 
 volumes:
-  my_db: 
-    driver: local 
-    driver_opts:
-      type: none
-      device: C:/Users/Dennie/Postgres-data/
-      o: bind
+  my_db:
   my_media:
