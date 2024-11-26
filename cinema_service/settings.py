@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 from decouple import config
 from dotenv import load_dotenv
+from decouple import config, Csv
 
 load_dotenv()
 
@@ -26,13 +27,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = \
-    "django-insecure-6vubhk2$++agnctay_4pxy_8cq)mosmn(*-#2b^v4cgsh-^!i3"
+
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="django-insecure-6vubhk2$++agnctay_4pxy_8cq)"
+            "mosmn(*-#2b^v4cgsh-^!i3"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1", cast=Csv())
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -92,11 +97,11 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "app"),
-        "USER": os.getenv("POSTGRES_USER", "app"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "app"),
-        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "NAME": config("POSTGRES_DB", default="app"),
+        "USER": config("POSTGRES_USER", default="app"),
+        "PASSWORD": config("POSTGRES_PASSWORD", default="app"),
+        "HOST": config("POSTGRES_HOST", default="localhost"),
+        "PORT": config("POSTGRES_PORT", default="5432"),
     }
 }
 
@@ -182,4 +187,23 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "logs/django_error.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
 }
