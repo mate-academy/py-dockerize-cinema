@@ -13,9 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
-from decouple import config
-from dotenv import load_dotenv
 from decouple import config, Csv
+from dotenv import load_dotenv
 
 load_dotenv()
 
