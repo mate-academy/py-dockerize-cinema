@@ -1,0 +1,11 @@
+.venv
+Dockerfile
+.idea
+docker-compose.yaml
+.git
+__pycache__
+*.pyc
+*.pyo
+.DS_Store
+.env
+Logs
