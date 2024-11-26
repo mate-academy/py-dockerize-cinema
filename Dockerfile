@@ -3,7 +3,7 @@ LABEL maintainer="maksym.protsak@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR cinema_service
+WORKDIR /cinema_service
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
