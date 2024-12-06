@@ -1,0 +1,16 @@
+.github
+.git
+__pycache__
+venv
+.idea*
+.env
+.gitignore
+checklist.md
+README.md
+result.png
+cur.py
+cur2.py
+Dockerfile
+commands
+docker-compose.yaml
+flake8
