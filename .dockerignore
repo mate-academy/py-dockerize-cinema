@@ -1,0 +1,8 @@
+.venv
+.env
+.gitignore
+Dockerfile
+docker-compose.yml
+**db.sqlite3
+**/*.md
+.idea
