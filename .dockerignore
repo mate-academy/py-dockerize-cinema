@@ -1,0 +1,7 @@
+.media
+.venv
+Dockerfile
+docker-compose.yaml
+.dockerignore
+__pycache__
+*.pyc
