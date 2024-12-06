@@ -1,0 +1,12 @@
+.venv
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.pytest_cache/
+**__pycache__/
+.git*
+.flake8
+.dockerignore
+Dockerfile
+.docker-compose.yaml
