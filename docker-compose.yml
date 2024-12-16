@@ -2,6 +2,11 @@ services:
   db:
     image: postgres:17-alpine
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cinema_user -d cinema_db"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
     ports:
       - "5432:5432"
     env_file:
@@ -11,11 +16,7 @@ services:
 
   app:
     build: .
-    command: >
-      sh -c "python manage.py wait_for_db &&
-            python manage.py makemigrations &&
-            python manage.py migrate &&
-            python manage.py runserver 0.0.0.0:8000"
+    command: ./entrypoint.sh
     volumes:
       - ./:/app
       - media_volume:/app/media
@@ -24,7 +25,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:

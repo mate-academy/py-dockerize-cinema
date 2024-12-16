@@ -11,9 +11,13 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Copy requirements first to leverage Docker cache
+# Copy requirements first to leverage Docker cache.
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy and set up entrypoint script.
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
 
 # Copy the source code into the container.
 COPY . /app/
