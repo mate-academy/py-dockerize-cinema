@@ -12,8 +12,12 @@ class Command(BaseCommand):
         db_conn = None
         while not db_conn:
             try:
-                db_conn = connections['default']
+                db_conn = connections["default"]
                 db_conn.cursor()
             except OperationalError:
-                self.stdout.write(self.style.WARNING('База данных не готова, ожидаем...'))
+                self.stdout.write(
+                    self.style.WARNING(
+                        "waiting for connection with database..."
+                    )
+                )
                 time.sleep(1)
