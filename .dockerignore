@@ -8,3 +8,4 @@ venv
 *.sqlite3
 .DS_Store
 .env
+README.md
