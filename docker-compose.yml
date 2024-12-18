@@ -1,0 +1,32 @@
+services:
+  cinema:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./:/app
+      - my_media:/files/media
+    working_dir: /cinema
+
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.0-alpine3.17
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - my_db:/var/lib/postgresql/data
+
+volumes:
+  my_db:
+  my_media:
