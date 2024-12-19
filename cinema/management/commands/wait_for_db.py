@@ -9,7 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         while True:
             try:
-                connections['default'].ensure_connection()
+                connections["default"].ensure_connection()
                 break
                 print("Server loading...")
             except OperationalError:
