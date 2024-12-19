@@ -11,6 +11,6 @@ class Command(BaseCommand):
             try:
                 connections["default"].ensure_connection()
                 break
-                print("Server loading...")
             except OperationalError:
+                self.stdout.write("Server loading...")
                 time.sleep(1)
