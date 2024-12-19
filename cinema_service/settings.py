@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "debug_toolbar",
-    "cinema.management",
     "cinema",
     "user",
 ]
