@@ -35,7 +35,7 @@ services:
       - "5432:5432"
 
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 
 volumes:
