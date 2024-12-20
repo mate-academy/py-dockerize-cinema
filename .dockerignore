@@ -1,0 +1,5 @@
+.venv
+Dockerfile
+docker-compose.yml
+.env
+media
