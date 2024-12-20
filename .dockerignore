@@ -1,0 +1,5 @@
+venv
+Dockerfile
+media
+.idea
+.env
