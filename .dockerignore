@@ -1,0 +1,10 @@
+.idea/
+.vscode/
+.env
+.DS_Store
+venv/
+.pytest_cache/
+**__pycache__/
+media
+Dockerfile
+docker-compose.yaml
