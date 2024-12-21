@@ -17,6 +17,6 @@ class Command(BaseCommand):
                     f"host={os.environ['POSTGRES_HOST']} "
                     f"password={os.environ['POSTGRES_PASSWORD']}")
                 break
-            except psycopg2.Error as e:
+            except psycopg2.Error:
                 print("Trying to connect failed")
                 sleep(0.1)
