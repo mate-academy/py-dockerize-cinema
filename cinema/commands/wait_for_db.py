@@ -2,6 +2,8 @@ import time
 from django.core.management.base import BaseCommand
 from django.db import connection
 from django.db.utils import OperationalError
+
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
@@ -16,3 +18,4 @@ class Command(BaseCommand):
                 )
                 time.sleep(5)
         self.stdout.write(self.style.SUCCESS("Database available!"))
+
