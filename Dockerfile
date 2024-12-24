@@ -1,7 +1,6 @@
-FROM python:3.10-alpine
-LABEL maintainer="leon.kushnir15@gmail.com"
+FROM python:3.12-slim
 
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
@@ -12,11 +11,11 @@ COPY . .
 RUN mkdir -p /files/media
 
 RUN adduser \
-    --disabled-password \
-    --no-create-home \
-    my_user
+        --disabled-password \
+        --no-create-home \
+        django-user
 
-RUN chown -R my_user /files/media
+RUN chown -R django-user /files/media
 RUN chmod -R 755 /files/media
 
-USER my_user
+USER django-user
