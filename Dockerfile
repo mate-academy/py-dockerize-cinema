@@ -13,6 +13,7 @@ RUN  pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN mkdir -p /files/media
 
+
 RUN adduser --disabled-password --no-create-home my-user
 
 RUN chown -R my-user /files/media
