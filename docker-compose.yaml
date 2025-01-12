@@ -10,9 +10,9 @@ services:
       - ./:/app
       - my_media:/files/media
     command: >
-      sh -c "python wait_for_db.py &&
+      sh -c "python manage.py wait_for_db &&
              python manage.py migrate && 
-             python manage.py runserver 0.0.00:8000"
+             python manage.py runserver 0.0.0.0:8000"
     depends_on:
       db:
         condition: service_healthy
