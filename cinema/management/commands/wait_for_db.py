@@ -17,10 +17,10 @@ class Command(BaseCommand):
             count += 1
             try:
                 conn = psycopg.connect(
-                    f"dbname={os.getenv("POSTGRES_DB")} "
-                    f"user={os.getenv("POSTGRES_USER")} "
-                    f"host={os.getenv("POSTGRES_HOST")} "
-                    f"password={os.getenv("POSTGRES_PASSWORD")}"
+                    f"dbname={os.getenv('POSTGRES_DB')} "
+                    f"user={os.getenv('POSTGRES_USER')} "
+                    f"host={os.getenv('POSTGRES_HOST')} "
+                    f"password={os.getenv('POSTGRES_PASSWORD')}"
                 )
                 conn.close()
                 self.stdout.write(

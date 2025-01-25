@@ -23,8 +23,6 @@ services:
       - "5432:5432"
     env_file:
       - .env
-#    volumes:
-#      - my_db:$PGDATA
 volumes:
   my_db:
   my_media:
