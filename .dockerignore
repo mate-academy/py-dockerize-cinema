@@ -3,4 +3,3 @@
 .github
 .gitignore
 .dockerignore
-.flake8
