@@ -1,0 +1,10 @@
+__pycache__/
+.env
+*.sqlite3
+docker-compose.yaml
+.git/
+.gitignore
+.idea/
+venv/
+media/
+Dockerfile
