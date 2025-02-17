@@ -11,7 +11,7 @@ services:
       - my_media:/files/media
     command: >
       sh -c "python manage.py migrate &&
-            python mange.py runserver 0.0.0.0:8000"
+            python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 

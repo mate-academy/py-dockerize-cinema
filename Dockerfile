@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 LABEL authors="fanni"
 
-ENV PYTHOUNNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR app/
 COPY requirements.txt requirements.txt
@@ -12,7 +12,7 @@ COPY . .
 RUN mkdir -p /files/media
 
 RUN adduser \
-    --diasabled-password \
+    --disabled-password \
     --no-create-home \
     my_user
 
