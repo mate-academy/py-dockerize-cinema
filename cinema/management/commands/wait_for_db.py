@@ -13,8 +13,6 @@ class Command(BaseCommand):
         while True:
             try:
                 connections["default"].ensure_connection()
-                with connections["default"].cursor() as cursor:
-                    cursor.execute("SELECT 1")
                 self.stdout.write(self.style.SUCCESS("Database is ready!"))
                 break
             except OperationalError:
