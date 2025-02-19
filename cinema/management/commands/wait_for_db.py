@@ -23,6 +23,6 @@ class Command(BaseCommand):
 
         if not db_conn:
             self.stderr.write("❌ Failed to connect to db!")
-            exit(1)
+            self.exit(1)
 
         self.stdout.write(self.style.SUCCESS("✅ DB is available!"))
