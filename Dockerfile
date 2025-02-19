@@ -16,7 +16,7 @@ RUN adduser \
     --no-create-home \
     my_user
 
-RUN chmod -R my_user /files/media
+RUN chown -R my_user /files/media
 RUN chmod -R 755 /files/media
 
 USER my_user

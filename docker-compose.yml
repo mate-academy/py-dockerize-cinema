@@ -8,6 +8,7 @@ services:
       - "8001:8000"
     volumes:
       - ./:/app
+      - my_media:/files/media
     command:
       sh -c "python manage.py makemigrations &&
             python manage.py migrate &&
@@ -29,4 +30,5 @@ services:
 
 volumes:
   my_db:
+  my_media:
 
