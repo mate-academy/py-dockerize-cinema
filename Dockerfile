@@ -1,23 +1,29 @@
-FROM python:3.13-alpine
+# stage 1: psycopg build dependencies
+FROM python:3.13-alpine AS builder
 
-WORKDIR /usr/src/app/
-
-# psycopg build dependencies: C compiler, headers
-RUN apk update && apk add --no-cache --virtual .build-deps python3-dev gcc libc-dev
-
-RUN apk add --no-cache libpq-dev
+# psycopg needs C compiler, headers
+RUN apk update && \
+    apk add --no-cache --virtual .build-deps python3-dev gcc libc-dev libpq-dev
 
 WORKDIR /usr/src/app/
 
 COPY requirements.txt .
-
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
-
-# clean up build dependencies
-RUN apk del .build-deps && rm -rf /var/cache/apk/*
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+
+FROM python:3.13-alpine
+
+# runtime dep of psycopg
+RUN apk update && \
+    apk add --no-cache libpq
+
+WORKDIR /usr/src/app/
+
+# copy installed packages from builder stage
+COPY --from=builder /usr/local/lib/python3.13/site-packages /usr/local/lib/python3.13/site-packages
+COPY --from=builder /usr/src/app /usr/src/app
 
 RUN adduser --disabled-password --no-create-home django-user
 
