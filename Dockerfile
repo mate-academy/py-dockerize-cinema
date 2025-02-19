@@ -3,7 +3,9 @@ FROM python:3.13-alpine
 WORKDIR /usr/src/app/
 
 # psycopg build dependencies: C compiler, headers
-RUN apk update && apk add --no-cache python3-dev gcc libc-dev libpq-dev
+RUN apk update && apk add --no-cache --virtual .build-deps python3-dev gcc libc-dev
+
+RUN apk add --no-cache libpq-dev
 
 WORKDIR /usr/src/app/
 
@@ -13,7 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # clean up build dependencies
-RUN apk del gcc libc-dev python3-dev
+RUN apk del .build-deps && rm -rf /var/cache/apk/*
 
 COPY . .
 
