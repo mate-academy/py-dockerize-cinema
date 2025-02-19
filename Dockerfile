@@ -8,7 +8,7 @@ RUN apk update && \
 WORKDIR /usr/src/app/
 
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
+RUN pip install --upgrade pip==25.0.1 && \
     pip install --no-cache-dir -r requirements.txt
 
 COPY . .
