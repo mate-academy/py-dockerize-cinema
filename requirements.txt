@@ -13,3 +13,4 @@ sqlparse==0.5.3
 tzdata==2025.1
 django_debug_toolbar==5.0.1
 djangorestframework-simplejwt==5.2.2
+flake8==7.1.2
