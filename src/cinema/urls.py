@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from cinema.views import (
+from src.cinema.views import (
     GenreViewSet,
     ActorViewSet,
     CinemaHallViewSet,
