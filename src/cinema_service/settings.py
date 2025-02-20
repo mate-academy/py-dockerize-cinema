@@ -86,16 +86,15 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-       "ENGINE": "django.db.backends.postgresql",
-       "NAME": os.environ["POSTGRES_DB"],
-       "USER": os.environ["POSTGRES_USER"],
-       "PASSWORD": os.environ["POSTGRES_PASSWORD"],
-       "HOST": os.environ["POSTGRES_HOST"],
-       "PORT": int(os.environ["POSTGRES_DB_PORT"]),
-   }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": int(os.environ["POSTGRES_DB_PORT"]),
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
