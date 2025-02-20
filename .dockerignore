@@ -1,0 +1,11 @@
+.env
+*.sqlite3
+docker-compose.yaml
+.git/
+.gitignore
+.idea/
+.venv
+media/
+.flake8
+Dockerfile
+__pycahe__/
