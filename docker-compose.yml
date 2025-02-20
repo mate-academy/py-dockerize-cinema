@@ -32,12 +32,14 @@ services:
         condition: service_healthy
     volumes:
       - ./src:/usr/src/app
+      - media:/usr/src/app/files/media
     networks:
       - cinema-network
 
 volumes:
   postgres_cinema_data:
     driver: local
+  media:
 
 networks:
   cinema-network:
