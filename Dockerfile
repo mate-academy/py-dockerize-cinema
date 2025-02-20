@@ -2,7 +2,7 @@ FROM python:3.10.0-slim-buster
 
 LABEL maintainer="julia4406@gmail.com"
 
-ENV PYTHONBUFFERED=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
@@ -19,5 +19,3 @@ RUN chown -R django-user:django-user /vol/
 RUN chmod -R 755 /vol/web/
 
 COPY . .
-
-USER django-user

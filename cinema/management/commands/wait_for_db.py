@@ -13,7 +13,7 @@ class Command(BaseCommand):
         retry_count = 0
         max_retries = 3
         wait_time = 2
-        while retry_count <= max_retries and not db_up:
+        while retry_count < max_retries and not db_up:
             try:
                 connection.ensure_connection()
                 db_up = True
