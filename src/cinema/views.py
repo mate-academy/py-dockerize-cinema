@@ -11,7 +11,10 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from src.cinema.models import (Genre, Actor,
-                               CinemaHall, Movie, MovieSession, Order)
+                               CinemaHall,
+                               Movie,
+                               MovieSession,
+                               Order)
 from src.cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
 
 from src.cinema.serializers import (
