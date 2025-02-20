@@ -1,0 +1,46 @@
+services:
+  db:
+    image: 'postgres:latest'
+    container_name: postgres-cinema
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_cinema_data:/var/lib/postgresql/data/
+    networks:
+      - cinema-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB -h 127.0.0.1 || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  web:
+    restart: always
+    build: .
+    container_name: cinema-backend
+    command: ["/bin/sh", "/usr/src/commands/run_cinema_backend.sh"]
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./src:/usr/src/app
+      - media:/usr/src/app/files/media
+    networks:
+      - cinema-network
+
+volumes:
+  postgres_cinema_data:
+    driver: local
+  media:
+
+networks:
+  cinema-network:
+    driver: bridge
