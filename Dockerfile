@@ -1,7 +1,7 @@
 FROM python:3.10
 LABEL authors="maksym.chukhno@gmail.com"
 
-ENV PYTHONUNDUFFERED=1
+ENV PYTHONUNBUFFERED=1
 
 RUN apt update && apt install -y dos2unix
 
