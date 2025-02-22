@@ -1,0 +1,6 @@
+/venv
+.env
+.gitignore
+.git
+.vscode
+
