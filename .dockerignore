@@ -29,11 +29,6 @@ environment/
 *.sqlite3
 db.sqlite3
 
-# Игнорировать файлы конфигурации
-settings_local.py
-.env
-*.env
-
 # Игнорировать статические и медиа файлы (если они хранятся локально)
 static/
 media/
