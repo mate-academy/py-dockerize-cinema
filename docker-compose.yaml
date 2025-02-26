@@ -16,7 +16,7 @@ services:
        env_file:
            - .env
 
-   db:
+   db:zx z
        image: postgres:16.0-alpine3.17
        restart: always
        env_file:
