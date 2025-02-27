@@ -1,6 +1,6 @@
 services:
   db:
-    image: 'postgres:latest'
+    image: postgres:17-alpine
     container_name: postgres-cinema
     env_file:
       - .env
@@ -8,11 +8,11 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - postgres_cinema_data:/var/lib/postgresql/data/
+      - postgres_cinema_data:/var/lib/postgresql/data
     networks:
       - cinema-network
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB -h 127.0.0.1 || exit 1" ]
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB -h localhost || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,11 +20,7 @@ services:
 
 volumes:
   postgres_cinema_data:
-    driver: local
 
 networks:
   cinema-network:
     driver: bridge
-
-
-

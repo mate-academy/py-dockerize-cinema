@@ -1,6 +1,6 @@
 services:
   db:
-    image: 'postgres:latest'
+    image: 'postgres:17-alpine'
     container_name: postgres-cinema
     env_file:
       - .env
@@ -19,7 +19,7 @@ services:
       start_period: 20s
 
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     container_name: pgadmin-cinema
     ports:
       - "3333:80"
@@ -33,10 +33,11 @@ services:
     networks:
       - cinema-network
 
-
   web:
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: cinema-backend
     command: ["/bin/sh", "/usr/src/commands/run_cinema_backend.sh"]
     env_file:
@@ -59,6 +60,3 @@ volumes:
 networks:
   cinema-network:
     driver: bridge
-
-
-
