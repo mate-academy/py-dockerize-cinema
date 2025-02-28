@@ -1,0 +1,7 @@
+.github
+.gitignore
+.venv
+.env.sample
+.flake8
+Dockerfile
+README.md
