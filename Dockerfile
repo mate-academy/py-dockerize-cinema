@@ -3,7 +3,7 @@ LABEL maintainer="nikolajtarasenko71@gmail.com"
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR app/
+WORKDIR /app
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
@@ -14,4 +14,3 @@ RUN adduser \
         --disabled-password \
         --no-create-home \
         django-user
-
