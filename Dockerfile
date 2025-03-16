@@ -15,7 +15,7 @@ RUN python -m pip install --upgrade pip && \
 
 WORKDIR /usr/src
 
-COPY ./src .
+COPY ./app .
 
 COPY ./commands /usr/src/commands
 

@@ -13,7 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "src.cinema_service.urls"
+ROOT_URLCONF = "app.cinema_service.urls"
 
 TEMPLATES = [
     {

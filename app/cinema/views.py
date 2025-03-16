@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from src.cinema.models import (
+from app.cinema.models import (
     Genre,
     Actor,
     CinemaHall,
@@ -18,9 +18,9 @@ from src.cinema.models import (
     MovieSession,
     Order
 )
-from src.cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
+from app.cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
 
-from src.cinema.serializers import (
+from app.cinema.serializers import (
     GenreSerializer,
     ActorSerializer,
     CinemaHallSerializer,

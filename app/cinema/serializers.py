@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from src.cinema.models import (
+from app.cinema.models import (
     Genre,
     Actor,
     CinemaHall,

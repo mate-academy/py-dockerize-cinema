@@ -47,7 +47,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./src:/usr/src/app
+      - ./app:/usr/src/app
     networks:
       - cinema-network
 
