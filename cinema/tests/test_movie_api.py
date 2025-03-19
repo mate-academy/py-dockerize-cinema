@@ -196,7 +196,9 @@ class AdminMovieApiTests(TestCase):
         payload = {
             "title": "Spider Man",
             "genres": [genre1.id, genre2.id],
-            "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help.",
+            "description": (
+                "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help."
+            ),
             "duration": 148,
         }
         res = self.client.post(MOVIE_URL, payload)
@@ -214,7 +216,9 @@ class AdminMovieApiTests(TestCase):
         payload = {
             "title": "Spider Man",
             "actors": [actor1.id, actor2.id],
-            "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help.",
+            "description": (
+                "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help."
+            ),
             "duration": 148,
         }
         res = self.client.post(MOVIE_URL, payload)
