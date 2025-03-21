@@ -1,0 +1,10 @@
+.env
+*.sqlite3
+docker-compose.yaml
+.git/
+.gitignore
+.idea/
+__pycache__/
+Dockerfile
+.flake8
+venv
