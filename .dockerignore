@@ -1,5 +1,8 @@
 .venv/
 .github/
+.git/
 .idea/
 Dockerfile
-db.sqlite3
+docker-compose.yaml
+**__pycache__/
+README.md
