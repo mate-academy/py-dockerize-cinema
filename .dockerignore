@@ -1,8 +1,5 @@
-.venv/
-.github/
-.git/
-.idea/
-Dockerfile
-docker-compose.yaml
-**__pycache__/
-README.md
+.venv
+.github
+.git
+.idea
+__pycache__
