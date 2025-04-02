@@ -12,14 +12,10 @@ COPY . .
 
 RUN mkdir -p /files/media
 
-RUN adduser \
-         --disabled-password \
-         --no-create-home \
-         django-user
+RUN adduser --disabled-password --no-create-home django-user
 
 RUN chown -R django-user:django-user /files/media
 
-RUN chmod -R 755 /files/media
-RUN mkdir -p /vol/web/media
+RUN chmod -R 755 /files/media && mkdir -p /vol/web/media
 
 USER django-user
