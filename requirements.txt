@@ -12,3 +12,4 @@ drf-spectacular
 django-debug-toolbar
 djangorestframework-simplejwt==5.3.1
 Pillow==10.2.0
+flake8
