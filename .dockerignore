@@ -1,0 +1,9 @@
+.git/
+__pycache__/
+*.pyc
+media/
+static/
+env/
+.idea
+Dockerfile
+docker-compose.yaml
