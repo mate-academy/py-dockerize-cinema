@@ -1,4 +1,4 @@
-FROM python:3.14-rc-alpine3.21
+FROM python:3.11.6-alpine3.18
 LABEL email=dimakherson74@gmail.com
 
 ENV PYTHONUNBUFFERED=1
