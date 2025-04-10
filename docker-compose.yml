@@ -13,7 +13,7 @@ services:
       POSTGRES_HOST: db
       POSTGRES_DB: db
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: POSTGRES_PASSWORD
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_PORT: 5432
     depends_on:
       - db
