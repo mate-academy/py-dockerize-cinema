@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 import psycopg2
 import time
+import os
 
 
 class Command(BaseCommand):
@@ -11,11 +12,11 @@ class Command(BaseCommand):
         while True:
             try:
                 conn = psycopg2.connect(
-                    dbname="db",
-                    user="user",
-                    password="12345678",
-                    host="db",
-                    port="5432",
+                    dbname=os.environ.get("DB_NAME"),
+                    user=os.environ.get("DB_USER"),
+                    password=os.environ.get("DB_PASSWORD"),
+                    host=os.environ.get("DB_HOST"),
+                    port=os.environ.get("DB_PORT"),
                 )
                 conn.close()
                 self.stdout.write(self.style.SUCCESS("Database is available"))
