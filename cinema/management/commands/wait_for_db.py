@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    command_help = "Closes the specified poll for voting"
 
     def wait_for_db(self):
         db_connection = None
