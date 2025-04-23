@@ -6,8 +6,6 @@ from django.db import connections
 
 
 class Command(BaseCommand):
-    help = "Connect to DB"
-
     def handle(self, *args, **options):
         self.stdout.write("Connecting to DB")
 
