@@ -1,0 +1,5 @@
+.venv
+.flake8
+.idea
+__pychache__
+Dockerfile
