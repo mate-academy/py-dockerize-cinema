@@ -28,8 +28,7 @@ services:
       POSTGRES_PASSWORD: cinema
       POSTGRES_DB: cinema_dev
     volumes:
-      - my_db:$PG_DATA
-
+      - my_db:/var/lib/postgresql/data
 volumes:
   my_db:
   my_media:

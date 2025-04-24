@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -21,7 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+
+SECRET_KEY = os.getenv("SECRET_KEY", "default_dev_secret_key")
+
+if SECRET_KEY == "default_dev_secret_key":
+    print("Warning: SECRET_KEY is not set! Using a default key, which is insecure for production.")
+
+if not SECRET_KEY:
+    sys.exit("Error: SECRET_KEY environment variable is not set. Django cannot start.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
