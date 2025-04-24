@@ -1,0 +1,54 @@
+name: cinema
+
+networks:
+  cinema-network:
+    name: cinema-network
+
+services:
+  app:
+    build: .
+    container_name: app
+    working_dir: /app
+    restart: always
+    environment:
+      DJANGO_SETTINGS_MODULE: cinema_service.settings
+      DJANGO_SECRET_KEY: /run/secrets/django_secret_key
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - django_secret_key
+      - db_password
+    env_file:
+      - env/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - cinema-network
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres:17.4-alpine
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_DB: cinema_db
+      POSTGRES_USER: admin
+    secrets:
+      - db_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - cinema-network
+
+volumes:
+  postgres-data:
+
+secrets:
+  db_password:
+    file: env/db_password.txt
+  django_secret_key:
+    file: env/django_secret_key.txt
