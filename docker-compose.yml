@@ -19,6 +19,8 @@ services:
       - db_password
     env_file:
       - env/.env
+    volumes:
+      - my_media:/app/media
     ports:
       - "8000:8000"
     networks:
@@ -46,6 +48,7 @@ services:
 
 volumes:
   postgres-data:
+  my_media:
 
 secrets:
   db_password:
