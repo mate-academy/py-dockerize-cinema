@@ -1,10 +1,10 @@
 FROM python:3.13
 LABEL maintainer="wenhun1@gmail.com"
 
-ENV PYTHONNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-WORKDIR app/
+WORKDIR app
 
 RUN apt-get update && apt-get install -y libpq-dev gcc python3-dev
 
