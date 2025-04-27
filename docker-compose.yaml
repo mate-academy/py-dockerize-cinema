@@ -5,10 +5,9 @@ services:
     env_file:
       - .env
     ports:
-      - "8005:8000"
-    command: >
-      - sh -c "python manage.py migrate &&
-      python manage.py runserver 0.0.0.0:8000"
+      - "8006:8000"
+    command:
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 
