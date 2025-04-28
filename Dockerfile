@@ -3,7 +3,7 @@ LABEL maintainer="eugene2piskun@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR app/
+WORKDIR /app
 
 
 COPY requirements.txt requirements.txt
