@@ -17,7 +17,7 @@ class Command(BaseCommand):
                     user=os.environ.get("POSTGRES_USER"),
                     password=os.environ.get("POSTGRES_PASSWORD"),
                     host=os.environ.get("DB_HOST"),
-                    port=os.environ.get("DB_PORT", "5433"),
+                    port=os.environ.get("DB_PORT", "5432"),
                 )
                 db_up = True
             except OperationalError:
