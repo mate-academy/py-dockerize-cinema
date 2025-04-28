@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     volumes:
       - ./:/app
-      - my_media:/files/media
+      - my_media:/vol/web/media
     command: >
       sh -c "python manage.py migrate &&
                 python manage.py runserver 0.0.0.0:8000"

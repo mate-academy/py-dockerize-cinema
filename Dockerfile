@@ -20,7 +20,7 @@ RUN adduser \
         --no-create-home\
         django-user
 
-RUN chown -R django-user:django-user /files/media
-RUN chmod -R 755 /files/media
+RUN chown -R django-user:django-user /vol/web/media
+RUN chmod -R 755 /vol/web/media
 
 USER django-user
