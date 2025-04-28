@@ -1,6 +1,6 @@
 FROM python:3.10-alpine3.18
 
-ENV PYTHONBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR app/
 
@@ -16,7 +16,5 @@ RUN mkdir -p /vol/web/media
 
 RUN chown -R django-user:django-user /vol/
 RUN chmod -R 755 /vol/web/
-
-RUN mkdir -p /vol/web/media
 
 COPY . .
