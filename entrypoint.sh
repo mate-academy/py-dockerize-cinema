@@ -8,5 +8,6 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 
 # running server
-python manage.py runserver 0.0.0.0:8000
-#gunicorn cinema_service.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 2
+gunicorn cinema_service.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 2
+
+exec "$@"

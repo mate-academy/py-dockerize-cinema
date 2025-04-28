@@ -8,7 +8,8 @@ services:
     env_file:
       - .env
     volumes:
-#      - ./:/app
+      # no sync for production
+      # - ./:/app
       - my_media:/files/media
       - my_files:/files
     depends_on:
