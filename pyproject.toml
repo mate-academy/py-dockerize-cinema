@@ -1,0 +1,56 @@
+[project]
+name = "py-dockerize-cinema"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "django-debug-toolbar>=5.1.0",
+    "django-stubs[compatible-mypy]>=5.2.0",
+    "djangorestframework>=3.16.0",
+    "djangorestframework-simplejwt>=5.5.0",
+    "drf-spectacular>=0.28.0",
+    "environs>=14.1.1",
+    "flake8>=7.2.0",
+    "gunicorn>=23.0.0",
+    "pillow>=11.2.1",
+    "psycopg2-binary>=2.9.10",
+    "whitenoise>=6.9.0",
+]
+
+[tool.ruff]
+# excludes
+exclude = ["tests", "migrations", ".venv"]
+# max string length
+line-length = 88
+
+[tool.ruff.lint]
+# Linter Settings
+
+# E — pycodestyle (Style errors, e.g. spacing and indentation issues)
+# F — pyflakes (Errors such as unused variables, undefined names, or imports)
+# W — pycodestyle (Style warnings)
+# N — PEP8 Naming (Incorrect naming conventions for variables, classes, functions)
+# ANN — flake8-annotations (Issues with missing or incorrect type annotations)
+# UP — pyupgrade (Suggestions for modernizing code using newer Python features)
+# I — isort (Import sorting issues)
+# Q — flake8-quotes (Quote style checks – e.g. enforcing single or double quotes)
+# PL — Pylint (Stylistic issues like code duplication, PEP8 violations)
+# SIM — flake8-simplify (Simplification suggestions, e.g. redundant ifs or code)
+# ARG — flake8-unused-arguments (Checks for unused function arguments)
+
+# Mistakes Settings
+
+# N999 – Invalid class, function, or variable name (PEP8 naming convention).
+# ANN002 – Missing type annotation for function arguments.
+# ANN003 – Missing type annotation for function return.
+# ANN201 – Missing return type annotation for public functions.
+
+
+preview = true
+ignore = ["N999", "ANN002", "ANN003", "ANN201","ARG002","ANN001","PLR6301","ANN204", "ANN202", "ARG001"]
+select = ["E", "F", "W", "N", "ANN", "UP", "I", "Q", "PL", "SIM", "ARG"]
+
+[tool.ruff.format]
+exclude = ["tests", "migrations", ".venv"]
+quote-style = "double"  # code qoute style (using double qoutes)
+
