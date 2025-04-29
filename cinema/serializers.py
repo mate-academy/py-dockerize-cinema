@@ -51,6 +51,7 @@ class MovieListSerializer(MovieSerializer):
     actors = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field="full_name"
     )
+    image = serializers.ImageField(read_only=True)
 
     class Meta:
         model = Movie
@@ -112,13 +113,20 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
-        data = super(TicketSerializer, self).validate(attrs=attrs)
-        Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
-            ValidationError
-        )
+        data = super().validate(attrs=attrs)
+
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
+        if row is not None and seat is not None and movie_session is not None:
+            Ticket.validate_ticket(
+                row,
+                seat,
+                movie_session.cinema_hall,
+                ValidationError
+            )
+
         return data
 
     class Meta:
