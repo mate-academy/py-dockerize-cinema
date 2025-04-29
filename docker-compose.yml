@@ -9,7 +9,7 @@ services:
       - .env
     volumes:
       # no sync for production
-      - ./:/app
+      # - ./:/app
       - media:/files/media
       - static:/files/static
     depends_on:
