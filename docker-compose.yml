@@ -9,14 +9,14 @@ services:
       - .env
     volumes:
       # no sync for production
-      # - ./:/app
-      - my_media:/files/media
-      - my_files:/files
+      - ./:/app
+      - media:/files/media
+      - static:/files/static
     depends_on:
       db:
         condition: service_healthy
   db:
-    image: postgres:17.4-alpine
+    image: postgres:alpine
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 10s
@@ -31,5 +31,5 @@ services:
 
 volumes:
   my_db:
-  my_media:
-  my_files:
+  media:
+  static:

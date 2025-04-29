@@ -28,6 +28,7 @@ venv.bak/
 # Git files
 .git
 .gitignore
+.github
 
 # Others
 .DS_Store
@@ -45,3 +46,5 @@ dist/
 requirements.txt
 docker-compose.yml
 Dockerfile
+.flake8
+.ruff_cache

@@ -29,7 +29,7 @@ SECRET_KEY = env.str("SECRET_KEY", default="django-insecure-default-key-123")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -137,13 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = "staticfiles/"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATIC_ROOT = "/files/static"
 
-MEDIA_URL = "files/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "/files/media"
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
