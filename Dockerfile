@@ -26,7 +26,7 @@ COPY . .
 # Create necessary directories, set permissions, and make entrypoint executable
 RUN adduser --disabled-password --no-create-home my_user && \
     mkdir -p /files/media /files/static && \
-    chown -R my_user /files && \
+    chown -R my_user:my_user /files && \
     chmod -R 755 /files && \
     chmod +x entrypoint.sh
 
