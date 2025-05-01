@@ -1,0 +1,49 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+
+# Exclude virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Test and coverage cache
+.pytest_cache/
+.coverage
+*.cover
+.coverage.*
+.cache
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+
+# Git files
+.git
+.gitignore
+.github
+
+# Others
+.DS_Store
+*.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# env settings
+.env
+
+# personal ignores
+requirements.txt
+docker/
+.flake8
+.ruff_cache

@@ -1,0 +1,49 @@
+services:
+  django:
+    build:
+      context: .
+      dockerfile: docker/django/Dockerfile
+    container_name: django
+    image: kram3ko/django
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    volumes:
+      # no sync for production
+      # - ./:/app
+      - media:/files/media
+      - static:/files/static
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static:/files/static
+      - media:/files/media
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+
+  db:
+    image: postgres:alpine
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - my_db:$PGDATA
+
+volumes:
+  my_db:
+  media:
+  static:
