@@ -13,3 +13,5 @@ class Command(BaseCommand):
                 db_conn.cursor()
             except OperationalError:
                 time.sleep(1)
+
+        self.stdout.write(self.style.SUCCESS('Database available!'))
