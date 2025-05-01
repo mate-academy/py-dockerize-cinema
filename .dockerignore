@@ -44,7 +44,6 @@ dist/
 
 # personal ignores
 requirements.txt
-docker-compose.yml
-Dockerfile
+docker/
 .flake8
 .ruff_cache

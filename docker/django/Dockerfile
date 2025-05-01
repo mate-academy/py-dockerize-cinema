@@ -24,14 +24,14 @@ RUN pip install --no-cache-dir uv \
 COPY . .
 
 # Create necessary directories, set permissions, and make entrypoint executable
-RUN adduser --disabled-password --no-create-home my_user && \
+RUN adduser --disabled-password --no-create-home kram3ko && \
     mkdir -p /files/media /files/static && \
-    chown -R my_user:my_user /files && \
+    chown -R kram3ko:kram3ko /files && \
     chmod -R 755 /files && \
     chmod +x entrypoint.sh
 
 # Switch to the non-root user
-USER my_user
+USER kram3ko
 
 # Define the entrypoint for the container
 ENTRYPOINT ["sh", "entrypoint.sh"]
