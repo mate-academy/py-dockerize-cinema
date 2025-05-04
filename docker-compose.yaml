@@ -8,7 +8,7 @@ services:
       - "8001:8000"
     volumes:
       - ./:/app
-      - my_media:/files/media
+      - my_media:/app/media
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -24,7 +24,7 @@ services:
     ports:
     - "5432:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:

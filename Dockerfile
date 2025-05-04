@@ -1,7 +1,7 @@
 FROM python:3.11-slim
-LABEL maintainer = "yurkivandriy02@gmail.com"
+LABEL maintainer="yurkivandriy02@gmail.com"
 
-ENV PYTHOUNNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
