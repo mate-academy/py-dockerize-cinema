@@ -1,11 +1,8 @@
-.git
-.venv
-__pycache__
-*.pyc
-*.pyo
+__pycache__/
+*.py[cod]
 *.mo
+*.log
 *.sqlite3
 .env
-Dockerfile
-docker-compose.yml
-README.md
+.venv/
+.git
