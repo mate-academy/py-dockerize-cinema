@@ -137,9 +137,7 @@ class TicketSerializer(serializers.ModelSerializer):
             or movie_session.cinema_hall is None
         ):
             raise ValidationError(
-                {
-                    "movie_session": "Movie session must have a valid cinema hall."
-                }
+                {"movie_session": "Movie must have a valid cinema hall."}
             )
 
         Ticket.validate_ticket(
