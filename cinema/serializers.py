@@ -112,13 +112,27 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
-        data = super(TicketSerializer, self).validate(attrs=attrs)
-        Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
-            ValidationError
-        )
+        data = super().validate(attrs)
+
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
+        if row is None or seat is None or movie_session is None:
+            return data
+
+        try:
+            Ticket.validate_ticket(
+                row,
+                seat,
+                movie_session.cinema_hall,
+                ValidationError
+            )
+        except ValidationError as exc:
+            raise serializers.ValidationError(
+                {"non_field_errors": exc.messages}
+            )
+
         return data
 
     class Meta:
