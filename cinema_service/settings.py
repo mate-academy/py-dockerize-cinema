@@ -99,7 +99,7 @@ DATABASES = {
 STATIC_URL = "/static/"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "/files/media"
+MEDIA_ROOT = BASE_DIR / "files" / "media"
 
 
 # Password validation
