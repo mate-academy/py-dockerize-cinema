@@ -128,7 +128,8 @@ class TicketSerializer(serializers.ModelSerializer):
 
         if missing_fields:
             raise ValidationError(
-                {field: f"This field is required." for field in missing_fields}
+                {field: f"{field} field is required."
+                 for field in missing_fields}
             )
 
         Ticket.validate_ticket(
