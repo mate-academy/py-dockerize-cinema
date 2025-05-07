@@ -113,11 +113,38 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(TicketSerializer, self).validate(attrs=attrs)
+
+        # Безпечно отримуємо значення полів
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
+        if row is None or seat is None or movie_session is None:
+            missing_fields = []
+            if row is None:
+                missing_fields.append("row")
+            if seat is None:
+                missing_fields.append("seat")
+            if movie_session is None:
+                missing_fields.append("movie_session")
+
+            raise ValidationError(
+                f"Required fields are missing: {', '.join(missing_fields)}"
+            )
+
+        if (
+            not hasattr(movie_session, "cinema_hall")
+            or movie_session.cinema_hall is None
+        ):
+            raise ValidationError(
+                {"movie_session": "Movie must have a valid cinema hall."}
+            )
+
         Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
-            ValidationError
+            row,
+            seat,
+            movie_session.cinema_hall,
+            ValidationError,
         )
         return data
 
