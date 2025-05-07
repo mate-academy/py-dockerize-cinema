@@ -112,11 +112,30 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
-        data = super(TicketSerializer, self).validate(attrs=attrs)
+        data = super().validate(attrs)
+
+        row = attrs.get("row")
+        seat = attrs.get("seat")
+        movie_session = attrs.get("movie_session")
+
+        missing_fields = []
+        if row is None:
+            missing_fields.append("row")
+        if seat is None:
+            missing_fields.append("seat")
+        if movie_session is None:
+            missing_fields.append("movie_session")
+
+        if missing_fields:
+            raise ValidationError(
+                {field: f"{field} field is required."
+                 for field in missing_fields}
+            )
+
         Ticket.validate_ticket(
-            attrs["row"], 
-            attrs["seat"], 
-            attrs["movie_session"].cinema_hall, 
+            row,
+            seat,
+            movie_session.cinema_hall,
             ValidationError
         )
         return data
