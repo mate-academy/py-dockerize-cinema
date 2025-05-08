@@ -12,6 +12,8 @@ services:
       - .env
     depends_on:
       - db
+    volumes:
+      - media_volume:/app/files/media
 
   db:
     image: postgres:14-alpine
@@ -21,7 +23,6 @@ services:
       - .env
     volumes:
       - db_volume:/var/lib/postgresql/data
-      - media_volume:/files/media
 
 volumes:
   db_volume:
