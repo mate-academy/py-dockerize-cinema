@@ -89,6 +89,9 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+if not all([os.getenv("DB_NAME"), os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("DB_HOST")]):
+    raise Exception("One or more required database environment variables are missing.")
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",

@@ -1,5 +1,4 @@
 import time
-import psycopg2
 from django.db import connections
 from django.db.utils import OperationalError
 
