@@ -1,0 +1,5 @@
+venv
+.idea
+Dockerfile
+docker-compose.yml
+dr.sqlite3
