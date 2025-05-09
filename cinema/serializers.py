@@ -121,7 +121,8 @@ class TicketSerializer(serializers.ModelSerializer):
             raise ValidationError("Seat is to be selected.")
         movie_session = attrs.get("movie_session")
         if movie_session is None:
-            raise ValidationError("Without movie session how could you watch a movie?.")
+            err_message = "Please choose a movie session."
+            raise ValidationError(err_message)
         cinema_hall = movie_session.cinema_hall
         Ticket.validate_ticket(row, seat, cinema_hall, ValidationError)
         return data
