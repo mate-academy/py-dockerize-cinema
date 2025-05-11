@@ -7,7 +7,7 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./:/app
+      - ./cinema:/app
       - my_media:/files/media
     command: >
       sh -c "python manage.py wait_for_db &&
