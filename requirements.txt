@@ -2,8 +2,8 @@ asgiref==3.8.1
 attrs==25.1.0
 Django==4.0.4
 django-debug-toolbar==3.4.0
-djangorestframework==3.15.2
-djangorestframework-simplejwt==5.4.0
+djangorestframework==3.13.1
+djangorestframework-simplejwt==5.2.0
 drf-spectacular==0.22.1
 flake8==5.0.4
 flake8-quotes==3.3.1
@@ -14,6 +14,8 @@ jsonschema-specifications==2024.10.1
 mccabe==0.7.0
 pep8-naming==0.13.2
 pillow==11.1.0
+psycopg==3.2.5
+psycopg-binary==3.2.5
 psycopg2-binary==2.9.10
 pycodestyle==2.9.1
 pyflakes==2.5.0
