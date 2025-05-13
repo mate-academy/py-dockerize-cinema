@@ -139,6 +139,7 @@ USE_TZ = False
 STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
+
 MEDIA_ROOT = "/files/media"
 
 # Default primary key field type
