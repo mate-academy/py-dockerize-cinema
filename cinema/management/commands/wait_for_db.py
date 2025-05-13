@@ -1,4 +1,6 @@
 import time
+
+from django.db import connections
 from psycopg2 import OperationalError as Psycopg2Error
 from django.db.utils import OperationalError
 from django.core.management.base import BaseCommand
@@ -12,8 +14,8 @@ class Command(BaseCommand):
         db_up = False
         while not db_up:
             try:
-                self.check(databases=["default"])
-                db_up = True
+                conn = connections["default"]
+                conn.cursor()
             except (Psycopg2Error, OperationalError):
                 self.stdout.write(
                     "Connecting to data base failed, wait to reconnect..."
