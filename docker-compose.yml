@@ -17,6 +17,7 @@ services:
             python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./:/app
+      - static_volume:/files/static
       - my_media:/files/media
     ports:
       - "8000:8000"
@@ -26,4 +27,5 @@ services:
 volumes:
   postgres_data:
   my_media:
+  static_volume:
 
