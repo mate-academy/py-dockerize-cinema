@@ -113,10 +113,14 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(TicketSerializer, self).validate(attrs=attrs)
+        movie_session = attrs.get("movie_session")
+        if not movie_session:
+            raise serializers.ValidationError("movie_session is required")
+
         Ticket.validate_ticket(
             attrs.get("row"),
             attrs.get("seat"),
-            attrs.get("movie_session").cinema_hall,
+            movie_session.cinema_hall,
             ValidationError,
         )
         return data
@@ -149,20 +153,33 @@ class MovieSessionDetailSerializer(MovieSessionSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+    tickets = TicketSerializer(many=True, allow_empty=False)
 
     class Meta:
         model = Order
         fields = ("id", "tickets", "created_at")
 
+    def validate(self, attrs):
+        tickets = attrs.get("tickets")
+        if tickets is None:
+            raise serializers.ValidationError({
+                "tickets": "This field is required."
+            })
+
+        if not isinstance(tickets, list):
+            raise serializers.ValidationError({
+                "tickets": "Expected a list of items."
+            })
+
+        return attrs
+
     def create(self, validated_data):
+        tickets_data = validated_data.pop("tickets", [])
         with transaction.atomic():
-            tickets_data = validated_data.pop("tickets")
             order = Order.objects.create(**validated_data)
             for ticket_data in tickets_data:
                 Ticket.objects.create(order=order, **ticket_data)
             return order
-
 
 class OrderListSerializer(OrderSerializer):
     tickets = TicketListSerializer(many=True, read_only=True)
