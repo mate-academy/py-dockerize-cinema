@@ -10,10 +10,12 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN adduser \
-        --disabled-password \
-        --no-create-home \
-        django-user
+RUN adduser
+        --disabled-password\
+        --home /home/django-user\
+        django-user &&\
+    mkdir -p /home/django-user &&Ї
+    chown django-user:django-user /home/django-user
 
 RUN mkdir -p /vol/web/media
 RUN chown -R django-user /vol/
