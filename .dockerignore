@@ -1,0 +1,17 @@
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.mo
+**/*.db
+**/.DS_Store
+**/.env
+**/.venv
+**/venv
+**/env
+**/.git
+**/.github
+**/.vscode
+**/local_settings.py
+*.sqlite3
+media
+static

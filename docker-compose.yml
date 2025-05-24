@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: ${SQL_DATABASE}
+      POSTGRES_USER: ${SQL_USER}
+      POSTGRES_PASSWORD: ${SQL_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SQL_USER} -d ${SQL_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    command: gunicorn cinema_service.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      - DATABASE=postgres
+      - SQL_HOST=db
+      - SQL_PORT=${SQL_PORT}
+      - SQL_DATABASE=${SQL_DATABASE}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    volumes:
+      - static_volume:/vol/web/static
+      - media_volume:/vol/web/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
