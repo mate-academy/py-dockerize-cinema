@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import time
 import psycopg2
-from django.db import OperationalError
+from psycopg2 import OperationalError
 
 
 class Command(BaseCommand):
