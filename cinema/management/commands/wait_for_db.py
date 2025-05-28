@@ -1,6 +1,6 @@
 import time
 from django.core.management.base import BaseCommand
-from psycopg import OperationalError
+from psycopg.errors import OperationalError
 import psycopg
 
 
