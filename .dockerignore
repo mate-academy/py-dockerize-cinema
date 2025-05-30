@@ -1,0 +1,16 @@
+__pycache__
+venv
+db.sqlite3
+docker-compose.yml
+Dockerfile
+.github
+.flake8
+*.pyc
+*.pyo
+*.pyd
+*.swp
+.DS_Store
+.env
+.git
+Dockerfile
+.gitignore
