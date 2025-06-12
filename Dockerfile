@@ -12,8 +12,9 @@ COPY . .
 
 # Создаём директорию и пользователя
 RUN mkdir -p /files/media \
- && adduser -D -H my_user \
- && chown -R my_user /files/media \
- && chmod -R 755 /files/media
+&& adduser -D -H my_user \
+&& chown -R my_user /files/media \
+&& chmod -R 755 /files/media
+
 
 USER my_user
