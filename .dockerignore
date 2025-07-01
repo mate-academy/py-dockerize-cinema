@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django DB/SQLite
+*.sqlite3
+
+# Django media/static files (generated during runtime)
+media/
+static/
+
+# Virtual environment
+.venv/
+env/
+ENV/
+venv/
+
+# Editor/IDE files
+*.swp
+*.swo
+*.bak
+*.tmp
+.idea/
+.vscode/
+*.code-workspace
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# System files
+.DS_Store
+Thumbs.db
