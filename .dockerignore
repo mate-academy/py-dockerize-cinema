@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+.env
+.git
+.idea
+*.sqlite3
+media/
+static/
