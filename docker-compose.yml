@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16.0-alpine3.17
+    restart: always
+    environment:
+      POSTGRES_DB: cinema
+      POSTGRES_USER: cinema_user
+      POSTGRES_PASSWORD: cinema_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - media:/app/media
+      - static:/app/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  media:
+  static:
