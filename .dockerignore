@@ -1,0 +1,14 @@
+.venv
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.idea/
+.vscode/
+*.swp
+.git
+.gitignore
+media/
+staticfiles/
+django_static/
