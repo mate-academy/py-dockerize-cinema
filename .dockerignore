@@ -1,0 +1,17 @@
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+.coverage
+.idea/
+*.db
+*.sqlite3
+.DS_Store
+README.md
+docker-compose.yaml
+Dockerfile
