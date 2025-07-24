@@ -1,10 +1,13 @@
-django
+django~=5.2.4
 flake8
 flake8-quotes
 flake8-variables-names
 pep8-naming
 django-debug-toolbar
-djangorestframework
+djangorestframework~=3.16.0
 djangorestframework-simplejwt
-drf-spectacular
-Pillow
+drf-spectacular~=0.28.0
+Pillow~=11.3.0
+python-dotenv~=1.1.1
+psycopg~=3.2.9
+psycopg-binary~=3.2.9
