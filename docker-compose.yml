@@ -1,0 +1,32 @@
+services:
+    cinema:
+       build:
+           context: .
+       ports:
+           - "8001:8000"
+       volumes:
+         - ./:/app
+         - cinema_media_files:/app/media/
+       command: > 
+          sh -c "
+          python manage.py wait_for_db && 
+          python manage.py migrate &&
+          python manage.py runserver 0.0.0.0:8000
+          "
+       env_file:
+           - .env
+       depends_on:
+           - cinema_db
+
+    cinema_db:
+       image: postgres:16.0-alpine3.17
+       restart: always
+       ports:
+           - "5432:5432"
+       env_file:
+           - .env
+       volumes:
+         - my_cinema_db:$PGDATA
+volumes:
+  my_cinema_db:
+  cinema_media_files:
