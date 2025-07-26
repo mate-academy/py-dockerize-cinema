@@ -6,7 +6,7 @@ services:
            - "8001:8000"
        volumes:
          - ./:/app
-         - cinema_media_files:/cinema_media/media/
+         - cinema_media_files:/app/media/
        command: > 
           sh -c "
           python manage.py wait_for_db && 
