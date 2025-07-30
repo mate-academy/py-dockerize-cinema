@@ -1,0 +1,7 @@
+.flake8
+.gitignore
+docker-compose.yaml
+Dockerfile
+README.md
+**__pycache__**
+**.vscode**
