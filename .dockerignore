@@ -1,0 +1,4 @@
+.venv
+.env
+README.md
+docker-compose.yaml
