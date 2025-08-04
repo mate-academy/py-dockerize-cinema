@@ -1,0 +1,14 @@
+.venv/
+.env
+*.pyc
+__pycache__/
+.git/
+.gitignore
+README.md
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+.idea/
+.vscode/
+*.md
+.DS_Store
