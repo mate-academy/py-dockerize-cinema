@@ -1,0 +1,5 @@
+POSTGRES_PASSWORD=<db_password>
+POSTGRES_USER=<db_user>
+POSTGRES_DB=<db_name>
+POSTGRES_HOST=<db_host>
+POSTGRES_PORT=<db_port>
