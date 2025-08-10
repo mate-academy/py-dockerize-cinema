@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv
+env/
+venv/
+.git
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.env
+*.local
+static/
+media/
