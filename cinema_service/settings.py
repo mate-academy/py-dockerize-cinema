@@ -136,6 +136,8 @@ USE_TZ = False
 
 STATIC_URL = "static/"
 
+STATIC_ROOT = "/vol/web/static"
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "/vol/web/media"
 
