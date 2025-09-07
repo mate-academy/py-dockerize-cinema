@@ -1,3 +1,5 @@
+gunicorn
+psycopg2-binary
 django
 flake8
 flake8-quotes
@@ -8,3 +10,4 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+dj-database-url

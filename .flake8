@@ -9,3 +9,5 @@ exclude =
     venv
     .venv
     tests
+    ENV,env,__pycache__,.git,.tox,.eggs,*.egg,site-packages,
+    Lib/site-packages,lib/site-packages,*/site-packages/*
