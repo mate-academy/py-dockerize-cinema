@@ -26,7 +26,9 @@ services:
       - .env
     volumes:
       - my_db:/var/lib/postgresql/data
+      - my_static:/files/static
 
 volumes:
   my_db:
   my_media:
+  my_static:

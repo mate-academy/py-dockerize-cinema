@@ -1,5 +1,4 @@
 .venv
-Dockerfile
 .dockerignore
 docker-comprose.yml
 .idea
