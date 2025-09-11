@@ -3,7 +3,6 @@ __pycache__/
 venv/
 .idea/
 .vscode/
-.flake8
 .env
 db.sqlite3
 .pytest_cache/
