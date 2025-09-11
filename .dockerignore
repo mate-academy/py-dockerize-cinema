@@ -8,20 +8,22 @@ __pycache__
 *.pot
 .coverage
 *.mo
-
 # env
 .env
 .env.*
 *.env
-
 # venv
 venv
 .venv
-
 # git
 .git
 .gitignore
-
 # IDE
 .idea
 .vscode
+.pytest_cache/
+build/
+dist/
+*.egg-info
+.tox
+pip-wheel-metadata
