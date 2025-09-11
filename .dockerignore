@@ -1,0 +1,6 @@
+Dockerfile
+docker-compose.yaml
+__pychache__/
+.venv/
+.idea/
+.flake8
