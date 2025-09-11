@@ -6,7 +6,7 @@ __pycache__
 *.db
 *.log
 *.pot
-*.py,cover
+.coverage
 *.mo
 
 # env
@@ -25,7 +25,3 @@ venv
 # IDE
 .idea
 .vscode
-
-# docker
-Dockerfile
-docker-compose.yml
