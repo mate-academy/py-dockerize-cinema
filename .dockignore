@@ -24,3 +24,9 @@ node_modules/
 .gitignore
 Dockerfile
 docker-compose.yml
+.git
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/

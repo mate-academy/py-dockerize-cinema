@@ -92,7 +92,7 @@ DATABASES = {
         "NAME": os.environ.get("POSTGRES_DB", "cinema"),
         "USER": os.environ.get("POSTGRES_USER", "cinema"),
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "cinema"),
-        "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+        "HOST": os.environ.get("POSTGRES_HOST", "db"),
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
@@ -137,10 +137,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "vol", "web", "static")
+STATIC_ROOT = "/vol/web/static"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "vol", "web", "media")
+MEDIA_ROOT = "/vol/web/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
