@@ -1,0 +1,4 @@
+.venv
+.dockerignore
+docker-comprose.yml
+.idea
