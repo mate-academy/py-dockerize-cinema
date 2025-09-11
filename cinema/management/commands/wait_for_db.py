@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.db import connections
 from django.db.utils import OperationalError
 
+
 class Command(BaseCommand):
     helping = "Wait for database to be available."
 
@@ -14,6 +15,8 @@ class Command(BaseCommand):
                 connections["default"].cursor()
                 db_conn = True
             except OperationalError:
-                self.stdout.write(self.style.WARNING("Database unavailable, waiting 1 second..."))
+                self.stdout.write(
+                    self.style.
+                    WARNING("Database unavailable, waiting 1 second..."))
                 time.sleep(1)
         self.stdout.write(self.style.SUCCESS("Database is available!"))
