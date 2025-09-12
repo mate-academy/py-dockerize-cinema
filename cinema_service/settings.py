@@ -9,13 +9,15 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.environ.get("DJANGO_SECRET_KEY")
 
-
+load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -27,7 +29,7 @@ SECRET_KEY = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -86,11 +88,14 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB", "cinema"),
+        "USER": os.environ.get("POSTGRES_USER", "cinema"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "cinema"),
+        "HOST": os.environ.get("POSTGRES_HOST", "db"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -125,16 +130,17 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = "/vol/web/static"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "/vol/web/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
