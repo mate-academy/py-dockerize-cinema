@@ -1,0 +1,10 @@
+pycache/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.env
+.idea/
+Dockerfile
+docker-compose.yaml
+.venv
