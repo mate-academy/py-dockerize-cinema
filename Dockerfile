@@ -4,7 +4,7 @@ LABEL maintainer="serhiibasok@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR app/
+WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
@@ -17,10 +17,7 @@ COPY . .
 
 RUN mkdir -p /files/media
 
-RUN adduser \
-        --disabled-password \
-        --no-create-home \
-        django-user
+RUN adduser -D -H django-user
 
 RUN chown -R django-user /files/media && \
     chmod -R 755 /files/media
