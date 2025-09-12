@@ -5,7 +5,7 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-    help = "Waits for database to be available before continuing."
+    """Waits for database to be available before continuing."""
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
@@ -15,11 +15,12 @@ class Command(BaseCommand):
         while not db_conn and retries < max_retries:
             try:
                 db_conn = connections["default"]
-                c = db_conn.cursor()
+                db_conn.cursor()
             except OperationalError:
                 retries += 1
                 self.stdout.write(
-                    f"Database unavailable, waiting 1 second... (attempt {retries})"
+                    "Database unavailable, waiting 1 second... "
+                    f"(attempt {retries})"
                 )
                 time.sleep(1)
         if not db_conn:
