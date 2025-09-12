@@ -21,14 +21,11 @@ services:
       - media_data:/app/media
     ports:
       - "8000:8000"
-    environment:
-      DB_NAME: cinema
-      DB_USER: cinema
-      DB_PASSWORD: cinema_pass
-      DB_HOST: db
-      DB_PORT: 5432
+    env_file:
+      - .env
     depends_on:
       - db
 
 volumes:
+  media_data:
   postgres_data:
