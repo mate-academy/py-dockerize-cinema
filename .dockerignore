@@ -1,0 +1,38 @@
+# Python-specific exclusions
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+venv/
+.env
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+*.bak
+*.swo
+
+# Version control
+.git/
+.gitignore
+
+# Build and distribution files
+dist/
+build/
+*.egg-info/
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+
+# Other common exclusions
+.DS_Store
+
+# Dockerfile
+Dockerfile
+
+# sqlite3
+*.sqlite3
