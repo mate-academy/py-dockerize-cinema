@@ -9,13 +9,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
-        db_conn = None
+        success = False
         retries = 0
         max_retries = 10
-        while not db_conn and retries < max_retries:
+        while not success and retries < max_retries:
             try:
-                db_conn = connections["default"]
-                db_conn.cursor()
+                connections["default"].cursor()
             except OperationalError:
                 retries += 1
                 self.stdout.write(
@@ -23,7 +22,10 @@ class Command(BaseCommand):
                     f"(attempt {retries})"
                 )
                 time.sleep(1)
-        if not db_conn:
+                continue
+            success = True
+            break
+        if not success:
             self.stderr.write(
                 "Could not connect to database after several attempts."
             )

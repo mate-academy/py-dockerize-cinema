@@ -2,10 +2,8 @@ services:
   db:
     image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_DB: cinema_db
-      POSTGRES_USER: cinema_user
-      POSTGRES_PASSWORD: cinema_pass
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

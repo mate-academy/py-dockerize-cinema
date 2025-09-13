@@ -31,8 +31,8 @@ temp/
 # Other common exclusions
 .DS_Store
 
-# Dockerfile
-Dockerfile
-
 # sqlite3
 *.sqlite3
+
+media/
+static/
