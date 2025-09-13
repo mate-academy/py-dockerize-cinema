@@ -26,5 +26,7 @@ class Command(BaseCommand):
             success = True
             break
         if not success:
-            raise CommandError("Could not connect to database after several attempts.")
+            raise CommandError(
+                "Could not connect to database after several attempts."
+            )
         self.stdout.write(self.style.SUCCESS("Database available!"))
