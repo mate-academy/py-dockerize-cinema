@@ -1,5 +1,5 @@
 import time
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db import connections
 from django.db.utils import OperationalError
 
@@ -26,8 +26,5 @@ class Command(BaseCommand):
             success = True
             break
         if not success:
-            self.stderr.write(
-                "Could not connect to database after several attempts."
-            )
-            exit(1)
+            raise CommandError("Could not connect to database after several attempts.")
         self.stdout.write(self.style.SUCCESS("Database available!"))
