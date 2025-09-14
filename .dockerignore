@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env (не треба в контейнері)
+.venv/
+env/
+venv/
+
+# Git and IDE
+.git
+.gitignore
+.idea/
+.vscode/
+
+# Dockerfile itself і ignore-файл
+Dockerfile
+.dockerignore
+
+# System files
+.DS_Store
+Thumbs.db
+docker-compose.yaml
+
+# Env file (API_KEY має передаватися через -e або --env-file)
+.env
