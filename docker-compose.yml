@@ -1,0 +1,33 @@
+services:
+   cinema:
+       build:
+           context: .
+       ports:
+           - "8000:8000"
+       command: >
+        ./wait-for-it.sh db:5432 --timeout=30 --strict -- 
+        sh -c "python manage.py makemigrations &&
+               python manage.py migrate &&
+               python manage.py runserver 0.0.0.0:8000"
+       volumes:
+        - ./:/app
+        - ./wait-for-it.sh:/wait-for-it.sh
+        - my_media:/vol/web/media
+       env_file:
+           - .env
+       depends_on:
+           - db
+
+   db:
+       image: postgres:14-alpine
+       restart: always
+       ports:
+           - "5433:5432"
+       env_file:
+           - .env
+       volumes:
+         - my_db:$PGDATA
+
+volumes:
+  my_db:
+  my_media:
