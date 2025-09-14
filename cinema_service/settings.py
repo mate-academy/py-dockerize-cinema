@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
+
+
+def env_bool(name: str, default: bool = False) -> bool:
+    return str(os.getenv(name, "1" if default else "0")).lower() in ("1", "true", "yes", "on")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +30,9 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool("DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [h.strip() for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if h.strip()]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -86,8 +91,13 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv("DB_HOST", "db"),
+        "PORT": int(os.getenv("DB_PORT", "5432")),
+        "NAME": os.getenv("DB_NAME", "cinema"),
+        "USER": os.getenv("DB_USER", "cinema"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "cinema"),
+        "CONN_MAX_AGE": int(os.getenv("DB_CONN_MAX_AGE", "60")),
     }
 }
 
