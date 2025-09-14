@@ -10,3 +10,4 @@ drf-spectacular
 Pillow
 psycopg
 psycopg-binary
+python-dotenv
