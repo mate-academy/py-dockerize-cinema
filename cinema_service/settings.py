@@ -9,11 +9,17 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +33,7 @@ SECRET_KEY = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -86,8 +92,12 @@ WSGI_APPLICATION = "cinema_service.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": int(os.environ["POSTGRES_DB_PORT"]),
     }
 }
 
@@ -131,10 +141,11 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "static/"
 
+MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -147,7 +158,7 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
     ],
-    "DEFAULT_THROTTLE_RATES": {"anon": "10/day", "user": "30/day"},
+    "DEFAULT_THROTTLE_RATES": {"anon": "1000/day", "user": "1000/day"},
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
