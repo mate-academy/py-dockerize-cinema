@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/app
+      - my_media:/app/media
+      - my_static:/app/static
+    depends_on:
+      - db
+
+
+  db:
+    image: postgres:17.5-alpine3.22
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - my_db:/var/lib/postgresql/data
+
+volumes:
+  my_db:
+  my_media:
+  my_static:
