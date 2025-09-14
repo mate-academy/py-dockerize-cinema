@@ -1,0 +1,13 @@
+.pytest_cache/
+**__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.iml
+venv/
+.idea/
+.vscode/
+*.sqlite3
+.DS_Store
+docker-compose.yml

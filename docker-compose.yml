@@ -1,0 +1,33 @@
+services:
+  cinema:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
+      - my_media:/files/media
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: "postgres:17-alpine"
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
+      interval: 1s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - my_db:$PGDATA
+volumes:
+  my_db:
+  my_media:
