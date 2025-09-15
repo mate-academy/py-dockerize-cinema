@@ -1,5 +1,4 @@
 import os
-import pathlib
 import uuid
 
 from django.core.exceptions import ValidationError

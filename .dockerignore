@@ -4,25 +4,40 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtual env (не треба в контейнері)
+# Virtual environments
 .venv/
 env/
 venv/
 
-# Git and IDE
+# Git and IDE files
 .git
 .gitignore
 .idea/
 .vscode/
 
-# Dockerfile itself і ignore-файл
-Dockerfile
-.dockerignore
-
 # System files
 .DS_Store
 Thumbs.db
-docker-compose.yaml
 
-# Env file (API_KEY має передаватися через -e або --env-file)
+# Environment files
 .env
+
+# Django local DB
+db.sqlite3
+*.sqlite3
+
+# Caches and testing
+pytest_cache/
+.mypy_cache/
+.tox/
+pip-wheel-metadata/
+*.egg-info
+build/
+dist/
+coverage/
+.cache/
+
+# Media and files (handled via volumes)
+media/
+files/
+
