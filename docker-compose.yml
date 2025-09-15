@@ -1,17 +1,16 @@
 services:
-   cinema:
+   app:
        build:
            context: .
        ports:
            - "8000:8000"
        command: >
-        ./wait-for-it.sh db:5432 --timeout=30 --strict -- 
-        sh -c "python manage.py makemigrations &&
+              "python manage.py wait_for_db &&
+               python manage.py makemigrations &&
                python manage.py migrate &&
                python manage.py runserver 0.0.0.0:8000"
        volumes:
         - ./:/app
-        - ./wait-for-it.sh:/wait-for-it.sh
         - my_media:/vol/web/media
        env_file:
            - .env

@@ -11,7 +11,5 @@
 media/
 README.md
 .gitignore
-.flake8
 .github
-Dockerfile
 docker-compose.yml
