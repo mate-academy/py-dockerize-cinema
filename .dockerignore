@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Git and IDE files
+.git
+.gitignore
+.idea/
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Django local DB
+db.sqlite3
+*.sqlite3
+
+# Caches and testing
+pytest_cache/
+.mypy_cache/
+.tox/
+pip-wheel-metadata/
+*.egg-info
+build/
+dist/
+coverage/
+.cache/
+
+# Media and files (handled via volumes)
+media/
+files/
+
