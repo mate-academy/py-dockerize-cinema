@@ -10,8 +10,6 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
-COPY wait-for-db.sh /app/wait-for-db.sh
-RUN chmod +x /app/wait-for-db.sh
 RUN mkdir -p /files/media
 
 RUN adduser \
