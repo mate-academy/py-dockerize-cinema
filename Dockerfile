@@ -4,7 +4,7 @@ LABEL maintainer="lyubinska"
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /cinema
+WORKDIR cinema/
 
 COPY requirements.txt requirements.txt
 
@@ -21,5 +21,8 @@ RUN adduser \
 
 RUN chown -R my_user /files/media
 RUN chmod -R 755 /files/media
+
+RUN chown -R my_user /files/static
+RUN chmod -R 755 /files/static
 
 USER my_user
