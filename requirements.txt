@@ -8,3 +8,5 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+gunicorn==22.0.0
+psycopg2-binary==2.9.10

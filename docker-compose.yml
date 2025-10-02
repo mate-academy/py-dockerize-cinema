@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-cinema} -d ${POSTGRES_DB:-cinema}"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_data:/vol/web/media
+      - static_data:/vol/web/static
+
+volumes:
+  pgdata:
+  media_data:
+  static_data:

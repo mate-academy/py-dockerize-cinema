@@ -1,10 +1,33 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.log
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+htmlcov/
+.coverage
+.pytest_cache/
+.mypy_cache/
+
+# Virtual env
+venv/
+.venv/
+
+# PyCharm / VSCode
 .idea/
 .vscode/
-*.iml
-.env
+
+# Docker / Compose
+*.env
+.env*
+volumes/
+pgdata/
+**/node_modules/
+dist/
+build/
+
+# System
 .DS_Store
-venv/
-.pytest_cache/
-**__pycache__/
-**db.sqlite3
-media
+Thumbs.db
