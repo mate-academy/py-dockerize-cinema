@@ -1,0 +1,16 @@
+.venv/
+.idea/
+.vscode/
+*.iml
+.env
+.DS_Store
+.pytest_cache/
+**/__pycache__/
+*.pyc
+.github
+media/
+static/
+node_modules/
+dist/
+build/
+*.egg-info/
