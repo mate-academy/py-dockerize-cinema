@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "debug_toolbar",
     "cinema",
+    "cinema_service",
     "user",
 ]
 
