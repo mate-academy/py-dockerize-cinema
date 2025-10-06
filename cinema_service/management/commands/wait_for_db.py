@@ -13,7 +13,7 @@ class Command(BaseCommand):
         while db_conn is None:
             try:
                 db_conn = connections["default"]
-                _cursor = db_conn.cursor()
+                db_conn.cursor()
             except OperationalError:
                 self.stdout.write(
                     "Database unavailable, waiting 1 second..."
