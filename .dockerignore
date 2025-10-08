@@ -1,0 +1,73 @@
+# --- IDE & system files ---
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py~, *.py#
+*.pytest_cache/
+.mypy_cache/
+.pytest_cache/
+.pyre/
+.tox/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# --- Virtual environments ---
+venv/
+env/
+ENV/
+.venv/
+.virtualenv/
+Pipfile.lock
+
+# --- Django ---
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+static_root/
+*.pot
+*.mo
+
+# --- Docker ---
+Dockerfile*
+docker-compose*.yml
+*.dockerignore
+
+# --- Git ---
+.git/
+.gitignore
+
+# --- Tests & coverage ---
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.out
+.cache/
+
+# --- OS specific ---
+*.bak
+*.tmp
+*.old
+*.orig
+
+# --- PyCharm specific ---
+.idea/
+*.iml
