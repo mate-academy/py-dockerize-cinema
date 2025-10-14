@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+env
+venv
+.git
+.gitignore
+media
+/staticfiles
+*.egg-info
+__MACOSX
+node_modules
