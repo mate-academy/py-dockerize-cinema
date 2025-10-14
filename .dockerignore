@@ -16,6 +16,9 @@ env/
 build/
 dist/
 *.egg-info/
+pip-wheel-metadata/
+node_modules/
+.coverage
 
 # tests and caches
 .pytest_cache/
@@ -29,3 +32,8 @@ dist/
 
 # OS
 .DS_Store
+
+media/
+static/
+staticfiles/
+

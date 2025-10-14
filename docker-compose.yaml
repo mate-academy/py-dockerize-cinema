@@ -5,10 +5,9 @@ services:
     env_file:
       - .env
     ports:
-      - "8001:8000"
+      - "8000:8000"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     volumes:
       - ./:/app
       - my_media:/files/media
@@ -24,12 +23,6 @@ services:
     restart: always
     env_file:
       - .env
-
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
     ports:
       - "5433:5432"
