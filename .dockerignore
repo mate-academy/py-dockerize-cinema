@@ -1,0 +1,35 @@
+# Python cache and build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+*.sqlite3
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Git and development metadata
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Environment and test files
+.env
+.pytest_cache/
+.coverage
+*.log
+
+# OS / editor trash
+__MACOSX/
+.DS_Store
+
+# Node / frontend dependencies
+node_modules/
+
+# Media and static files (handled via volumes)
+media/
+staticfiles/
