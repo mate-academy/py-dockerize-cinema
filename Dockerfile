@@ -1,13 +1,12 @@
-# syntax=docker/dockerfile:1
 FROM python:3.11-slim
 
-# Prevents Python from writing .pyc files and buffers
+# Prevent Python from writing .pyc files and output buffering
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Install system deps for psycopg (v3) and Pillow
+# Install system dependencies only for build
 RUN apt-get update \
  && apt-get install -y --no-install-recommends gcc libpq-dev build-essential libjpeg-dev zlib1g-dev \
  && rm -rf /var/lib/apt/lists/*
@@ -15,14 +14,22 @@ RUN apt-get update \
 # Copy and install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip \
- && pip install --no-cache-dir -r requirements.txt
+ && pip install --no-cache-dir -r requirements.txt \
+ && apt-get remove --purge -y gcc build-essential \
+ && apt-get autoremove -y \
+ && rm -rf /var/lib/apt/lists/*
+
+# Copy entrypoint first so rebuilds are faster if only code changes
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Copy project files
 COPY . .
 
-# Copy entrypoint script and make executable
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# Optional: Create non-root user for better security
+RUN adduser --disabled-password --gecos '' appuser \
+ && chown -R appuser /app
+USER appuser
 
 # Expose app port
 EXPOSE 8000
@@ -32,4 +39,3 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 # Run Gunicorn with 3 workers for Django WSGI app
 CMD ["gunicorn", "cinema_service.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
-

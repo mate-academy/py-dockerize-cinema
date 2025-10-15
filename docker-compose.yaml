@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:15
@@ -14,7 +12,13 @@ services:
       - cinema-net
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "gunicorn cinema_service.wsgi:application
+             --bind 0.0.0.0:8000
+             --workers 3"
     volumes:
       - .:/app
       - media_volume:/app/media
@@ -27,6 +31,7 @@ services:
       - db
     networks:
       - cinema-net
+    restart: always
 
 volumes:
   postgres_data:
