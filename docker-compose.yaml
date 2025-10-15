@@ -15,12 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: >
-      sh -c "gunicorn cinema_service.wsgi:application
-             --bind 0.0.0.0:8000
-             --workers 3"
     volumes:
-      - .:/app
       - media_volume:/app/media
       - static_volume:/app/staticfiles
     ports:
@@ -32,11 +27,3 @@ services:
     networks:
       - cinema-net
     restart: always
-
-volumes:
-  postgres_data:
-  media_volume:
-  static_volume:
-
-networks:
-  cinema-net:
