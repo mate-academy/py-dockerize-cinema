@@ -1,10 +1,15 @@
 django
-flake8
-flake8-quotes
-flake8-variables-names
-pep8-naming
-django-debug-toolbar
 djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+
+# Development tools
+django-debug-toolbar
+flake8
+flake8-quotes
+flake8-variables-names
+pep8-naming
+env
