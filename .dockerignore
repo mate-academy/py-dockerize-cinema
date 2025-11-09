@@ -1,0 +1,24 @@
+# DB
+db.sqlite3
+
+# Git
+.git
+.gitignore
+
+
+# Docker
+.dockerignore
+Dockerfile*
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache
+.venv
+venv
+.env
+
+# IDE / редакторы
+.idea
