@@ -1,33 +1,50 @@
-# Dockerizing DRF Cinema
+# 🎬 Cinema Service API
 
-- Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
-- Useful [link](https://saasitive.com/tutorial/django-celery-redis-postgres-docker-compose/) about theory 
-  (without Celery & redis of course)
+## Overview
+Cinema Service API is a Django REST Framework project for managing movies, cinema halls, sessions, and ticket bookings. It supports user registration, JWT authentication, and interactive API documentation.
 
-## Task:
+## Getting Started
+Clone the repo and run with Docker:
+```bash
+git clone https://github.com/your-username/py-dockerize-cinema.git
+cd py-dockerize-cinema
+docker-compose up --build
+```
 
-Here, you need to fully dockerize this existing DRF project Cinema. 
-You need to make your service fully independent of your local machine.
-So the only requirement to run your project is `Docker`.
+Create a superuser:
+```bash
+docker-compose run app python manage.py createsuperuser
+```
 
-### Task requirements:
-- Use `.dockerignore` for ignoring unnecessary stuff in your images;
-- Use `Dockerfile` for building `app` image with DRF application;
-- Use `docker-compose.yml` file for managing multiple services (containers) at the same time;
-- Switch to `PostgreSQL` database instead of `SQLite` using official docker image;
-- Implement `wait_for_db` 
-  [management command](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), 
-  which waits for the database to be available. 
-  So your services won't throw any errors during the `docker-compose up` command;
-- Make your docker images as thin as possible;
-- Use good practices of how to handle media, static files & volumes with docker.
+## API Docs
+Swagger UI → http://127.0.0.1:8000/api/docs/swagger-ui/
 
+Redoc → http://127.0.0.1:8000/api/docs/redoc/
 
-### How to check, that task is done:
-- Run `docker-compose up` command, and check with `docker ps`, that 2 services are up and running
-  (here check, that `app` is always waiting for `db` using `wait_for_db` command);
-- Go to `127.0.0.1:8000/api/` and check project endpoints via DRF interface (image uploading for sure);
-- Create new admin user. Enter container `docker exec -it <container_name> bash`, and create in from there;
-- Run tests using different approach: `docker-compose run app sh -c "python manage.py test"`;
-- If needed, also check the flake8: `docker-compose run app sh -c "flake8"`.
-- If everything is working fine - you are ready to push your code :).
+JSON Schema → http://127.0.0.1:8000/api/schema/
+
+## Authentication
+JWT endpoints:
+
+- POST /api/user/token/ → obtain token
+
+- POST /api/user/token/refresh/ → refresh token
+
+- POST /api/user/token/verify/ → verify token
+
+## Example Requests
+Register a user:
+```http
+POST /api/user/register/
+{
+  "email": "user@example.com",
+  "password": "strong_password",
+  "first_name": "John",
+  "last_name": "Doe"
+}
+```
+## Running Tests
+
+```bash
+docker-compose run app sh -c "python manage.py test"
+```
