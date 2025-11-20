@@ -1,11 +1,12 @@
 version: "3.9"
 
 services:
-  web:
+  app:
     build: .
-    command: gunicorn cinema.wsgi:application --bind 0.0.0.0:8000
+    command: sh -c "python manage.py wait_for_db && gunicorn cinema.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
+      - media_data:/app/media
     ports:
       - "8000:8000"
     env_file:
@@ -19,5 +20,11 @@ services:
       POSTGRES_DB: cinema
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+volumes:
+  pg_data:
+  media_data:

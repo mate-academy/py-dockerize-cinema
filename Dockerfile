@@ -1,22 +1,12 @@
-FROM python:3.11-alpine
+FROM python:3.11-slim
 
 WORKDIR /app
-
-ENV PYTHONUNBUFFERED=1
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /files/media
+RUN chown -R root:root /app
 
-RUN adduser \
-    --disabled-password \
-    --no-create-home \
-    my_user
-
-RUN chown -R my_user /files/media
-RUN chmod -R 755 /files/media
-
-USER my_user
+CMD ["gunicorn", "cinema.wsgi:application", "--bind", "0.0.0.0:8000"]
