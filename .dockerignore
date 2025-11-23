@@ -1,0 +1,9 @@
+.venv
+.flake8
+.github
+.idea
+README.md
+.gitignore
+DS-Store
+Dockerfile
+docker-compose.yaml
