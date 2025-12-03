@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:14-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cinema_db
+      - POSTGRES_USER=cinema_user
+      - POSTGRES_PASSWORD=cinema_password
+
+  app:
+    build:
+      context: .
+      dockerfile: cinema_service/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - static_volume:/vol/web/static
+      - media_volume:/vol/web/media
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=cinema_db
+      - POSTGRES_USER=cinema_user
+      - POSTGRES_PASSWORD=cinema_password
+      - POSTGRES_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
