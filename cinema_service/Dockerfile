@@ -15,9 +15,10 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip uninstall build-essential libpq-dev
 
 # Copy project files
-COPY . .
+COPY cinema ./app
 
 # Create directories for static and media files
 RUN mkdir -p /vol/web/media /vol/web/static
