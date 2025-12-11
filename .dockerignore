@@ -1,0 +1,36 @@
+# ignore venv
+venv/
+
+# ignore .env
+.env
+
+# ignore logs
+*.log
+
+# ignore media files
+media/
+
+# ignore django's static and templates
+staticfiles/
+templates/
+
+# ignore coverage files
+.coverage
+
+# ignore python bytecode
+*.pyc
+__pycache__/
+
+# ignore mypy cache
+.mypy_cache/
+
+# ignore pip cache
+.cache/
+
+# ignore pytest cache
+.pytest_cache/
+
+# ignore docker files
+.dockerignore
+Dockerfile
+docker-compose.yaml
