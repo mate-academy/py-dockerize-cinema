@@ -1,11 +1,11 @@
 services:
-  cinema:
+  app:
 
     build:
       context: .
 
     ports:
-      - "8001:8000"
+      - "8000:8000"
 
     volumes:
       - ./:/app
@@ -28,7 +28,7 @@ services:
     env_file:
       - .env
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:
