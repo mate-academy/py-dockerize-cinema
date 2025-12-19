@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p "/files/media"
+RUN mkdir -p "/app/media"
 
 RUN adduser \
     --disabled-password \

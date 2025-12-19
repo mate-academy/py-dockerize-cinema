@@ -9,7 +9,7 @@ services:
 
     volumes:
       - ./:/app
-      - my_media:/files/media
+      - my_media:/app/media
 
     env_file:
       - .env
