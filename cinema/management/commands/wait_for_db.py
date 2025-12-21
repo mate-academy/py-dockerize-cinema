@@ -5,7 +5,6 @@ import time
 
 
 class Command(BaseCommand):
-    help ="Django command to wait for database."
 
     def handle(self, *args, **options):
         tries = 0
