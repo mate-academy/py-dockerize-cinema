@@ -5,14 +5,13 @@ services:
     env_file:
       - .env
     ports:
-      - "8001:8000"
+      - "8000:8000"
     command: >
-      command: >
-          sh -c "
-          python manage.py wait_for_db &&
-          python manage.py migrate &&
-          python manage.py runserver 0.0.0.0:8000
-          "
+      sh -c "
+      python manage.py wait_for_db &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000
+      "
     volumes:
       - ./:/app
     depends_on:
@@ -27,7 +26,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:
