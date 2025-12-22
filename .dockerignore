@@ -12,5 +12,4 @@ Dockerfile
 .DS_Store
 .env
 .git
-Dockerfile
 .gitignore
