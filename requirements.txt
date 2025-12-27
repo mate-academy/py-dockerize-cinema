@@ -1,10 +1,11 @@
-django
+django==4.0.4
 flake8
 flake8-quotes
 flake8-variables-names
 pep8-naming
-django-debug-toolbar
-djangorestframework
+django-debug-toolbar==4.0.0
+djangorestframework==3.14.0
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+psycopg2-binary

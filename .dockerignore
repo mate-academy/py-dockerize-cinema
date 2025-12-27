@@ -1,0 +1,10 @@
+.venv
+.env
+.gitignore
+README.md
+.github
+.idea/
+.vscode/
+*.iml
+.pytest_cache/
+**__pycache__/
