@@ -8,9 +8,3 @@ COPY requirements.txt req.txt
 RUN pip install -r req.txt
 
 COPY . .
-
-#RUN adduser \
-#    --disable-password \
-#    --no-create-home \
-#    django_user
-
