@@ -5,7 +5,7 @@ from django.db import connections
 
 
 class Command(BaseCommand):
-    help = "Wait until db is available"
+    help = "Wait until db is available" # noqa VNE003
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
