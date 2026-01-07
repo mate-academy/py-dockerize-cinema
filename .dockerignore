@@ -1,0 +1,6 @@
+.github
+.venv
+.env
+.gitignore
+Dockerfile
+docker-compose.yaml
