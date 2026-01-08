@@ -1,0 +1,20 @@
+# .dockerignore
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+.git
+.gitignore
+.dockerignore
+docker-compose.yml
+Dockerfile
+# Ignore local database if you were using sqlite
+.idea
+.vscode
+*.sqlite3
+/media
+/static
+__pycache__
+*/__pycache__/*
+*.log
