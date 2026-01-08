@@ -9,3 +9,5 @@ exclude =
     venv
     .venv
     tests
+    settings.py
+    wait_for_db.py
