@@ -1,0 +1,55 @@
+version: "3"
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: cinema_db
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    environment:
+      - PGDATA=${PGDATA}
+
+    volumes:
+      - postgres_data:${PGDATA}
+
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: cinema_app
+    restart: unless-stopped
+
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./media:/app/media
+      - ./static:/app/static
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+    driver: local
