@@ -12,7 +12,7 @@ RUN adduser \
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY cinema_service .
+COPY . .
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
