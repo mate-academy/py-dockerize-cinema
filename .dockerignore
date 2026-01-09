@@ -1,0 +1,9 @@
+venv/
+pycache/
+.git
+.env
+.venv
+.idea
+.github
+docker-compose.yml
+media/
