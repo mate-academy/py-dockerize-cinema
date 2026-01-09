@@ -1,5 +1,5 @@
 [flake8]
-inline-quotes = "
+inline-quotes = double
 ignore = E203, E266, W503, N807, N818, F401
 max-line-length = 79
 max-complexity = 18
