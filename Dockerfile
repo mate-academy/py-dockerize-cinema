@@ -17,7 +17,8 @@ RUN adduser \
     --no-create-home \
     my_user
 
-RUN chown -R my_user /media
-RUN chmod -R 755 /media
+RUN chown -R my_user /app
+RUN chown -R my_user /app/media
+RUN chmod -R 755 /app/media
 
 USER my_user
