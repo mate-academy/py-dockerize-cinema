@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     ports:
-      - "8001:8000"
+      - "8000:8000"
     volumes:
       - ./:/app
 
@@ -18,14 +18,14 @@ services:
 
 
   db:
-    image: postgres:16-alpine3.17
+    image: postgres:16-alpine
     restart: always
     env_file:
       - .env
     ports:
       - "5432:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:
