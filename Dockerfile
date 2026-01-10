@@ -14,7 +14,7 @@ COPY . .
 RUN mkdir -p /vol/web/media && \
     mkdir -p /vol/web/static && \
     useradd -ms /bin/bash django-user && \
-    chown -R django-user:django-user /vol && \
+    chown -R django-user:django-user /vol /app && \
     chmod -R 755 /vol
 
 USER django-user
