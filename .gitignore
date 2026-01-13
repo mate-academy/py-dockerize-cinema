@@ -1,10 +1,26 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Databases
+*.sqlite3
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# IDE configs
 .idea/
 .vscode/
-*.iml
-.env
+
+# OS-specific
 .DS_Store
-venv/
-.pytest_cache/
-**__pycache__/
-**db.sqlite3
-media
