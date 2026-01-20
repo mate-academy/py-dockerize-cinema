@@ -1,10 +1,42 @@
-django
-flake8
-flake8-quotes
-flake8-variables-names
-pep8-naming
-django-debug-toolbar
-djangorestframework
-djangorestframework-simplejwt
-drf-spectacular
-Pillow
+Django==5.2.10
+asgiref==3.11.0
+sqlparse==0.5.5
+tzdata==2025.3
+typing_extensions==4.15.0
+
+# Django REST
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+drf-spectacular==0.29.0
+PyJWT==2.10.1
+uritemplate==4.2.0
+inflection==0.5.1
+PyYAML==6.0.3
+
+# Debug / Dev
+django-debug-toolbar==5.2.0
+
+# Database (PostgreSQL)
+psycopg[binary]==3.3.2
+
+# Images
+pillow==12.1.0
+
+# Validation / Schema
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+referencing==0.37.0
+rpds-py==0.30.0
+attrs==25.4.0
+
+# Linting
+flake8==7.3.0
+flake8-quotes==3.4.0
+flake8-variables-names==0.0.6
+pep8-naming==0.15.1
+pycodestyle==2.14.0
+pyflakes==3.4.0
+mccabe==0.7.0
+
+# Build
+setuptools==80.9.0
