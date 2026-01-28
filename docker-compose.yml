@@ -3,10 +3,8 @@ services:
     image: postgres:16-alpine
     container_name: cinema_db
     restart: unless-stopped
-    environment:
-      POSTGRES_DB: cinema
-      POSTGRES_USER: cinema
-      POSTGRES_PASSWORD: cinema
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -19,15 +17,8 @@ services:
       - db
     ports:
       - "8000:8000"
-    environment:
-      DB_ENGINE: django.db.backends.postgresql
-      DB_NAME: cinema
-      DB_USER: cinema
-      DB_PASSWORD: cinema
-      DB_HOST: db
-      DB_PORT: "5432"
-      DJANGO_DEBUG: "1"
-      DJANGO_ALLOWED_HOSTS: "127.0.0.1 localhost"
+    env_file:
+      - .env
     volumes:
       - static_data:/app/staticfiles
       - media_data:/app/media
