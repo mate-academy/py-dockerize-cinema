@@ -8,3 +8,8 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+pillow==12.1.0
+psycopg==3.3.2
+psycopg-binary==3.3.2
+sqlparse==0.5.5
+tzdata==2025.3
