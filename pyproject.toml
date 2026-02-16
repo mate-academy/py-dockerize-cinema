@@ -1,0 +1,20 @@
+[tool.ruff]
+line-length = 79
+target-version = "py314"
+lint.ignore = ["E203", "E266", "N807", "N818", "F401"]
+lint.select = ["B", "C", "E", "F", "W", "B9", "Q0", "N8"]
+exclude = ["**/migrations", ".venv", "venv", "tests"]
+
+
+[tool.black]
+line-length = 79
+targer-version = ["py314"]
+skip-string-normalization = false
+exclude = '''
+    /(
+        **/migrations
+        |venv
+        |\.venv
+        |tests
+    )/
+'''
