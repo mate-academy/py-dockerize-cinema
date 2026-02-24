@@ -16,6 +16,7 @@ RUN adduser -D my_user
 
 RUN mkdir -p /files/media
 
+RUN chown -R my_user /app
 RUN chown -R my_user /files/media
 RUN chmod -R 755 /files/media
 
