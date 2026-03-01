@@ -1,0 +1,23 @@
+# Python cache - bytecode that Python generates locally, in the container it will be regenerated
+__pycache__
+*.pyc
+*.pyo
+
+# Local SQLite base - in Docker we will use PostgreSQL
+*.sqlite3
+
+# Local virtual environment - in the container, dependencies are placed through pip separately
+venv
+.venv
+env
+
+# Media files that were uploaded locally - in Docker there will be a separate volume for them
+media
+
+# Git files - container does not need a change history
+.git
+.gitignore
+
+# Docker files - no need to copy them into the image itself
+Dockerfile
+docker-compose.yml
