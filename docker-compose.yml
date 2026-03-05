@@ -23,7 +23,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app/
-      - media_volume:/vol/web/media
+      - cinema_media:/vol/web/media
     env_file:
       - .env
     depends_on:
@@ -31,4 +31,4 @@ services:
 
 volumes:
   postgres_data:
-  media_volume:
+  cinema_media:
