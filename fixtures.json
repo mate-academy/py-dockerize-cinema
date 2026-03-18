@@ -1,0 +1,70 @@
+[
+{
+"model": "cinema.genre",
+"pk": 1,
+"fields": {
+"name": "Action"
+}
+},
+{
+"model": "cinema.genre",
+"pk": 2,
+"fields": {
+"name": "Comedy"
+}
+},
+{
+"model": "cinema.actor",
+"pk": 1,
+"fields": {
+"first_name": "Tom",
+"last_name": "Hanks"
+}
+},
+{
+"model": "cinema.actor",
+"pk": 2,
+"fields": {
+"first_name": "Scarlett",
+"last_name": "Johansson"
+}
+},
+{
+"model": "cinema.cinemahall",
+"pk": 1,
+"fields": {
+"name": "Hall 1",
+"rows": 10,
+"seats_in_row": 20
+}
+},
+{
+"model": "cinema.cinemahall",
+"pk": 2,
+"fields": {
+"name": "Hall 2",
+"rows": 5,
+"seats_in_row": 15
+}
+},
+{
+"model": "cinema.movie",
+"pk": 1,
+"fields": {
+"title": "Avengers",
+"description": "Superhero team saving the world",
+"duration": 120,
+"genres": [1],
+"actors": [2]
+}
+},
+{
+"model": "cinema.moviesession",
+"pk": 1,
+"fields": {
+"show_time": "2026-03-20T18:00:00Z",
+"cinema_hall": 1,
+"movie": 1
+}
+}
+]

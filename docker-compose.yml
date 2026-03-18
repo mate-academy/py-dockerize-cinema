@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    env_file:
+      - .env.docker
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    env_file:
+      - .env.docker
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn cinema_service.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

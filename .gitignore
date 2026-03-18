@@ -1,10 +1,26 @@
+# IDE / Editor configs
 .idea/
 .vscode/
 *.iml
+
+# Environment files
 .env
+.env.local
+.env.docker
+
+# OS files
 .DS_Store
+
+# Virtual environments
 venv/
+.venv/
+
+# Python cache
 .pytest_cache/
 **__pycache__/
+
+# SQLite DB (якщо використовується для тестів)
 **db.sqlite3
-media
+
+# Media files (зберігаються у volume)
+media/
