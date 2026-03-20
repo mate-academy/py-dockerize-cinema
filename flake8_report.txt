@@ -1,0 +1,4 @@
+.\cinema\management\commands\wait_for_db.py:12:27: Q000 Single quotes found but double quotes preferred
+.\cinema\management\commands\wait_for_db.py:16:39: Q000 Single quotes found but double quotes preferred
+.\cinema\management\commands\wait_for_db.py:19:35: Q000 Single quotes found but double quotes preferred
+.\cinema\management\commands\wait_for_db.py:22:46: Q000 Single quotes found but double quotes preferred
