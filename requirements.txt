@@ -1,4 +1,6 @@
 django
+psycopg
+psycopg-binary
 flake8
 flake8-quotes
 flake8-variables-names
