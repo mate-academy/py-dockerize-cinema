@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: cinema_db
+      POSTGRES_USER: cinema_user
+      POSTGRES_PASSWORD: secretpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    # Команда, яка чекає базу, мігрує базу і запускає сервер
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_data:/app/staticfiles
+      - media_data:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=cinema_db
+      - DB_USER=cinema_user
+      - DB_PASS=secretpassword
+      - ALLOWED_HOSTS=127.0.0.1,localhost
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
