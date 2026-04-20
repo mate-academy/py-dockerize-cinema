@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cinema
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_data:/vol/web/media
+      - static_data:/vol/web/static
+    environment:
+      - DB_HOST=db
+      - DB_NAME=cinema
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - ALLOWED_HOSTS=127.0.0.1,localhost
+      - DEBUG=False
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  media_data:
+  static_data:
