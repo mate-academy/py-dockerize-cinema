@@ -8,7 +8,6 @@ services:
       - "8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
       - my_media:/app/media/uploads/movies
     depends_on:
       - db
@@ -22,7 +21,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:
