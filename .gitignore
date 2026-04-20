@@ -1,10 +1,19 @@
-.idea/
-.vscode/
-*.iml
+# Python envs and caches
+.venv
+__pycache__/
+*.pyc
+# Git
+.git
+.gitignore
+# Env and secrets
 .env
-.DS_Store
-venv/
-.pytest_cache/
-**__pycache__/
-**db.sqlite3
-media
+# Media and static (не включати в образ)
+media/
+staticfiles/
+# IDE / editor
+.vscode/
+.idea/
+# Test / build artifacts
+dist/
+build/
+*.egg-info/
