@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  app:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - media_files:/vol/web/media
+      - static_files:/vol/web/static
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  media_files:
+  static_files:
