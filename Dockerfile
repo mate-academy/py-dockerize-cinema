@@ -1,7 +1,7 @@
 FROM python:3.11.6-alpine3.18
 LABEL maintainer="tanakutova74@gmail.com"
 
-ENV PYTHOUNNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
