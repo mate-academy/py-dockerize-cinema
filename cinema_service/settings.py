@@ -93,7 +93,8 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "cinema"),
         "USER": os.getenv("DB_USER", "postgres"),
         "PASSWORD": os.getenv("DB_PASS", "postgres"),
-        "HOST": os.getenv("DB_HOST", "db"), # 'db' — имя сервиса в docker-compose
+        # 'db' — имя сервиса в docker-compose
+        "HOST": os.getenv("DB_HOST", "db"),
         "PORT": "5432",
     }
 }
