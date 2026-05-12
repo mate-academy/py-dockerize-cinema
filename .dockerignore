@@ -1,0 +1,43 @@
+dockerignore_content = """
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Database & OS
+*.sqlite3
+.DS_Store
+db.sqlite3
+"""
+
+with open(".dockerignore", "w") as f:
+    f.write(dockerignore_content.strip())
