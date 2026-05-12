@@ -8,3 +8,9 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+
+black
+djlint
+crispy-bootstrap4
+pytest
+pytest-django
