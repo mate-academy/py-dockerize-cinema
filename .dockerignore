@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+*.iml
+.env
+.DS_Store
+.venv/
+.pytest_cache/
+**__pycache__/
+README.md
+checklist.md
+.gitignore
+**db.sqlite3
+media
