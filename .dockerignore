@@ -1,3 +1,14 @@
 .venv
 docker-compose.yml
 .idea
+__pycache__
+*.pyc
+*.pyo
+.git
+migration/
+*.md
+tests/
+.github
+*.log
+.pytest_cache
+staticfiles/
