@@ -1,8 +1,13 @@
-__pycache__/
+.git
+.gitignore
+__pycache__
 *.pyc
 *.pyo
-.git/
+*.pyd
+.Python
+venv
 .env
+.venv
+.pytest_cache
+.vscode
 *.md
-db.sqlite3
-.venv/

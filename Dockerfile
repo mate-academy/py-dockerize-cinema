@@ -11,4 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 RUN mkdir -p /vol/web/media /vol/web/static && \
-    chmod -R 755 /vol/web \
+    chmod -R 755 /vol/web && \
+    useradd -m appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
