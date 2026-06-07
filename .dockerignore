@@ -1,0 +1,17 @@
+.git
+.github
+.idea
+.vscode
+.venv
+venv
+
+*.iml
+*.py[cod]
+*.sqlite3
+.DS_Store
+.env
+.pytest_cache
+__pycache__
+
+media
+staticfiles
