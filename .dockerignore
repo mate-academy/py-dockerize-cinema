@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment files (never bake secrets into images)
+.env
+
+# Database files
+*.sqlite3
+db.sqlite3
+
+# Media & static (handled via volumes)
+media/
+staticfiles/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests & coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Docs
+README.md
+docs/
