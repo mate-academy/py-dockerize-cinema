@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: cinema_db
+      POSTGRES_USER: cinema_user
+      POSTGRES_PASSWORD: cinema_pass
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cinema_user -d cinema_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - media_files:/vol/web/media
+      - static_files:/vol/web/static
+    environment:
+      DB_HOST: db
+      DB_NAME: cinema_db
+      DB_USER: cinema_user
+      DB_PASS: cinema_pass
+      DJANGO_SECRET_KEY: "django-insecure-6vubhk2$++agnctay_4pxy_8cq)mosmn(*-#2b^v4cgsh-^!i3"
+      DEBUG: "1"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  media_files:
+  static_files:
