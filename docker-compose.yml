@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14-alpine
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  static_data:
+  media_data:

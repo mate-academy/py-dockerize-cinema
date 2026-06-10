@@ -1,16 +1,15 @@
-import tempfile
 import os
+import tempfile
 
-from PIL import Image
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-
-from rest_framework.test import APIClient
+from PIL import Image
 from rest_framework import status
+from rest_framework.test import APIClient
 
-from cinema.models import Movie, MovieSession, CinemaHall, Genre, Actor
-from cinema.serializers import MovieListSerializer, MovieDetailSerializer
+from cinema.models import Actor, CinemaHall, Genre, Movie, MovieSession
+from cinema.serializers import MovieDetailSerializer, MovieListSerializer
 
 MOVIE_URL = reverse("cinema:movie-list")
 MOVIE_SESSION_URL = reverse("cinema:moviesession-list")
@@ -28,9 +27,7 @@ def sample_movie(**params):
 
 
 def sample_movie_session(**params):
-    cinema_hall = CinemaHall.objects.create(
-        name="Blue", rows=20, seats_in_row=20
-    )
+    cinema_hall = CinemaHall.objects.create(name="Blue", rows=20, seats_in_row=20)
 
     defaults = {
         "show_time": "2022-06-02 14:00:00",
@@ -106,8 +103,12 @@ class AuthenticatedMovieApiTests(TestCase):
         self.assertNotIn(serializer3.data, res.data)
 
     def test_filter_movies_by_actors(self):
-        actor1 = Actor.objects.create(first_name="Actor 1", last_name="Last 1")
-        actor2 = Actor.objects.create(first_name="Actor 2", last_name="Last 2")
+        actor1 = Actor.objects.create(
+            first_name="Actor 1", last_name="Last 1"
+        )
+        actor2 = Actor.objects.create(
+            first_name="Actor 2", last_name="Last 2"
+        )
 
         movie1 = sample_movie(title="Movie 1")
         movie2 = sample_movie(title="Movie 2")
@@ -147,9 +148,8 @@ class AuthenticatedMovieApiTests(TestCase):
     def test_retrieve_movie_detail(self):
         movie = sample_movie()
         movie.genres.add(Genre.objects.create(name="Genre"))
-        movie.actors.add(
-            Actor.objects.create(first_name="Actor", last_name="Last")
-        )
+        movie.actors.add(Actor.objects.create(
+            first_name="Actor", last_name="Last"))
 
         url = detail_url(movie.id)
         res = self.client.get(url)
@@ -196,7 +196,8 @@ class AdminMovieApiTests(TestCase):
         payload = {
             "title": "Spider Man",
             "genres": [genre1.id, genre2.id],
-            "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help.",
+            "description": "With Spider-Man's identity now revealed,"
+                           " Peter asks Doctor Strange for help.",
             "duration": 148,
         }
         res = self.client.post(MOVIE_URL, payload)
@@ -214,7 +215,8 @@ class AdminMovieApiTests(TestCase):
         payload = {
             "title": "Spider Man",
             "actors": [actor1.id, actor2.id],
-            "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help.",
+            "description": "With Spider-Man's identity now revealed"
+                           ", Peter asks Doctor Strange for help.",
             "duration": 148,
         }
         res = self.client.post(MOVIE_URL, payload)
@@ -257,7 +259,9 @@ class MovieImageUploadTests(TestCase):
     def test_upload_image_bad_request(self):
         """Test uploading an invalid image"""
         url = image_upload_url(self.movie.id)
-        res = self.client.post(url, {"image": "not image"}, format="multipart")
+        res = self.client.post(
+            url, {"image": "not image"}, format="multipart"
+        )
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 

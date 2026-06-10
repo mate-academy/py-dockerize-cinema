@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 from .models import (
+    Actor,
     CinemaHall,
     Genre,
-    Actor,
     Movie,
     MovieSession,
     Order,
