@@ -1,0 +1,36 @@
+# git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtual env
+venv/
+.venv/
+env/
+ENV/
+
+# pycharm
+.idea/
+.vscode/
+*.swp
+
+# logs and data
+logs/
+*.log
+db.sqlite3
+.DS_Store
+
+# envs and secrets
+.env
+.env.local
+.env.*.local
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
