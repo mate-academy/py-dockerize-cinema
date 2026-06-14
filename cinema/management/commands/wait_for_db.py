@@ -6,9 +6,11 @@ import time
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        while True:
+        for _ in range(10):
             try:
                 connections["default"].cursor()
-                break
+                return
             except OperationalError:
-                time.sleep(1)
+                self.stdout.write("Connecting...")
+                time.sleep(2)
+        raise OperationalError("Connection failed")

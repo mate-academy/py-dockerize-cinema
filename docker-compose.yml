@@ -1,5 +1,5 @@
 services:
-  cinema:
+  app:
     build:
       context: .
     env_file:
@@ -22,9 +22,9 @@ services:
     env_file:
       - .env
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
 
 volumes:
   my_db:
