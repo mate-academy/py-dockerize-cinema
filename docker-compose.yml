@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cinema_db
+      - POSTGRES_USER=cinema_user
+      - POSTGRES_PASSWORD=cinema_password
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+    environment:
+      - DB_HOST=db
+      - DB_NAME=cinema_db
+      - DB_USER=cinema_user
+      - DB_PASS=cinema_password
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
