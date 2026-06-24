@@ -1,9 +1,9 @@
 services:
-  cinema:
+  app:
     build:
       context: .
     ports:
-      - "8001:8000"
+      - "8000:8000"
     volumes:
       - my_media:/files/media
     env_file:
