@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: cinema
+      POSTGRES_USER: cinema
+      POSTGRES_PASSWORD: cinema
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: db
+      DB_NAME: cinema
+      DB_USER: cinema
+      DB_PASSWORD: cinema
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
