@@ -1,0 +1,10 @@
+.venv
+.git
+.gitignore
+.idea
+__pycache__
+*.pyc
+db.sqlite3
+media
+staticfiles
+__MACOSX
