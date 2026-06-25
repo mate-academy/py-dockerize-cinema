@@ -122,10 +122,14 @@ USE_I18N = True
 USE_TZ = False
 
 STATIC_URL = "static/"
-STATIC_ROOT = "/vol/web/static"
-
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/vol/web/media"
+
+if os.environ.get("DB_HOST"):
+    STATIC_ROOT = "/vol/web/static"
+    MEDIA_ROOT = "/vol/web/media"
+else:
+    STATIC_ROOT = BASE_DIR / "static"
+    MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
