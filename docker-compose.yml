@@ -6,8 +6,8 @@ services:
       - "8000:8000"
     volumes:
       - ./:/app
-      - media_data:/app/media
-      - static_data:/app/staticfiles
+      - media_data:/vol/web/media
+      - static_data:/vol/web/static
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -24,9 +24,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - ./:/app
-      - media_data:/vol/web/media
-      - static_data:/vol/web/static
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=cinema
       - POSTGRES_USER=cinema
