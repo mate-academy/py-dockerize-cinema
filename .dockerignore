@@ -1,0 +1,9 @@
+.git
+.gitignore
+.flake8
+__pycache__
+*.pyc
+*.pyo
+venv/
+.env
+README.md
