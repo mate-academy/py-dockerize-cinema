@@ -1,0 +1,14 @@
+.git
+.github
+venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+media
+.env
+.gitignore
+.vscode/
+.idea/
+*.iml
