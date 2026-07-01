@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+
+    environment:
+      POSTGRES_DB: cinema
+      POSTGRES_USER: cinema
+      POSTGRES_PASSWORD: cinema
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/app
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+
+    depends_on:
+      - db
+
+    environment:
+      DB_HOST: db
+      DB_NAME: cinema
+      DB_USER: cinema
+      DB_PASS: cinema
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
