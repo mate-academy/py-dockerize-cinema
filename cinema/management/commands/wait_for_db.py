@@ -5,7 +5,8 @@ from django.db.utils import OperationalError
 
 
 class Command(BaseCommand):
-    """Django command to pause execution until the database is available with a timeout."""
+    """Django command to pause execution until
+    the database is available with a timeout."""
 
     def add_arguments(self, parser):
         # Correct method name is add_arguments (plural)
@@ -27,7 +28,9 @@ class Command(BaseCommand):
             # Calculate elapsed time
             elapsed = time.time() - start_time
             if elapsed > timeout:
-                raise CommandError(f"Database timeout reached after {timeout} seconds.")
+                raise CommandError(
+                    f"Database timeout reached after {timeout} seconds."
+                )
 
             try:
                 db_conn = connections["default"]
