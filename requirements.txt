@@ -9,3 +9,4 @@ djangorestframework-simplejwt
 drf-spectacular
 Pillow
 psycopg[binary]
+python-dotenv
