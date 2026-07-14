@@ -7,7 +7,7 @@ services:
             - .env
 
         ports:
-            - "8001:8000"
+            - "8000:8000"
 
         command: >  
             sh -c "python manage.py wait_for_db &&
