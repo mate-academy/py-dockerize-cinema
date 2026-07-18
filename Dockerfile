@@ -12,7 +12,7 @@ RUN apk add --update --no-cache postgresql-client && \
         gcc libc-dev linux-headers postgresql-dev && \
     pip install -r requirements.txt && \
     apk del .tmp-build-deps
-
+COPY . .
 # Теперь создаем папки и меняем права
 RUN mkdir -p /vol/web/media && \
     chown -R django-user:django-user /vol/ && \
