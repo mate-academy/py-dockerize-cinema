@@ -8,4 +8,6 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+
+# PostgreSQL database driver
 psycopg2-binary
