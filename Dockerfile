@@ -1,7 +1,7 @@
 FROM python:3.11.6-alpine3.18
 LABEL authors="serdy"
 
-ENV PYTHONUNBUFFERD 1
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /cinema
 
