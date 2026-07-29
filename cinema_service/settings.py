@@ -28,7 +28,7 @@ SECRET_KEY = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -140,7 +140,7 @@ USE_TZ = False
 STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "/files/media"
+MEDIA_ROOT = "/files/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

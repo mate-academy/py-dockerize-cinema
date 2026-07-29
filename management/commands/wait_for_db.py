@@ -5,17 +5,19 @@ import time
 
 
 class Command(BaseCommand):
-    help = "Wait for database"
 
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
+
+        start = time.time()
 
         while True:
             try:
                 connections["default"].ensure_connection()
                 break
             except OperationalError:
+                if time.time() - start > 30:
+                    raise
+
                 self.stdout.write("Database unavailable, waiting...")
                 time.sleep(1)
-
-        self.stdout.write(self.style.SUCCESS("Database available!"))
