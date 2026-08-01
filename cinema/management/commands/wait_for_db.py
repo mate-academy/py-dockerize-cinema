@@ -1,5 +1,6 @@
-from datetime import time
-from sqlite3 import OperationalError
+import time
+
+from django.db import OperationalError
 
 from django.core.management import BaseCommand
 from django.db import connections
