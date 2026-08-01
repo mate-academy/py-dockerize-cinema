@@ -12,8 +12,5 @@ db.sqlite3
 
 .env
 
-media
-static
-
 .gitignore
 README.md
