@@ -20,7 +20,6 @@ services:
       - .env
     ports:
       - "5432:5432"
-
     volumes:
       - my_db:$PGDATA
 
