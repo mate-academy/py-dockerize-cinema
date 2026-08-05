@@ -1,4 +1,4 @@
-from datetime import time
+from time import sleep
 
 from django.core.management import BaseCommand
 from django.db import connections
@@ -15,4 +15,4 @@ class Command(BaseCommand):
                 db_con.cursor()
                 db_up = True
             except OperationalError:
-                time.sleep(3)
+                sleep(3)
