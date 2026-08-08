@@ -29,12 +29,16 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "password",
-                    models.CharField(max_length=128, verbose_name="password"),
+                    models.CharField(
+                        max_length=128, verbose_name="password"
+                    ),
                 ),
                 (
                     "last_login",
                     models.DateTimeField(
-                        blank=True, null=True, verbose_name="last login"
+                        blank=True,
+                        null=True,
+                        verbose_name="last login",
                     ),
                 ),
                 (
@@ -63,13 +67,17 @@ class Migration(migrations.Migration):
                 (
                     "first_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="first name"
+                        blank=True,
+                        max_length=150,
+                        verbose_name="first name",
                     ),
                 ),
                 (
                     "last_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="last name"
+                        blank=True,
+                        max_length=150,
+                        verbose_name="last name",
                     ),
                 ),
                 (

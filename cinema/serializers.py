@@ -88,7 +88,9 @@ class MovieSessionSerializer(serializers.ModelSerializer):
 
 class MovieSessionListSerializer(MovieSessionSerializer):
     movie_title = serializers.CharField(source="movie.title", read_only=True)
-    movie_image = serializers.ImageField(source="movie.image", read_only=True)
+    movie_image = serializers.ImageField(
+        source="movie.image", read_only=True
+    )
     cinema_hall_name = serializers.CharField(
         source="cinema_hall.name", read_only=True
     )
@@ -117,7 +119,7 @@ class TicketSerializer(serializers.ModelSerializer):
             attrs["row"],
             attrs["seat"],
             attrs["movie_session"].cinema_hall,
-            ValidationError
+            ValidationError,
         )
         return data
 
@@ -145,7 +147,13 @@ class MovieSessionDetailSerializer(MovieSessionSerializer):
 
     class Meta:
         model = MovieSession
-        fields = ("id", "show_time", "movie", "cinema_hall", "taken_places")
+        fields = (
+            "id",
+            "show_time",
+            "movie",
+            "cinema_hall",
+            "taken_places",
+        )
 
 
 class OrderSerializer(serializers.ModelSerializer):

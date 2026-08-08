@@ -8,3 +8,6 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+psycopg2>=2.9.0,<2.10
+Pillow>=9.0.0
+flake8>=6.0.0

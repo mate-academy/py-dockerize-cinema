@@ -60,7 +60,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=255, unique=True)),
+                (
+                    "name",
+                    models.CharField(max_length=255, unique=True),
+                ),
             ],
         ),
         migrations.CreateModel(
@@ -142,7 +145,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True),
+                ),
                 (
                     "user",
                     models.ForeignKey(
