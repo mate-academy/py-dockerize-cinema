@@ -1,0 +1,14 @@
+.git
+.github
+.idea
+.vscode
+.venv
+venv
+__pycache__
+*.pyc
+.env
+.flake8
+.gitignore
+db.sqlite3
+media
+README.md
