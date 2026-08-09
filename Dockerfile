@@ -10,14 +10,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /files/media
-
-RUN adduser \
-    --disabled-password \
-    --no-create-home \
-    django-user
-
-RUN chown -R django-user /files/media
-RUN chmod -R 755 /files/media
+RUN mkdir -p /files/media /files/static && \
+    adduser --disabled-password --no-create-home django-user && \
+    chown -R django-user /app /files/media /files/static && \
+    chmod -R 755 /files/media /files/static
 
 USER django-user
+
+CMD python manage.py wait_for_db && \
+    python manage.py migrate && \
+    python manage.py runserver 0.0.0.0:8000
