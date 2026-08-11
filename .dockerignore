@@ -1,0 +1,40 @@
+# Git & CI/CD
+.git
+.github
+.gitignore
+
+# Environments & Secrets
+venv/
+.venv/
+.env*
+
+# Python bytecode & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Database & OS files
+db.sqlite3
+.DS_Store
+
+# Docker files
+Dockerfile
+docker-compose*.yml
+docker-compose.yml
+
+# Linters, Formatter & Test artifacts
+.flake8
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# IDEs
+.idea/
+.vscode/
+
+# Logs & Media (якщо є)
+*.log
+logs/
+media/
