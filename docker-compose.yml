@@ -1,13 +1,14 @@
 services:
-  cinema_service:
+  app:
     build:
       context: .
     env_file:
       - .env
     ports:
-      - 8001:8000
+      - 8000:8000
     volumes:
       - ./:/app
+      - media_files:/files/media
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -29,3 +30,4 @@ services:
         - my_db:/var/lib/postgresql/data
 volumes:
   my_db:
+  media_files:
