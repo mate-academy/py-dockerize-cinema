@@ -1,6 +1,6 @@
 asgiref==3.12.1
 attrs==26.1.0
-dlango
+django
 django-debug-toolbar
 djangorestframework
 djangorestframework-simplejwt
