@@ -5,5 +5,6 @@ venv
 .idea
 __pycache__
 *.pyc
+.pytest_cache
 .env
-db.sqlite3
+*.sqlite3
