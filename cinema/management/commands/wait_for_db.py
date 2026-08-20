@@ -2,7 +2,7 @@ import time
 from django.core.management.base import BaseCommand
 from django.db import connections
 from django.db.utils import OperationalError
-from psycopg2 import OperationalError as Psycopg2Error  # Якщо використовуєте PostgreSQL
+from psycopg2 import OperationalError as Psycopg2Error
 
 
 class Command(BaseCommand):
@@ -18,9 +18,8 @@ class Command(BaseCommand):
                 db_up = True
             except (Psycopg2Error, OperationalError, OSError):
                 self.stdout.write(
-                    "The database is unavailable, please wait a moment...")
+                    "The database is unavailable, please wait a moment..."
+                )
                 time.sleep(1)
 
-        self.stdout.write(
-            self.style.SUCCESS("The database is ready for use!")
-        )
+        self.stdout.write(self.style.SUCCESS("The database is ready for use!"))
