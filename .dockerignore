@@ -1,0 +1,6 @@
+.venv
+.env
+.idea
+Dockerfile
+docker-compose.yaml
+wait_for_db
