@@ -1,0 +1,16 @@
+.venv/
+venv/
+.idea/
+.vscode/
+.git/
+.gitignore
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+db.sqlite3
+media/
+staticfiles/
+Dockerfile
+docker-compose.yml
