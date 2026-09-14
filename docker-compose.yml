@@ -16,7 +16,7 @@ services:
             - app_media:/app/media
 
     db:
-        image: postgres:16
+        image: postgres:16-alpine
         restart: always
         env_file:
             - .env

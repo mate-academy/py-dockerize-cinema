@@ -1,7 +1,8 @@
-FROM python:3.12
+FROM python:3.12-slim
 LABEL maintainer="Fabio Silva"
 
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
 COPY requirements.txt requirements.txt
