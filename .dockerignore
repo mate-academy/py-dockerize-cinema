@@ -1,9 +1,10 @@
 .env
 .venv
 .gitignore
-.githu
+.github
 __pycache__
 *.pyc
 .git
 Dockerfile
 docker-compose.yml
+db.sqlite3
