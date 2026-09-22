@@ -190,6 +190,15 @@ class AdminMovieApiTests(TestCase):
         for key in payload.keys():
             self.assertEqual(payload[key], getattr(movie, key))
 
+    def test_browsable_api_create_form_includes_image(self):
+        res = self.client.get(MOVIE_URL, HTTP_ACCEPT="text/html")
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertRegex(
+            res.content.decode(),
+            r'<input\b(?=[^>]*type="file")(?=[^>]*name="image")[^>]*>',
+        )
+
     def test_create_movie_with_genres(self):
         genre1 = Genre.objects.create(name="Action")
         genre2 = Genre.objects.create(name="Adventure")
@@ -261,7 +270,7 @@ class MovieImageUploadTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_post_image_to_movie_list_should_not_work(self):
+    def test_create_movie_with_image(self):
         url = MOVIE_URL
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
             img = Image.new("RGB", (10, 10))
@@ -279,8 +288,13 @@ class MovieImageUploadTests(TestCase):
             )
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-        movie = Movie.objects.get(title="Title")
-        self.assertFalse(movie.image)
+        movie = Movie.objects.get(id=res.data["id"])
+        self.addCleanup(movie.image.delete)
+        self.assertTrue(movie.image)
+        self.assertTrue(os.path.exists(movie.image.path))
+        self.assertTrue(res.data["image"].endswith(movie.image.url))
+        with Image.open(movie.image.path) as image:
+            self.assertEqual(image.size, (10, 10))
 
     def test_image_url_is_shown_on_movie_detail(self):
         url = image_upload_url(self.movie.id)
