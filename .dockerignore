@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Django
+staticfiles/
+media/
+*.log
+
+# Environment variables
+.env
+*.env
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Git
+.git/
+.gitignore
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Tests cache
+.coverage
+htmlcov/
+pytest_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
