@@ -9,3 +9,5 @@ exclude =
     venv
     .venv
     tests
+per-file-ignores =
+    cinema/management/commands/wait_for_db.py:VNE003
