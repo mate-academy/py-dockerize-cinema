@@ -1,0 +1,40 @@
+services:
+  api:
+    container_name: cinema-api
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/app
+      - media_files:/files/media
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+
+  db:
+    image: postgres:18-alpine3.24
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - database:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+volumes:
+  database:
+  media_files:
