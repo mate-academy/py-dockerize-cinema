@@ -2,9 +2,13 @@
 .vscode/
 *.iml
 .env
+.env.*
+!.env.example
 .DS_Store
 venv/
+.venv/
 .pytest_cache/
 **__pycache__/
 **db.sqlite3
 media
+staticfiles/

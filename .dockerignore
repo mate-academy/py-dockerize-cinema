@@ -1,0 +1,13 @@
+*
+!Dockerfile
+!requirements.txt
+!manage.py
+!cinema/
+!cinema/**
+!cinema_service/
+!cinema_service/**
+!user/
+!user/**
+!.flake8
+**/__pycache__/
+**/*.py[cod]
