@@ -1,0 +1,15 @@
+Dockerfile
+docker-compose.yaml
+.git
+.gitignore
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.flake8
+media/
+staticfiles/
