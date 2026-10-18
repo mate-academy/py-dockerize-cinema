@@ -1,4 +1,4 @@
-django
+django==5.2.18
 flake8
 flake8-quotes
 flake8-variables-names
@@ -8,3 +8,4 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+psycopg[binary]==3.3.6
