@@ -1,5 +1,6 @@
 .git
 .gitignore
+.github
 
 Dockerfile*
 docker-compose*.yml
@@ -17,11 +18,13 @@ docker-compose*.yml
 *.log
 tmp/
 coverage/
+.pytest_cache
 
-node_modules
-dist
-build
 __pycache__
 *.pyc
 .venv
-target
+venv
+
+db.sqlite3
+media
+README.md

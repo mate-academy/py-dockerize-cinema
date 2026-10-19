@@ -6,18 +6,16 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends libpq5 \
-    && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN useradd --create-home appuser && chown -R appuser /app
-USER appuser
+RUN mkdir -p /vol/web/media /vol/web/static \
+    && useradd --no-create-home django-user \
+    && chown -R django-user:django-user /vol/ \
+    && chmod -R 755 /vol/web/
+
+USER django-user
 
 EXPOSE 8000
-
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
