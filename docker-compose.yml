@@ -5,10 +5,10 @@ services:
     env_file:
       - .env
     ports:
-      - "8001:8000"
+      - "127.0.0.1:8000:8000"
     volumes:
       - ./:/app
-      - image_storage:/images
+      - image_storage:/app/media
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate && 
@@ -26,7 +26,7 @@ services:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - pg_db:/var/lib/postgresql
 

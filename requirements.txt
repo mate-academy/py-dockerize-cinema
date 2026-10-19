@@ -8,5 +8,3 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
-psycopg
-psycopg-binary
