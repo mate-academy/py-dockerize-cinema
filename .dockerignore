@@ -1,0 +1,8 @@
+*
+!cinema_service
+!cinema
+!user
+!manage.py
+!requirements.txt
+!.flake8
+**/__pycache__
