@@ -1,0 +1,28 @@
+# Git та IDE
+.git
+.gitignore
+.idea/
+.vscode/
+
+# Python-сміття
+__pycache__/
+*.py[cod]
+*.log
+
+# Віртуальні оточення
+venv/
+.venv/
+env/
+
+# Секрети
+.env
+
+# Локальні дані, які не повинні бути в образі
+db.sqlite3
+media/
+staticfiles/
+
+# Docker-файли самі собі в образі не потрібні
+Dockerfile
+docker-compose.yml
+.dockerignore
