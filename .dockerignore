@@ -1,0 +1,17 @@
+.git
+.github
+.idea
+.vscode
+.env
+.env.*
+!.env.example
+**/__pycache__
+**/*.py[cod]
+.venv
+venv
+media
+staticfiles
+*.sqlite3
+.pytest_cache
+.coverage
+htmlcov

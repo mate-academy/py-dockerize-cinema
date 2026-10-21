@@ -2,6 +2,10 @@
 .vscode/
 *.iml
 .env
+.env.*
+!.env.example
+.venv/
+staticfiles/
 .DS_Store
 venv/
 .pytest_cache/

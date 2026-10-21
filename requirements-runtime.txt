@@ -1,0 +1,7 @@
+Django>=5.2,<5.3
+django-debug-toolbar>=6,<7
+djangorestframework>=3.16,<3.17
+djangorestframework-simplejwt>=5.5,<6
+drf-spectacular>=0.28,<0.30
+Pillow>=12,<13
+psycopg[binary]>=3.2,<4

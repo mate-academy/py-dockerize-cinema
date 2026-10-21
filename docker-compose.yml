@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        INSTALL_DEV: ${INSTALL_DEV:-false}
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:?Copy .env.example to .env and set SECRET_KEY}
+      DEBUG: ${DEBUG:-1}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-127.0.0.1,localhost}
+      POSTGRES_DB: ${POSTGRES_DB:-cinema}
+      POSTGRES_USER: ${POSTGRES_USER:-cinema}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+    volumes:
+      - media_data:/vol/web/media
+      - static_data:/vol/web/static
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cinema}
+      POSTGRES_USER: ${POSTGRES_USER:-cinema}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  postgres_data:
+  media_data:
+  static_data:
