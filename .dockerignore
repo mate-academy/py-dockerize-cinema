@@ -1,0 +1,35 @@
+# VCS / system
+.git
+.gitignore
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.log
+*.sqlite3
+*.egg-info/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.coverage
+
+# Envs
+.env*
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Node / build
+node_modules/
+dist/
+build/
+
+# Media / static from host
+media/
+static/
