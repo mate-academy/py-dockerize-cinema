@@ -1,7 +1,7 @@
 FROM python:3.12-alpine
 LABEL maintainer="imvovo4kaa@gmail.com"
 
-ENV PYTHONBUFFERED=1
+ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN adduser \
     --no-create-home \
     my_user
 
-RUN chown -R my_user /files/media
-RUN chmod -R 755 /files/media
+RUN chown -R my_user /app/media
+RUN chmod -R 755 /app/media
 
 USER my_user
