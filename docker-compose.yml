@@ -11,19 +11,18 @@ services:
       - media_files:/app/media
     command: >
       sh -c "python manage.py wait_for_db &&
-            python manage.py makemigrations &&
             python manage.py migrate &&
             python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 
   db:
-    image: postgres:15-alpine3.17
+    image: postgres:15-alpine
     restart: always
     ports:
       - "5433:5432"
     volumes:
-      - my_db:$PGDATA
+      - my_db:/var/lib/postgresql/data
     env_file:
       - .env
 

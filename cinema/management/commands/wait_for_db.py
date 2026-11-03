@@ -3,6 +3,7 @@ from django.db import connections
 from django.db.utils import OperationalError
 from django.core.management import BaseCommand
 
+import psycopg2
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
@@ -13,8 +14,8 @@ class Command(BaseCommand):
             try:
                 db_conn = connections["default"]
                 db_conn.cursor()
-            except OperationalError:
+                self.stdout.write(self.style.SUCCESS("Database available!"))
+                break
+            except (OperationalError, psycopg2.OperationalError):
                 self.stdout.write("Database unavailable, waiting 1 second...")
                 time.sleep(1)
-
-            self.stdout.write(self.style.SUCCESS("Database available!"))
