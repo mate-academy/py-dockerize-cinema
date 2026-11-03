@@ -10,7 +10,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
-RUN mkdir -p /files/media
+RUN mkdir -p /app/media
 
 RUN adduser \
     --disabled-password \
