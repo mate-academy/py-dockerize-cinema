@@ -5,6 +5,7 @@ from django.core.management import BaseCommand
 
 import psycopg2
 
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
