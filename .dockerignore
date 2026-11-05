@@ -1,0 +1,10 @@
+*/Dockerfile*
+*/docker-compose*.yml
+
+*.git
+*.github
+
+
+*.sqlite
+*.sqlite3
+*.db

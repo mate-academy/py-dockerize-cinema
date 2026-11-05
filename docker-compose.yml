@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    command:
+      sh -c "python manage.py wait_for_db &&
+            python manage.py migrate && 
+            python manage.py runserver 0.0.0.0:8000"
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/app
+      - media_data:/app/cinema_media
+
+    depends_on:
+      - cinema_db
+
+  cinema_db:
+    image: postgres:17.11-trixie
+
+    env_file:
+      - .env
+
+    restart: always
+
+    ports:
+      - "5432:5432"
+    
+    volumes:
+      - cinema_db_data:/var/lib/postgresql/data
+
+volumes:
+  cinema_db_data:
+  media_data:
