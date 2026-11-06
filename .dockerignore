@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+README.md
+.flake8
+.env
+Dockerfile
+docker-compose.yaml
+.dockerignore
+.github/
+.git
+.gitignore
+venv/
