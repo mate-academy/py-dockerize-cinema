@@ -24,7 +24,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - my_bd:$PGDATA
+      - my_bd:/var/lib/postgresql/data
 
 volumes:
   my_bd:
