@@ -1,0 +1,13 @@
+venv/
+.git/
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+media/
+.github/
+*.md
+.flake8
+.gitignore
