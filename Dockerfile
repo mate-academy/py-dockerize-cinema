@@ -6,9 +6,9 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN apk add --update --no-cache postgresql-client jpeg-dev && \
+RUN apk add --update --no-cache postgresql-client jpeg && \
     apk add --update --no-cache --virtual .tmp-build-deps \
-        build-base postgresql-dev musl-dev zlib zlib-dev && \
+        build-base postgresql-dev musl-dev zlib zlib-dev jpeg-dev && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
     apk del .tmp-build-deps
