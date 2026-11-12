@@ -1,0 +1,8 @@
+.github
+.venv
+docker-compose.yaml
+Dockerfile
+.git
+__pycache__
+.idea
+.env
