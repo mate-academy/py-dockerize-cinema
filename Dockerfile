@@ -7,10 +7,13 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-# Install system dependencies needed for PostgreSQL and building wheels
+# Install system dependencies needed for PostgreSQL, then clean up build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
+    && pip install --no-cache-dir psycopg2-binary \
+    && apt-get purge -y build-essential \
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
