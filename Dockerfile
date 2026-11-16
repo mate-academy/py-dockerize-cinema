@@ -7,12 +7,11 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-# Install system dependencies needed for PostgreSQL, then clean up build tools
+# Install psycopg2-binary without keeping build tools in the final image
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
     libpq-dev \
     && pip install --no-cache-dir psycopg2-binary \
-    && apt-get purge -y build-essential \
+    && apt-get purge -y libpq-dev \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
