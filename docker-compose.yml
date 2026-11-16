@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cinema
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  app:
+    build: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+    environment:
+      - DJANGO_SETTINGS_MODULE=cinema_service.settings
+      - DJANGO_ALLOW_ASYNC_UNSAFE=true
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=cinema
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  media_data:
+  static_data:
+  postgres_data:
