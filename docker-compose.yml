@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+    environment:
+      - DJANGO_SETTINGS_MODULE=cinema_service.settings
+      - DJANGO_ALLOW_ASYNC_UNSAFE=true
+    env_file:
+      - .env
+
+volumes:
+  media_data:
+  static_data:
