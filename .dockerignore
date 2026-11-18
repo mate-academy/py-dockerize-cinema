@@ -1,0 +1,16 @@
+.idea/
+.vscode/
+*.iml
+
+.env*
+venv/
+
+.gitignore
+
+__pycache__/
+.pytest_cache/
+db.sqlite3
+
+media/
+
+.DS_Store
