@@ -8,3 +8,10 @@ djangorestframework
 djangorestframework-simplejwt
 drf-spectacular
 Pillow
+asgiref
+Markdown
+pytz
+sqlparse
+tzdata
+psycopg
+psycopg-binary
