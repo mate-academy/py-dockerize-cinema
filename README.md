@@ -31,3 +31,21 @@ So the only requirement to run your project is `Docker`.
 - Run tests using different approach: `docker-compose run app sh -c "python manage.py test"`;
 - If needed, also check the flake8: `docker-compose run app sh -c "flake8"`.
 - If everything is working fine - you are ready to push your code :).
+
+## How to run
+
+```shell
+git clone https://github.com/KorJ4/py-dockerize-cinema.git
+cd py-dockerize-cinema
+cp .env.sample .env          # then set your own SECRET_KEY and DB password
+docker-compose up --build    # starts db (PostgreSQL) and app
+```
+
+- API: http://127.0.0.1:8000/api/cinema/
+- Create an admin: `docker-compose exec app python manage.py createsuperuser`
+- Tests: `docker-compose run app sh -c "python manage.py test"`
+- Flake8: `docker-compose run app sh -c "flake8"`
+
+`app` starts only after `python manage.py wait_for_db` sees the database.
+Uploaded media is stored in the `my_media` volume (`/vol/web/media`),
+database data in the `my_db` volume.
