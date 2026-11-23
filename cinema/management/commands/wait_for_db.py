@@ -9,11 +9,11 @@ class Command(BaseCommand):
     @no_translations
     def handle(self, *args, **options) -> None:
         self.stdout.write("Waiting for database...")
-        db_conn = None
-        while db_conn is None:
+        while True:
             try:
                 db_conn = connections["default"]
                 db_conn.cursor()
+                break
             except OperationalError:
                 self.stdout.write(
                     "Database unavailable, waiting 1 second..."

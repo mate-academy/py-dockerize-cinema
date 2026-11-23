@@ -13,7 +13,9 @@ services:
     depends_on:
       - db
     volumes:
-      - ./:/app
+      - ./:/cinema_service
+      - media:/cinema_service/media
+      - static:/cinema_service/static
   db:
     image: postgres:14-alpine
     environment:
