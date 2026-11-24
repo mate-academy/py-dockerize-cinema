@@ -9,6 +9,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.parsers import FormParser, MultiPartParser
 
 from cinema.models import Genre, Actor, CinemaHall, Movie, MovieSession, Order
 from cinema.permissions import IsAdminOrIfAuthenticatedReadOnly
@@ -112,6 +113,7 @@ class MovieViewSet(
         detail=True,
         url_path="upload-image",
         permission_classes=[IsAdminUser],
+        parser_classes=[MultiPartParser, FormParser],
     )
     def upload_image(self, request, pk=None):
         """Endpoint for uploading image to specific movie"""
