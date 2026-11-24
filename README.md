@@ -31,3 +31,13 @@ So the only requirement to run your project is `Docker`.
 - Run tests using different approach: `docker-compose run app sh -c "python manage.py test"`;
 - If needed, also check the flake8: `docker-compose run app sh -c "flake8"`.
 - If everything is working fine - you are ready to push your code :).
+
+Before running the application, please create .env file based on the provided .env.example file, which contains required environment variables.
+- DJANGO_SECRET_KEY – Django secret key.
+- DJANGO_DEBUG – enables debug mode.
+- DJANGO_ALLOWED_HOSTS – allowed hostnames.
+- POSTGRES_DB – database name.
+- POSTGRES_USER – database username.
+- POSTGRES_PASSWORD – database password.
+- POSTGRES_HOST – PostgreSQL service name.
+- POSTGRES_PORT – internal PostgreSQL port.
